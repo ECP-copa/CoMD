@@ -15,3 +15,7 @@
 *.exe
 *.out
 *.app
+
+# Doxygen directories
+src-mpi/html
+src-mpi/latex
