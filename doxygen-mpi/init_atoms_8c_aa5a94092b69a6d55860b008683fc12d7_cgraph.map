@@ -1,0 +1,4 @@
+<map id="setVcm" name="setVcm">
+<area shape="rect" id="node2" href="$init_atoms_8c.html#a906b7e6649f4dc2b98b8548e6eeb65fd" title="Computes the center of mass velocity of the system. " alt="" coords="120,5,219,33"/>
+<area shape="rect" id="node3" href="$parallel_8c.html#a325e87182f425e51b2214e967c50df93" title="Wrapper for MPI_Allreduce real sum. " alt="" coords="268,5,383,33"/>
+</map>

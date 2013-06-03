@@ -1,0 +1,8 @@
+<map id="destroyForceExchange" name="destroyForceExchange">
+<area shape="rect" id="node2" href="$halo_exchange_8h.html#a11079a6e10fd7a6357fdffa6f5107857" title="Create a HaloExchange for force data. " alt="" coords="214,5,373,33"/>
+<area shape="rect" id="node3" href="$eam_8c.html#a1edcafec72eaafd6eb3ec01dedb6c70f" title="Calculate potential energy and forces for the EAM potential. " alt="" coords="422,5,503,33"/>
+<area shape="rect" id="node4" href="$eam_8h.html#ac1d22a30e046f7b354fdeeb235293877" title="Allocate and initialize the EAM potential data structure. " alt="" coords="552,5,638,33"/>
+<area shape="rect" id="node5" href="$_co_m_d_8c.html#af894f8613ca8116504095340b84eb366" title="decide whether to get LJ or EAM potentials " alt="" coords="686,5,776,33"/>
+<area shape="rect" id="node6" href="$_co_m_d_8c.html#ac304e322f79eaff8c0078ffd5bc8b8ab" title="Initialized the main CoMD data stucture, SimFlat, based on command line input from the user..." alt="" coords="824,5,925,33"/>
+<area shape="rect" id="node7" href="$_co_m_d_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title="main" alt="" coords="974,5,1024,33"/>
+</map>

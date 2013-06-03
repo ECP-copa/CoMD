@@ -1,0 +1,8 @@
+<map id="destroyHaloExchange" name="destroyHaloExchange">
+<area shape="rect" id="node2" href="$_co_m_d_8c.html#aa90c0a0ecf8bba8c512c8c556c5967c8" title="frees all data associated with *ps and frees *ps " alt="" coords="347,5,474,33"/>
+<area shape="rect" id="node4" href="$eam_8c.html#abd959aeb739f0c01dac13ab3544be142" title="eamDestroy" alt="" coords="205,57,299,85"/>
+<area shape="rect" id="node3" href="$_co_m_d_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title="main" alt="" coords="811,31,861,59"/>
+<area shape="rect" id="node5" href="$eam_8h.html#ac1d22a30e046f7b354fdeeb235293877" title="Allocate and initialize the EAM potential data structure. " alt="" coords="368,57,454,85"/>
+<area shape="rect" id="node6" href="$_co_m_d_8c.html#af894f8613ca8116504095340b84eb366" title="decide whether to get LJ or EAM potentials " alt="" coords="523,57,613,85"/>
+<area shape="rect" id="node7" href="$_co_m_d_8c.html#ac304e322f79eaff8c0078ffd5bc8b8ab" title="Initialized the main CoMD data stucture, SimFlat, based on command line input from the user..." alt="" coords="662,57,762,85"/>
+</map>

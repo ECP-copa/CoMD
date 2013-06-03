@@ -1,0 +1,7 @@
+<map id="CoMDTypes.h" name="CoMDTypes.h">
+<area shape="rect" id="node3" href="$mytype_8h.html" title="Frequently needed typedefs. " alt="" coords="285,161,360,189"/>
+<area shape="rect" id="node4" href="$halo_exchange_8h.html" title="Communicate halo data such as &quot;ghost&quot; atoms with neighboring tasks. " alt="" coords="140,83,256,111"/>
+<area shape="rect" id="node5" href="$link_cells_8h.html" title="Functions to maintain link cell structures for fast pair finding. " alt="" coords="282,83,363,111"/>
+<area shape="rect" id="node6" href="$decomposition_8h.html" title="Parallel domain decomposition. " alt="" coords="387,83,505,111"/>
+<area shape="rect" id="node7" href="$init_atoms_8h.html" title="Initialize the atom configuration. " alt="" coords="530,83,616,111"/>
+</map>

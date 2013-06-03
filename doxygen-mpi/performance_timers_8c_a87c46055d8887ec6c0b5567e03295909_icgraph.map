@@ -1,0 +1,6 @@
+<map id="getTick" name="getTick">
+<area shape="rect" id="node2" href="$performance_timers_8h.html#a422ef26b666f08198634e1b6de1f661a" title="Use to get elapsed time (lap timer). " alt="" coords="157,5,275,33"/>
+<area shape="rect" id="node4" href="$performance_timers_8h.html#a4f6bd6d44a8eb9da93ff29122fe61a84" title="Print timing results. " alt="" coords="132,57,300,85"/>
+<area shape="rect" id="node5" href="$performance_timers_8h.html#aa63888596e7072e66688fbdf8d5a3003" title="Print timing results to Yaml file. " alt="" coords="117,109,315,137"/>
+<area shape="rect" id="node3" href="$_co_m_d_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title="main" alt="" coords="363,57,413,85"/>
+</map>

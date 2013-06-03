@@ -1,0 +1,6 @@
+<map id="haloExchange" name="haloExchange">
+<area shape="rect" id="node2" href="$halo_exchange_8c.html#a448c7af8a5ee9fcc5a05966d263c8699" title="This is the function that does the heavy lifting for the communication of halo data. " alt="" coords="160,57,267,85"/>
+<area shape="rect" id="node3" href="$mem_utils_8h.html#a68c1412c76de7663cb4cbb94d90ddb5b" title="comdMalloc" alt="" coords="340,5,433,33"/>
+<area shape="rect" id="node4" href="$parallel_8c.html#a09fe85c4c25e7fd7b8c280f2d2763158" title="Wrapper for MPI_Sendrecv. " alt="" coords="315,57,458,85"/>
+<area shape="rect" id="node5" href="$mem_utils_8h.html#a6e9c992503ca7d317d2d06dc7de952db" title="comdFree" alt="" coords="346,109,427,137"/>
+</map>

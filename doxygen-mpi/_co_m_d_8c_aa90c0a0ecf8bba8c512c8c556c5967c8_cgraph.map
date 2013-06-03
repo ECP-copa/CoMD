@@ -1,0 +1,6 @@
+<map id="destroySimulation" name="destroySimulation">
+<area shape="rect" id="node2" href="$link_cells_8c.html#a083adb76109c54272e0a0177050119a7" title="destroyLinkCells" alt="" coords="198,5,317,33"/>
+<area shape="rect" id="node4" href="$init_atoms_8c.html#a5b8746fb08c4736569e0596472eb5998" title="destroyAtoms" alt="" coords="206,57,309,85"/>
+<area shape="rect" id="node5" href="$halo_exchange_8c.html#a84877eb5da5763f36ba159f81b348723" title="HaloExchange destructor. " alt="" coords="181,109,333,137"/>
+<area shape="rect" id="node3" href="$mem_utils_8h.html#a6e9c992503ca7d317d2d06dc7de952db" title="comdFree" alt="" coords="382,83,463,111"/>
+</map>

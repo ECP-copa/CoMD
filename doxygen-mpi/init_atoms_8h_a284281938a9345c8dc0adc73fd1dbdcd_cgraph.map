@@ -1,0 +1,6 @@
+<map id="createFccLattice" name="createFccLattice">
+<area shape="rect" id="node2" href="$link_cells_8c.html#ade255fea5f6aec94b86bb57424e1ab8b" title="putAtomInBox" alt="" coords="174,5,279,33"/>
+<area shape="rect" id="node5" href="$parallel_8c.html#ac0872a007952f503ae224827b5bad772" title="Wrapper for MPI_Allreduce integer sum. " alt="" coords="175,57,278,85"/>
+<area shape="rect" id="node3" href="$link_cells_8c.html#a2738fea8d13f074f348ca666f3fd8740" title="Get the index of the link cell that contains the specified coordinate. " alt="" coords="328,5,458,33"/>
+<area shape="rect" id="node4" href="$link_cells_8c.html#aefdb5c50c2b08f163c52c9e7ab5129f4" title="Calculates the link cell index from the grid coords. " alt="" coords="507,5,634,33"/>
+</map>

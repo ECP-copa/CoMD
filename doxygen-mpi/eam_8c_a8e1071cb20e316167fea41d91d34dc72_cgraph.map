@@ -1,0 +1,5 @@
+<map id="bcastInterpolationObject" name="bcastInterpolationObject">
+<area shape="rect" id="node2" href="$parallel_8c.html#a1396bd09185d8abc5cbf751b76512cfa" title="Return local rank. " alt="" coords="224,5,312,33"/>
+<area shape="rect" id="node3" href="$parallel_8c.html#a130d9ea361cbd97bb5efc195060e49b1" title="Wrapper for MPI_Bcast. " alt="" coords="219,57,317,85"/>
+<area shape="rect" id="node4" href="$mem_utils_8h.html#a68c1412c76de7663cb4cbb94d90ddb5b" title="comdMalloc" alt="" coords="222,109,314,137"/>
+</map>

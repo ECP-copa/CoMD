@@ -1,0 +1,5 @@
+<map id="eamDestroy" name="eamDestroy">
+<area shape="rect" id="node2" href="$eam_8c.html#aaf90bd49f8b1479ff7ff1f590e993caa" title="destroyInterpolationObject" alt="" coords="148,5,324,33"/>
+<area shape="rect" id="node4" href="$halo_exchange_8c.html#a84877eb5da5763f36ba159f81b348723" title="HaloExchange destructor. " alt="" coords="160,57,312,85"/>
+<area shape="rect" id="node3" href="$mem_utils_8h.html#a6e9c992503ca7d317d2d06dc7de952db" title="comdFree" alt="" coords="374,57,455,85"/>
+</map>

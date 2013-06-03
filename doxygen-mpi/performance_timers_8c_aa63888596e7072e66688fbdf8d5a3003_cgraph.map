@@ -1,0 +1,6 @@
+<map id="printPerformanceResultsYaml" name="printPerformanceResultsYaml">
+<area shape="rect" id="node2" href="$parallel_8c.html#a02072b7e11ef08f6e3c6e236bb13ac3c" title="Return non&#45;zero if printing occurs from this rank. " alt="" coords="257,5,335,33"/>
+<area shape="rect" id="node3" href="$performance_timers_8c.html#a87c46055d8887ec6c0b5567e03295909" title="Returns the factor for converting the integer time reported by getTime into seconds. " alt="" coords="264,57,328,85"/>
+<area shape="rect" id="node4" href="$parallel_8c.html#a00f6e4f2b757b05b377ed3f6fd6e18d2" title="Return total number of processors. " alt="" coords="252,109,340,137"/>
+<area shape="rect" id="node5" href="$parallel_8c.html#a1396bd09185d8abc5cbf751b76512cfa" title="Return local rank. " alt="" coords="252,161,340,189"/>
+</map>

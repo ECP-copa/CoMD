@@ -1,0 +1,6 @@
+<map id="computeVcm" name="computeVcm">
+<area shape="rect" id="node2" href="$init_atoms_8h.html#af023604df890c7308f08db129f09b52a" title="Sets the center of mass velocity of the system. " alt="" coords="152,5,218,33"/>
+<area shape="rect" id="node3" href="$init_atoms_8h.html#af5762021307b94e60770c2270745dd49" title="Sets the temperature of system. " alt="" coords="267,5,381,33"/>
+<area shape="rect" id="node4" href="$_co_m_d_8c.html#ac304e322f79eaff8c0078ffd5bc8b8ab" title="Initialized the main CoMD data stucture, SimFlat, based on command line input from the user..." alt="" coords="430,5,530,33"/>
+<area shape="rect" id="node5" href="$_co_m_d_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title="main" alt="" coords="579,5,629,33"/>
+</map>

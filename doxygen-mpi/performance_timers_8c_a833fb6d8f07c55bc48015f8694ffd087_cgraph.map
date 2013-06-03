@@ -1,0 +1,7 @@
+<map id="timerStats" name="timerStats">
+<area shape="rect" id="node2" href="$parallel_8c.html#a2c5924dc6ca290b1207987d85f621c7e" title="Wrapper for MPI_Allreduce double sum. " alt="" coords="154,5,284,33"/>
+<area shape="rect" id="node3" href="$parallel_8c.html#a00f6e4f2b757b05b377ed3f6fd6e18d2" title="Return total number of processors. " alt="" coords="175,57,262,85"/>
+<area shape="rect" id="node4" href="$parallel_8c.html#a1396bd09185d8abc5cbf751b76512cfa" title="Return local rank. " alt="" coords="174,109,263,137"/>
+<area shape="rect" id="node5" href="$parallel_8c.html#a3ad3a0dff3c38df1847cc3ea696c56b3" title="Wrapper for MPI_Allreduce double min with rank. " alt="" coords="138,161,299,189"/>
+<area shape="rect" id="node6" href="$parallel_8c.html#aaeea8b697276b8c9eada67c51b5579b8" title="Wrapper for MPI_Allreduce double max with rank. " alt="" coords="136,213,301,241"/>
+</map>
