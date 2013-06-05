@@ -109,7 +109,7 @@ $(document).ready(function(){initNavTree('yaml_output_8c_source.html','');});
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;time.h&gt;</span></div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_co_m_d__info_8h.html">CoMD_info.h</a>&quot;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &quot;CoMD_info.h&quot;</span></div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="mytype_8h.html" title="Frequently needed typedefs.">mytype.h</a>&quot;</span></div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="parallel_8h.html" title="Wrappers for MPI functions.">parallel.h</a>&quot;</span></div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
@@ -161,15 +161,15 @@ $(document).ready(function(){initNavTree('yaml_output_8c_source.html','');});
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;   fprintf(file,<span class="stringliteral">&quot;Mini-Application Name    : %s\n&quot;</span>, <a class="code" href="yaml_output_8c.html#aa8e74050031dd3cef565df6da2fc5e7a">CoMDVariant</a>);</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;   fprintf(file,<span class="stringliteral">&quot;Mini-Application Version : %s\n&quot;</span>, <a class="code" href="yaml_output_8c.html#ac77599b2d6844c81de56514ca8f9d0f6">CoMDVersion</a>);</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;   fprintf(file,<span class="stringliteral">&quot;Platform:\n&quot;</span>);</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;   fprintf(file,<span class="stringliteral">&quot;  hostname: %s\n&quot;</span>,         <a class="code" href="_co_m_d__info_8h.html#ae9539bc8d85cda4987f0a85a93dd4d58">CoMD_HOSTNAME</a>);</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;   fprintf(file,<span class="stringliteral">&quot;  kernel name: %s\n&quot;</span>,      <a class="code" href="_co_m_d__info_8h.html#a199503e85b84456ad356bd39e2415dd2">CoMD_KERNEL_NAME</a>);</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;   fprintf(file,<span class="stringliteral">&quot;  kernel release: %s\n&quot;</span>,   <a class="code" href="_co_m_d__info_8h.html#ae1ea250d67413f631de0cd866693989b">CoMD_KERNEL_RELEASE</a>);</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;   fprintf(file,<span class="stringliteral">&quot;  processor: %s\n&quot;</span>,        <a class="code" href="_co_m_d__info_8h.html#aa30c6bca903a11595bdb1fc7851a1f8f">CoMD_PROCESSOR</a>);</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;   fprintf(file,<span class="stringliteral">&quot;  hostname: %s\n&quot;</span>,         CoMD_HOSTNAME);</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;   fprintf(file,<span class="stringliteral">&quot;  kernel name: %s\n&quot;</span>,      CoMD_KERNEL_NAME);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;   fprintf(file,<span class="stringliteral">&quot;  kernel release: %s\n&quot;</span>,   CoMD_KERNEL_RELEASE);</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;   fprintf(file,<span class="stringliteral">&quot;  processor: %s\n&quot;</span>,        CoMD_PROCESSOR);</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;   fprintf(file,<span class="stringliteral">&quot;Build:\n&quot;</span>);</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;   fprintf(file,<span class="stringliteral">&quot;  CC: %s\n&quot;</span>,               <a class="code" href="_co_m_d__info_8h.html#a0fb53aa284f0e931fb8ef52b13db3feb">CoMD_COMPILER</a>);</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;   fprintf(file,<span class="stringliteral">&quot;  compiler version: %s\n&quot;</span>, <a class="code" href="_co_m_d__info_8h.html#a69de8fb66c1809674e2a8e0276380bf0">CoMD_COMPILER_VERSION</a>);</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;   fprintf(file,<span class="stringliteral">&quot;  CFLAGS: %s\n&quot;</span>,           <a class="code" href="_co_m_d__info_8h.html#a4984ee3f80f6d59a29f03068cb4281be">CoMD_CFLAGS</a>);</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;   fprintf(file,<span class="stringliteral">&quot;  LDFLAGS: %s\n&quot;</span>,          <a class="code" href="_co_m_d__info_8h.html#a4cfb4bc95c2898026432c05a5e2fe187">CoMD_LDFLAGS</a>);</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;   fprintf(file,<span class="stringliteral">&quot;  CC: %s\n&quot;</span>,               CoMD_COMPILER);</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;   fprintf(file,<span class="stringliteral">&quot;  compiler version: %s\n&quot;</span>, CoMD_COMPILER_VERSION);</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;   fprintf(file,<span class="stringliteral">&quot;  CFLAGS: %s\n&quot;</span>,           CoMD_CFLAGS);</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;   fprintf(file,<span class="stringliteral">&quot;  LDFLAGS: %s\n&quot;</span>,          CoMD_LDFLAGS);</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;   fprintf(file,<span class="stringliteral">&quot;  using MPI: %s\n&quot;</span>,        <a class="code" href="parallel_8c.html#aba5ca2382379dff7802265eeb84811ba" title="Return non-zero if code was built with MPI active.">builtWithMpi</a>() ? <span class="stringliteral">&quot;true&quot;</span>:<span class="stringliteral">&quot;false&quot;</span>);</div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;   fprintf(file,<span class="stringliteral">&quot;  Threading: none\n&quot;</span>);</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;   fprintf(file,<span class="stringliteral">&quot;  Double Precision: %s\n&quot;</span>, (<span class="keyword">sizeof</span>(<a class="code" href="mytype_8h.html#a0d00e2b3dfadee81331bbb39068570c4" title="define native type for CoMD as double precision">real_t</a>)==<span class="keyword">sizeof</span>(<span class="keywordtype">double</span>)?<span class="stringliteral">&quot;true&quot;</span>:<span class="stringliteral">&quot;false&quot;</span>));</div>
@@ -200,7 +200,7 @@ $(document).ready(function(){initNavTree('yaml_output_8c_source.html','');});
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="yaml_output_8c.html">yamlOutput.c</a></li>
-    <li class="footer">Generated on Wed Jun 5 2013 09:12:59 for CoMD by
+    <li class="footer">Generated on Wed Jun 5 2013 11:08:31 for CoMD by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
   </ul>

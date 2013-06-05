@@ -3,7 +3,6 @@ var files =
     [ "cmdLineParser.c", "cmd_line_parser_8c.html", "cmd_line_parser_8c" ],
     [ "cmdLineParser.h", "cmd_line_parser_8h.html", "cmd_line_parser_8h" ],
     [ "CoMD.c", "_co_m_d_8c.html", "_co_m_d_8c" ],
-    [ "CoMD_info.h", "_co_m_d__info_8h.html", "_co_m_d__info_8h" ],
     [ "CoMDTypes.h", "_co_m_d_types_8h.html", "_co_m_d_types_8h" ],
     [ "constants.h", "constants_8h.html", "constants_8h" ],
     [ "decomposition.c", "decomposition_8c.html", "decomposition_8c" ],
