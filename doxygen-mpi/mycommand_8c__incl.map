@@ -1,6 +1,6 @@
 <map id="mycommand.c" name="mycommand.c">
-<area shape="rect" id="node2" href="$mycommand_8h.html" title="Handle command line arguments. " alt="" coords="4,83,112,111"/>
-<area shape="rect" id="node6" href="$cmd_line_parser_8h.html" title="A parser for command line arguments. " alt="" coords="313,83,433,111"/>
-<area shape="rect" id="node7" href="$parallel_8h.html" title="Wrappers for MPI functions. " alt="" coords="458,83,533,111"/>
-<area shape="rect" id="node8" href="$mytype_8h.html" title="Frequently needed typedefs. " alt="" coords="496,161,571,189"/>
+<area shape="rect" id="node2" href="$mycommand_8h.html" title="Handle command line arguments." alt="" coords="5,80,115,107"/>
+<area shape="rect" id="node6" href="$cmd_line_parser_8h.html" title="A parser for command line arguments." alt="" coords="322,80,445,107"/>
+<area shape="rect" id="node7" href="$parallel_8h.html" title="Wrappers for MPI functions." alt="" coords="470,80,545,107"/>
+<area shape="rect" id="node8" href="$mytype_8h.html" title="Frequently needed typedefs." alt="" coords="506,155,584,181"/>
 </map>

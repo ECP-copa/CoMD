@@ -1,4 +1,4 @@
 <map id="getNeighborBoxes" name="getNeighborBoxes">
-<area shape="rect" id="node2" href="$link_cells_8c.html#ab4fc23d98bc77ed3b81f4a06b58aad4b" title="Get the grid coordinates of the link cell with index iBox. " alt="" coords="212,5,284,33"/>
-<area shape="rect" id="node3" href="$link_cells_8c.html#aefdb5c50c2b08f163c52c9e7ab5129f4" title="Calculates the link cell index from the grid coords. " alt="" coords="185,57,311,85"/>
+<area shape="rect" id="node2" href="$link_cells_8c.html#ab4fc23d98bc77ed3b81f4a06b58aad4b" title="Get the grid coordinates of the link cell with index iBox." alt="" coords="224,5,301,32"/>
+<area shape="rect" id="node3" href="$link_cells_8c.html#aefdb5c50c2b08f163c52c9e7ab5129f4" title="Calculates the link cell index from the grid coords." alt="" coords="195,56,330,83"/>
 </map>

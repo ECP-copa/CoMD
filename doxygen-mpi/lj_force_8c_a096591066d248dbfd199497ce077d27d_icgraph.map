@@ -1,6 +1,6 @@
 <map id="ljForce" name="ljForce">
-<area shape="rect" id="node2" href="$lj_force_8h.html#a596bba394f5975f115691e00e4f45452" title="Initialize an Lennard Jones potential for Copper. " alt="" coords="115,5,184,33"/>
-<area shape="rect" id="node3" href="$_co_m_d_8c.html#af894f8613ca8116504095340b84eb366" title="decide whether to get LJ or EAM potentials " alt="" coords="232,5,322,33"/>
-<area shape="rect" id="node4" href="$_co_m_d_8c.html#ac304e322f79eaff8c0078ffd5bc8b8ab" title="Initialized the main CoMD data stucture, SimFlat, based on command line input from the user..." alt="" coords="371,5,472,33"/>
-<area shape="rect" id="node5" href="$_co_m_d_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title="main" alt="" coords="520,5,570,33"/>
+<area shape="rect" id="node2" href="$lj_force_8h.html#a596bba394f5975f115691e00e4f45452" title="Initialize an Lennard Jones potential for Copper." alt="" coords="117,5,192,32"/>
+<area shape="rect" id="node3" href="$_co_m_d_8c.html#af894f8613ca8116504095340b84eb366" title="decide whether to get LJ or EAM potentials" alt="" coords="241,5,335,32"/>
+<area shape="rect" id="node4" href="$_co_m_d_8c.html#ac304e322f79eaff8c0078ffd5bc8b8ab" title="Initialized the main CoMD data stucture, SimFlat, based on command line input from the user..." alt="" coords="384,5,488,32"/>
+<area shape="rect" id="node5" href="$_co_m_d_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title="main" alt="" coords="536,5,587,32"/>
 </map>

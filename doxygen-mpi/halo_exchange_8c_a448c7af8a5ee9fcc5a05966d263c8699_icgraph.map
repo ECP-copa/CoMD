@@ -1,10 +1,10 @@
 <map id="exchangeData" name="exchangeData">
-<area shape="rect" id="node2" href="$halo_exchange_8h.html#a6299c18094f40719d8f69818eedebcc7" title="Execute a halo exchange. " alt="" coords="160,31,266,59"/>
-<area shape="rect" id="node3" href="$eam_8c.html#a1edcafec72eaafd6eb3ec01dedb6c70f" title="Calculate potential energy and forces for the EAM potential. " alt="" coords="315,5,397,33"/>
-<area shape="rect" id="node8" href="$timestep_8h.html#ac19a9ed6e42be6da5b3aa705ebf2aa84" title="Update local and remote link cells after atoms have moved. " alt="" coords="579,57,704,85"/>
-<area shape="rect" id="node4" href="$eam_8h.html#ac1d22a30e046f7b354fdeeb235293877" title="Allocate and initialize the EAM potential data structure. " alt="" coords="445,5,531,33"/>
-<area shape="rect" id="node5" href="$_co_m_d_8c.html#af894f8613ca8116504095340b84eb366" title="decide whether to get LJ or EAM potentials " alt="" coords="596,5,686,33"/>
-<area shape="rect" id="node6" href="$_co_m_d_8c.html#ac304e322f79eaff8c0078ffd5bc8b8ab" title="Initialized the main CoMD data stucture, SimFlat, based on command line input from the user..." alt="" coords="752,5,853,33"/>
-<area shape="rect" id="node7" href="$_co_m_d_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title="main" alt="" coords="902,31,952,59"/>
-<area shape="rect" id="node9" href="$timestep_8h.html#a412cece7eeafdceb6343252471d3dc37" title="Advance the simulation time to t+dt using a leap frog method (equivalent to velocity verlet)..." alt="" coords="767,57,839,85"/>
+<area shape="rect" id="node2" href="$halo_exchange_8h.html#a6299c18094f40719d8f69818eedebcc7" title="Execute a halo exchange." alt="" coords="166,31,274,57"/>
+<area shape="rect" id="node3" href="$eam_8c.html#a1edcafec72eaafd6eb3ec01dedb6c70f" title="Calculate potential energy and forces for the EAM potential." alt="" coords="323,5,405,32"/>
+<area shape="rect" id="node8" href="$timestep_8h.html#ac19a9ed6e42be6da5b3aa705ebf2aa84" title="Update local and remote link cells after atoms have moved." alt="" coords="593,56,725,83"/>
+<area shape="rect" id="node4" href="$eam_8h.html#ac1d22a30e046f7b354fdeeb235293877" title="Allocate and initialize the EAM potential data structure." alt="" coords="454,5,543,32"/>
+<area shape="rect" id="node5" href="$_co_m_d_8c.html#af894f8613ca8116504095340b84eb366" title="decide whether to get LJ or EAM potentials" alt="" coords="611,5,706,32"/>
+<area shape="rect" id="node6" href="$_co_m_d_8c.html#ac304e322f79eaff8c0078ffd5bc8b8ab" title="Initialized the main CoMD data stucture, SimFlat, based on command line input from the user..." alt="" coords="773,5,877,32"/>
+<area shape="rect" id="node7" href="$_co_m_d_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title="main" alt="" coords="925,31,976,57"/>
+<area shape="rect" id="node9" href="$timestep_8h.html#a412cece7eeafdceb6343252471d3dc37" title="Advance the simulation time to t+dt using a leap frog method (equivalent to velocity verlet)..." alt="" coords="787,56,864,83"/>
 </map>

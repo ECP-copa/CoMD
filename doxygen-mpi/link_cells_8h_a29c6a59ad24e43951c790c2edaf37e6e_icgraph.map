@@ -1,7 +1,7 @@
 <map id="putAtomInBox" name="putAtomInBox">
-<area shape="rect" id="node2" href="$halo_exchange_8c.html#af0225c2b91c4fea4fa79d762d226e7bc" title="The unloadBuffer function for a halo exchange of atom data. " alt="" coords="161,5,295,33"/>
-<area shape="rect" id="node6" href="$init_atoms_8h.html#a284281938a9345c8dc0adc73fd1dbdcd" title="Creates atom positions on a face centered cubic (FCC) lattice with nx * ny * nz unit cells and lattic..." alt="" coords="363,57,482,85"/>
-<area shape="rect" id="node3" href="$halo_exchange_8h.html#ad23258401e7398f07edae0c606d0bcfb" title="Create a HaloExchange for atom data. " alt="" coords="345,5,501,33"/>
-<area shape="rect" id="node4" href="$_co_m_d_8c.html#ac304e322f79eaff8c0078ffd5bc8b8ab" title="Initialized the main CoMD data stucture, SimFlat, based on command line input from the user..." alt="" coords="550,31,650,59"/>
-<area shape="rect" id="node5" href="$_co_m_d_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title="main" alt="" coords="699,31,749,59"/>
+<area shape="rect" id="node2" href="$halo_exchange_8c.html#af0225c2b91c4fea4fa79d762d226e7bc" title="The unloadBuffer function for a halo exchange of atom data." alt="" coords="165,5,304,32"/>
+<area shape="rect" id="node6" href="$init_atoms_8h.html#a284281938a9345c8dc0adc73fd1dbdcd" title="Creates atom positions on a face centered cubic (FCC) lattice with nx * ny * nz unit cells and lattic..." alt="" coords="370,56,497,83"/>
+<area shape="rect" id="node3" href="$halo_exchange_8h.html#ad23258401e7398f07edae0c606d0bcfb" title="Create a HaloExchange for atom data." alt="" coords="352,5,515,32"/>
+<area shape="rect" id="node4" href="$_co_m_d_8c.html#ac304e322f79eaff8c0078ffd5bc8b8ab" title="Initialized the main CoMD data stucture, SimFlat, based on command line input from the user..." alt="" coords="563,31,667,57"/>
+<area shape="rect" id="node5" href="$_co_m_d_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title="main" alt="" coords="715,31,765,57"/>
 </map>

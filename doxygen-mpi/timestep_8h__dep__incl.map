@@ -1,5 +1,5 @@
 <map id="timestep.h" name="timestep.h">
-<area shape="rect" id="node2" href="$_co_m_d_8c.html" title="Main program. " alt="" coords="5,83,75,111"/>
-<area shape="rect" id="node3" href="$init_atoms_8c.html" title="Initialize the atom configuration. " alt="" coords="99,83,185,111"/>
-<area shape="rect" id="node4" href="$timestep_8c.html" title="Leapfrog time integrator. " alt="" coords="210,83,291,111"/>
+<area shape="rect" id="node2" href="$_co_m_d_8c.html" title="Main program." alt="" coords="5,80,77,107"/>
+<area shape="rect" id="node3" href="$init_atoms_8c.html" title="Initialize the atom configuration." alt="" coords="101,80,192,107"/>
+<area shape="rect" id="node4" href="$timestep_8c.html" title="Leapfrog time integrator." alt="" coords="216,80,304,107"/>
 </map>

@@ -1,9 +1,9 @@
 <map id="getNeighborBoxes" name="getNeighborBoxes">
-<area shape="rect" id="node2" href="$eam_8c.html#a1edcafec72eaafd6eb3ec01dedb6c70f" title="Calculate potential energy and forces for the EAM potential. " alt="" coords="185,5,266,33"/>
-<area shape="rect" id="node7" href="$lj_force_8c.html#a096591066d248dbfd199497ce077d27d" title="ljForce" alt="" coords="195,57,256,85"/>
-<area shape="rect" id="node3" href="$eam_8h.html#ac1d22a30e046f7b354fdeeb235293877" title="Allocate and initialize the EAM potential data structure. " alt="" coords="314,5,400,33"/>
-<area shape="rect" id="node4" href="$_co_m_d_8c.html#af894f8613ca8116504095340b84eb366" title="decide whether to get LJ or EAM potentials " alt="" coords="448,31,538,59"/>
-<area shape="rect" id="node5" href="$_co_m_d_8c.html#ac304e322f79eaff8c0078ffd5bc8b8ab" title="Initialized the main CoMD data stucture, SimFlat, based on command line input from the user..." alt="" coords="587,31,688,59"/>
-<area shape="rect" id="node6" href="$_co_m_d_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title="main" alt="" coords="736,31,786,59"/>
-<area shape="rect" id="node8" href="$lj_force_8h.html#a596bba394f5975f115691e00e4f45452" title="Initialize an Lennard Jones potential for Copper. " alt="" coords="323,57,392,85"/>
+<area shape="rect" id="node2" href="$eam_8c.html#a1edcafec72eaafd6eb3ec01dedb6c70f" title="Calculate potential energy and forces for the EAM potential." alt="" coords="195,5,277,32"/>
+<area shape="rect" id="node7" href="$lj_force_8c.html#a096591066d248dbfd199497ce077d27d" title="ljForce" alt="" coords="204,56,268,83"/>
+<area shape="rect" id="node3" href="$eam_8h.html#ac1d22a30e046f7b354fdeeb235293877" title="Allocate and initialize the EAM potential data structure." alt="" coords="326,5,415,32"/>
+<area shape="rect" id="node4" href="$_co_m_d_8c.html#af894f8613ca8116504095340b84eb366" title="decide whether to get LJ or EAM potentials" alt="" coords="465,31,559,57"/>
+<area shape="rect" id="node5" href="$_co_m_d_8c.html#ac304e322f79eaff8c0078ffd5bc8b8ab" title="Initialized the main CoMD data stucture, SimFlat, based on command line input from the user..." alt="" coords="608,31,712,57"/>
+<area shape="rect" id="node6" href="$_co_m_d_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title="main" alt="" coords="760,31,811,57"/>
+<area shape="rect" id="node8" href="$lj_force_8h.html#a596bba394f5975f115691e00e4f45452" title="Initialize an Lennard Jones potential for Copper." alt="" coords="333,56,408,83"/>
 </map>

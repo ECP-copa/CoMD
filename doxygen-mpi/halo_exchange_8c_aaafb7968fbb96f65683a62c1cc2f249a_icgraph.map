@@ -1,8 +1,8 @@
 <map id="mkForceRecvCellList" name="mkForceRecvCellList">
-<area shape="rect" id="node2" href="$halo_exchange_8h.html#a11079a6e10fd7a6357fdffa6f5107857" title="Create a HaloExchange for force data. " alt="" coords="200,5,360,33"/>
-<area shape="rect" id="node3" href="$eam_8c.html#a1edcafec72eaafd6eb3ec01dedb6c70f" title="Calculate potential energy and forces for the EAM potential. " alt="" coords="409,5,490,33"/>
-<area shape="rect" id="node4" href="$eam_8h.html#ac1d22a30e046f7b354fdeeb235293877" title="Allocate and initialize the EAM potential data structure. " alt="" coords="538,5,624,33"/>
-<area shape="rect" id="node5" href="$_co_m_d_8c.html#af894f8613ca8116504095340b84eb366" title="decide whether to get LJ or EAM potentials " alt="" coords="672,5,762,33"/>
-<area shape="rect" id="node6" href="$_co_m_d_8c.html#ac304e322f79eaff8c0078ffd5bc8b8ab" title="Initialized the main CoMD data stucture, SimFlat, based on command line input from the user..." alt="" coords="811,5,912,33"/>
-<area shape="rect" id="node7" href="$_co_m_d_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title="main" alt="" coords="960,5,1010,33"/>
+<area shape="rect" id="node2" href="$halo_exchange_8h.html#a11079a6e10fd7a6357fdffa6f5107857" title="Create a HaloExchange for force data." alt="" coords="209,5,373,32"/>
+<area shape="rect" id="node3" href="$eam_8c.html#a1edcafec72eaafd6eb3ec01dedb6c70f" title="Calculate potential energy and forces for the EAM potential." alt="" coords="421,5,504,32"/>
+<area shape="rect" id="node4" href="$eam_8h.html#ac1d22a30e046f7b354fdeeb235293877" title="Allocate and initialize the EAM potential data structure." alt="" coords="553,5,642,32"/>
+<area shape="rect" id="node5" href="$_co_m_d_8c.html#af894f8613ca8116504095340b84eb366" title="decide whether to get LJ or EAM potentials" alt="" coords="691,5,786,32"/>
+<area shape="rect" id="node6" href="$_co_m_d_8c.html#ac304e322f79eaff8c0078ffd5bc8b8ab" title="Initialized the main CoMD data stucture, SimFlat, based on command line input from the user..." alt="" coords="835,5,939,32"/>
+<area shape="rect" id="node7" href="$_co_m_d_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title="main" alt="" coords="987,5,1037,32"/>
 </map>

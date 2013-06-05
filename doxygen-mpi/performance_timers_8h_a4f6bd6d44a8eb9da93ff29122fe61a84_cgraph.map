@@ -1,10 +1,10 @@
 <map id="printPerformanceResults" name="printPerformanceResults">
-<area shape="rect" id="node2" href="$performance_timers_8c.html#a833fb6d8f07c55bc48015f8694ffd087" title="Collect timer statistics across ranks. " alt="" coords="222,109,303,137"/>
-<area shape="rect" id="node8" href="$parallel_8c.html#a02072b7e11ef08f6e3c6e236bb13ac3c" title="Return non&#45;zero if printing occurs from this rank. " alt="" coords="223,213,302,241"/>
-<area shape="rect" id="node9" href="$performance_timers_8c.html#a87c46055d8887ec6c0b5567e03295909" title="Returns the factor for converting the integer time reported by getTime into seconds. " alt="" coords="231,265,295,293"/>
-<area shape="rect" id="node5" href="$parallel_8c.html#a1396bd09185d8abc5cbf751b76512cfa" title="Return local rank. " alt="" coords="390,213,479,241"/>
-<area shape="rect" id="node4" href="$parallel_8c.html#a00f6e4f2b757b05b377ed3f6fd6e18d2" title="Return total number of processors. " alt="" coords="391,5,478,33"/>
-<area shape="rect" id="node3" href="$parallel_8c.html#a2c5924dc6ca290b1207987d85f621c7e" title="Wrapper for MPI_Allreduce double sum. " alt="" coords="370,57,500,85"/>
-<area shape="rect" id="node6" href="$parallel_8c.html#a3ad3a0dff3c38df1847cc3ea696c56b3" title="Wrapper for MPI_Allreduce double min with rank. " alt="" coords="354,109,515,137"/>
-<area shape="rect" id="node7" href="$parallel_8c.html#aaeea8b697276b8c9eada67c51b5579b8" title="Wrapper for MPI_Allreduce double max with rank. " alt="" coords="352,161,517,189"/>
+<area shape="rect" id="node2" href="$performance_timers_8c.html#a833fb6d8f07c55bc48015f8694ffd087" title="Collect timer statistics across ranks." alt="" coords="227,107,314,133"/>
+<area shape="rect" id="node8" href="$parallel_8c.html#a02072b7e11ef08f6e3c6e236bb13ac3c" title="Return non&#45;zero if printing occurs from this rank." alt="" coords="231,208,310,235"/>
+<area shape="rect" id="node9" href="$performance_timers_8c.html#a87c46055d8887ec6c0b5567e03295909" title="Returns the factor for converting the integer time reported by getTime into seconds." alt="" coords="237,259,304,285"/>
+<area shape="rect" id="node5" href="$parallel_8c.html#a1396bd09185d8abc5cbf751b76512cfa" title="Return local rank." alt="" coords="401,208,492,235"/>
+<area shape="rect" id="node4" href="$parallel_8c.html#a00f6e4f2b757b05b377ed3f6fd6e18d2" title="Return total number of processors." alt="" coords="401,5,492,32"/>
+<area shape="rect" id="node3" href="$parallel_8c.html#a2c5924dc6ca290b1207987d85f621c7e" title="Wrapper for MPI_Allreduce double sum." alt="" coords="380,56,513,83"/>
+<area shape="rect" id="node6" href="$parallel_8c.html#a3ad3a0dff3c38df1847cc3ea696c56b3" title="Wrapper for MPI_Allreduce double min with rank." alt="" coords="366,107,527,133"/>
+<area shape="rect" id="node7" href="$parallel_8c.html#aaeea8b697276b8c9eada67c51b5579b8" title="Wrapper for MPI_Allreduce double max with rank." alt="" coords="363,157,530,184"/>
 </map>

@@ -1,11 +1,11 @@
 <map id="linkCells.h" name="linkCells.h">
-<area shape="rect" id="node2" href="$_co_m_d_types_8h.html" title="CoMD data structures. " alt="" coords="225,83,330,111"/>
-<area shape="rect" id="node3" href="$_co_m_d_8c.html" title="Main program. " alt="" coords="84,238,153,266"/>
-<area shape="rect" id="node7" href="$eam_8c.html" title="Compute forces for the Embedded Atom Model (EAM). " alt="" coords="23,161,80,189"/>
-<area shape="rect" id="node8" href="$halo_exchange_8c.html" title="Communicate halo data such as &quot;ghost&quot; atoms with neighboring tasks. " alt="" coords="314,161,429,189"/>
-<area shape="rect" id="node5" href="$init_atoms_8c.html" title="Initialize the atom configuration. " alt="" coords="507,238,593,266"/>
-<area shape="rect" id="node9" href="$link_cells_8c.html" title="Functions to maintain link cell structures for fast pair finding. " alt="" coords="454,161,534,189"/>
-<area shape="rect" id="node10" href="$lj_force_8c.html" title="Computes forces for the 12&#45;6 Lennard Jones (LJ) potential. " alt="" coords="558,161,629,189"/>
-<area shape="rect" id="node6" href="$timestep_8c.html" title="Leapfrog time integrator. " alt="" coords="235,238,316,266"/>
-<area shape="rect" id="node4" href="$timestep_8h.html" title="Leapfrog time integrator. " alt="" coords="156,161,238,189"/>
+<area shape="rect" id="node2" href="$_co_m_d_types_8h.html" title="CoMD data structures." alt="" coords="227,80,337,107"/>
+<area shape="rect" id="node3" href="$_co_m_d_8c.html" title="Main program." alt="" coords="82,229,154,256"/>
+<area shape="rect" id="node7" href="$eam_8c.html" title="Compute forces for the Embedded Atom Model (EAM)." alt="" coords="22,155,81,181"/>
+<area shape="rect" id="node8" href="$halo_exchange_8c.html" title="Communicate halo data such as &quot;ghost&quot; atoms with neighboring tasks." alt="" coords="319,155,437,181"/>
+<area shape="rect" id="node5" href="$init_atoms_8c.html" title="Initialize the atom configuration." alt="" coords="517,229,608,256"/>
+<area shape="rect" id="node9" href="$link_cells_8c.html" title="Functions to maintain link cell structures for fast pair finding." alt="" coords="462,155,545,181"/>
+<area shape="rect" id="node10" href="$lj_force_8c.html" title="Computes forces for the 12&#45;6 Lennard Jones (LJ) potential." alt="" coords="569,155,644,181"/>
+<area shape="rect" id="node6" href="$timestep_8c.html" title="Leapfrog time integrator." alt="" coords="237,229,325,256"/>
+<area shape="rect" id="node4" href="$timestep_8h.html" title="Leapfrog time integrator." alt="" coords="156,155,244,181"/>
 </map>

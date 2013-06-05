@@ -1,15 +1,15 @@
 <map id="redistributeAtoms" name="redistributeAtoms">
-<area shape="rect" id="node2" href="$link_cells_8c.html#adf11c6df14b931a06449db828100b968" title="Update link cell data structures when the atoms have moved. " alt="" coords="179,83,295,111"/>
-<area shape="rect" id="node8" href="$halo_exchange_8c.html#a6299c18094f40719d8f69818eedebcc7" title="Execute a halo exchange. " alt="" coords="184,187,290,215"/>
-<area shape="rect" id="node13" href="$halo_exchange_8c.html#af19bdec7d00b16354607a2418d4bc561" title="Sort the atoms by gid in the specified link cell. " alt="" coords="180,239,295,267"/>
-<area shape="rect" id="node3" href="$link_cells_8c.html#a73c999cc65769d698ae32c894a98a48f" title="Set the number of atoms to zero in all halo link cells. " alt="" coords="352,5,467,33"/>
-<area shape="rect" id="node4" href="$link_cells_8c.html#a2738fea8d13f074f348ca666f3fd8740" title="Get the index of the link cell that contains the specified coordinate. " alt="" coords="344,57,474,85"/>
-<area shape="rect" id="node6" href="$link_cells_8c.html#a347d1eef4c3889b1bc2bec0fb2823bfb" title="Move an atom from one link cell to another. " alt="" coords="367,109,452,137"/>
-<area shape="rect" id="node5" href="$link_cells_8c.html#aefdb5c50c2b08f163c52c9e7ab5129f4" title="Calculates the link cell index from the grid coords. " alt="" coords="531,57,658,85"/>
-<area shape="rect" id="node7" href="$link_cells_8c.html#a588aa87cc6b1436bf27b174014826bae" title="Copy atom iAtom in link cell iBox to atom jAtom in link cell jBox. " alt="" coords="554,109,635,137"/>
-<area shape="rect" id="node9" href="$halo_exchange_8c.html#a448c7af8a5ee9fcc5a05966d263c8699" title="This is the function that does the heavy lifting for the communication of halo data. " alt="" coords="356,187,463,215"/>
-<area shape="rect" id="node10" href="$mem_utils_8h.html#a68c1412c76de7663cb4cbb94d90ddb5b" title="comdMalloc" alt="" coords="548,161,641,189"/>
-<area shape="rect" id="node11" href="$parallel_8c.html#a09fe85c4c25e7fd7b8c280f2d2763158" title="Wrapper for MPI_Sendrecv. " alt="" coords="523,213,666,241"/>
-<area shape="rect" id="node12" href="$mem_utils_8h.html#a6e9c992503ca7d317d2d06dc7de952db" title="comdFree" alt="" coords="554,265,635,293"/>
-<area shape="rect" id="node14" href="$halo_exchange_8c.html#adce6df6ee629674941d4af97f7805ebc" title="A function suitable for passing to qsort to sort atoms by gid. " alt="" coords="355,239,463,267"/>
+<area shape="rect" id="node2" href="$link_cells_8c.html#adf11c6df14b931a06449db828100b968" title="Update link cell data structures when the atoms have moved." alt="" coords="188,81,308,108"/>
+<area shape="rect" id="node8" href="$halo_exchange_8c.html#a6299c18094f40719d8f69818eedebcc7" title="Execute a halo exchange." alt="" coords="194,183,302,209"/>
+<area shape="rect" id="node13" href="$halo_exchange_8c.html#af19bdec7d00b16354607a2418d4bc561" title="Sort the atoms by gid in the specified link cell." alt="" coords="187,233,309,260"/>
+<area shape="rect" id="node3" href="$link_cells_8c.html#a73c999cc65769d698ae32c894a98a48f" title="Set the number of atoms to zero in all halo link cells." alt="" coords="367,5,487,32"/>
+<area shape="rect" id="node4" href="$link_cells_8c.html#a2738fea8d13f074f348ca666f3fd8740" title="Get the index of the link cell that contains the specified coordinate." alt="" coords="357,56,496,83"/>
+<area shape="rect" id="node6" href="$link_cells_8c.html#a347d1eef4c3889b1bc2bec0fb2823bfb" title="Move an atom from one link cell to another." alt="" coords="382,107,471,133"/>
+<area shape="rect" id="node5" href="$link_cells_8c.html#aefdb5c50c2b08f163c52c9e7ab5129f4" title="Calculates the link cell index from the grid coords." alt="" coords="550,56,685,83"/>
+<area shape="rect" id="node7" href="$link_cells_8c.html#a588aa87cc6b1436bf27b174014826bae" title="Copy atom iAtom in link cell iBox to atom jAtom in link cell jBox." alt="" coords="575,107,660,133"/>
+<area shape="rect" id="node9" href="$halo_exchange_8c.html#a448c7af8a5ee9fcc5a05966d263c8699" title="This is the function that does the heavy lifting for the communication of halo data." alt="" coords="371,183,482,209"/>
+<area shape="rect" id="node10" href="$mem_utils_8h.html#a68c1412c76de7663cb4cbb94d90ddb5b" title="comdMalloc" alt="" coords="570,157,665,184"/>
+<area shape="rect" id="node11" href="$parallel_8c.html#a09fe85c4c25e7fd7b8c280f2d2763158" title="Wrapper for MPI_Sendrecv." alt="" coords="544,208,691,235"/>
+<area shape="rect" id="node12" href="$mem_utils_8h.html#a6e9c992503ca7d317d2d06dc7de952db" title="comdFree" alt="" coords="575,259,659,285"/>
+<area shape="rect" id="node14" href="$halo_exchange_8c.html#adce6df6ee629674941d4af97f7805ebc" title="A function suitable for passing to qsort to sort atoms by gid." alt="" coords="369,233,484,260"/>
 </map>

@@ -1,6 +1,6 @@
 <map id="sortAtomsInCell" name="sortAtomsInCell">
-<area shape="rect" id="node2" href="$timestep_8h.html#ac19a9ed6e42be6da5b3aa705ebf2aa84" title="Update local and remote link cells after atoms have moved. " alt="" coords="171,31,296,59"/>
-<area shape="rect" id="node3" href="$_co_m_d_8c.html#ac304e322f79eaff8c0078ffd5bc8b8ab" title="Initialized the main CoMD data stucture, SimFlat, based on command line input from the user..." alt="" coords="344,5,445,33"/>
-<area shape="rect" id="node5" href="$timestep_8h.html#a412cece7eeafdceb6343252471d3dc37" title="Advance the simulation time to t+dt using a leap frog method (equivalent to velocity verlet)..." alt="" coords="359,57,431,85"/>
-<area shape="rect" id="node4" href="$_co_m_d_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title="main" alt="" coords="494,31,544,59"/>
+<area shape="rect" id="node2" href="$timestep_8h.html#ac19a9ed6e42be6da5b3aa705ebf2aa84" title="Update local and remote link cells after atoms have moved." alt="" coords="177,31,309,57"/>
+<area shape="rect" id="node3" href="$_co_m_d_8c.html#ac304e322f79eaff8c0078ffd5bc8b8ab" title="Initialized the main CoMD data stucture, SimFlat, based on command line input from the user..." alt="" coords="357,5,461,32"/>
+<area shape="rect" id="node5" href="$timestep_8h.html#a412cece7eeafdceb6343252471d3dc37" title="Advance the simulation time to t+dt using a leap frog method (equivalent to velocity verlet)..." alt="" coords="371,56,448,83"/>
+<area shape="rect" id="node4" href="$_co_m_d_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title="main" alt="" coords="509,31,560,57"/>
 </map>

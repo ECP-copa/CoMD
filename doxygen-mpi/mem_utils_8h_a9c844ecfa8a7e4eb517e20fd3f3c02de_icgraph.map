@@ -1,14 +1,14 @@
 <map id="comdCalloc" name="comdCalloc">
-<area shape="rect" id="node2" href="$cmd_line_parser_8c.html#ad92bcc1968b92f575c05cf4e1e41ab9b" title="dupString" alt="" coords="181,5,259,33"/>
-<area shape="rect" id="node3" href="$cmd_line_parser_8c.html#a2d15370af63a2f5f5cdbde8ef35ae0c3" title="myOptionAlloc" alt="" coords="349,55,456,83"/>
-<area shape="rect" id="node7" href="$cmd_line_parser_8h.html#a3a31356566781c058f5ba431cfd75f0f" title="Call this to process your arguments. " alt="" coords="510,107,605,135"/>
-<area shape="rect" id="node8" href="$eam_8c.html#a6ae41983bdcbf62f5c02a2c93c17d02d" title="Builds a structure to store interpolation data for a tabular function. " alt="" coords="145,159,295,187"/>
-<area shape="rect" id="node4" href="$cmd_line_parser_8h.html#a4563d4f33e78840edce61deb9c936f5e" title="Specifies a command line argument that should be accepted by the program. " alt="" coords="525,55,589,83"/>
-<area shape="rect" id="node5" href="$mycommand_8h.html#a1cf6657a160476a9b6ac60a6b76518c8" title="Process command line arguments into an easy to handle structure. " alt="" coords="653,107,795,135"/>
-<area shape="rect" id="node6" href="$_co_m_d_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title="main" alt="" coords="992,134,1042,162"/>
-<area shape="rect" id="node9" href="$eam_8c.html#a10271ec0dc8d651b8f2262303d49e30c" title="Reads potential data from a setfl file and populates corresponding members and InterpolationObjects i..." alt="" coords="350,159,456,187"/>
-<area shape="rect" id="node13" href="$eam_8c.html#ae98f234a4b4f70220c024f64584d0e8e" title="Reads potential data from a funcfl file and populates corresponding members and InterpolationObjects ..." alt="" coords="345,211,460,239"/>
-<area shape="rect" id="node10" href="$eam_8h.html#ac1d22a30e046f7b354fdeeb235293877" title="Allocate and initialize the EAM potential data structure. " alt="" coords="514,159,600,187"/>
-<area shape="rect" id="node11" href="$_co_m_d_8c.html#af894f8613ca8116504095340b84eb366" title="decide whether to get LJ or EAM potentials " alt="" coords="679,159,769,187"/>
-<area shape="rect" id="node12" href="$_co_m_d_8c.html#ac304e322f79eaff8c0078ffd5bc8b8ab" title="Initialized the main CoMD data stucture, SimFlat, based on command line input from the user..." alt="" coords="843,159,944,187"/>
+<area shape="rect" id="node2" href="$cmd_line_parser_8c.html#ad92bcc1968b92f575c05cf4e1e41ab9b" title="dupString" alt="" coords="188,5,271,32"/>
+<area shape="rect" id="node3" href="$cmd_line_parser_8c.html#a2d15370af63a2f5f5cdbde8ef35ae0c3" title="myOptionAlloc" alt="" coords="360,56,472,83"/>
+<area shape="rect" id="node7" href="$cmd_line_parser_8h.html#a3a31356566781c058f5ba431cfd75f0f" title="Call this to process your arguments." alt="" coords="523,107,621,133"/>
+<area shape="rect" id="node8" href="$eam_8c.html#a6ae41983bdcbf62f5c02a2c93c17d02d" title="Builds a structure to store interpolation data for a tabular function." alt="" coords="149,157,309,184"/>
+<area shape="rect" id="node4" href="$cmd_line_parser_8h.html#a4563d4f33e78840edce61deb9c936f5e" title="Specifies a command line argument that should be accepted by the program." alt="" coords="539,56,605,83"/>
+<area shape="rect" id="node5" href="$mycommand_8h.html#a1cf6657a160476a9b6ac60a6b76518c8" title="Process command line arguments into an easy to handle structure." alt="" coords="669,107,813,133"/>
+<area shape="rect" id="node6" href="$_co_m_d_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title="main" alt="" coords="1013,132,1064,159"/>
+<area shape="rect" id="node9" href="$eam_8c.html#a10271ec0dc8d651b8f2262303d49e30c" title="Reads potential data from a setfl file and populates corresponding members and InterpolationObjects i..." alt="" coords="361,157,471,184"/>
+<area shape="rect" id="node13" href="$eam_8c.html#ae98f234a4b4f70220c024f64584d0e8e" title="Reads potential data from a funcfl file and populates corresponding members and InterpolationObjects ..." alt="" coords="357,208,475,235"/>
+<area shape="rect" id="node10" href="$eam_8h.html#ac1d22a30e046f7b354fdeeb235293877" title="Allocate and initialize the EAM potential data structure." alt="" coords="527,157,617,184"/>
+<area shape="rect" id="node11" href="$_co_m_d_8c.html#af894f8613ca8116504095340b84eb366" title="decide whether to get LJ or EAM potentials" alt="" coords="694,157,789,184"/>
+<area shape="rect" id="node12" href="$_co_m_d_8c.html#ac304e322f79eaff8c0078ffd5bc8b8ab" title="Initialized the main CoMD data stucture, SimFlat, based on command line input from the user..." alt="" coords="861,157,965,184"/>
 </map>

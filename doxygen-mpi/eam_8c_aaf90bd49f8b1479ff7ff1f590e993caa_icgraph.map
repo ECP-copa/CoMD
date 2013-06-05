@@ -1,7 +1,7 @@
 <map id="destroyInterpolationObject" name="destroyInterpolationObject">
-<area shape="rect" id="node2" href="$eam_8c.html#abd959aeb739f0c01dac13ab3544be142" title="eamDestroy" alt="" coords="232,5,325,33"/>
-<area shape="rect" id="node3" href="$eam_8h.html#ac1d22a30e046f7b354fdeeb235293877" title="Allocate and initialize the EAM potential data structure. " alt="" coords="373,5,459,33"/>
-<area shape="rect" id="node4" href="$_co_m_d_8c.html#af894f8613ca8116504095340b84eb366" title="decide whether to get LJ or EAM potentials " alt="" coords="507,5,597,33"/>
-<area shape="rect" id="node5" href="$_co_m_d_8c.html#ac304e322f79eaff8c0078ffd5bc8b8ab" title="Initialized the main CoMD data stucture, SimFlat, based on command line input from the user..." alt="" coords="646,5,746,33"/>
-<area shape="rect" id="node6" href="$_co_m_d_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title="main" alt="" coords="795,5,845,33"/>
+<area shape="rect" id="node2" href="$eam_8c.html#abd959aeb739f0c01dac13ab3544be142" title="eamDestroy" alt="" coords="243,5,341,32"/>
+<area shape="rect" id="node3" href="$eam_8h.html#ac1d22a30e046f7b354fdeeb235293877" title="Allocate and initialize the EAM potential data structure." alt="" coords="390,5,479,32"/>
+<area shape="rect" id="node4" href="$_co_m_d_8c.html#af894f8613ca8116504095340b84eb366" title="decide whether to get LJ or EAM potentials" alt="" coords="529,5,623,32"/>
+<area shape="rect" id="node5" href="$_co_m_d_8c.html#ac304e322f79eaff8c0078ffd5bc8b8ab" title="Initialized the main CoMD data stucture, SimFlat, based on command line input from the user..." alt="" coords="672,5,776,32"/>
+<area shape="rect" id="node6" href="$_co_m_d_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title="main" alt="" coords="824,5,875,32"/>
 </map>

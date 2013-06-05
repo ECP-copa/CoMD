@@ -1,7 +1,7 @@
 <map id="emptyHaloCells" name="emptyHaloCells">
-<area shape="rect" id="node2" href="$link_cells_8h.html#a8b477a1646a8628d16b23fcee34c4fb9" title="Update link cell data structures when the atoms have moved. " alt="" coords="169,31,285,59"/>
-<area shape="rect" id="node3" href="$timestep_8h.html#ac19a9ed6e42be6da5b3aa705ebf2aa84" title="Update local and remote link cells after atoms have moved. " alt="" coords="333,31,459,59"/>
-<area shape="rect" id="node4" href="$_co_m_d_8c.html#ac304e322f79eaff8c0078ffd5bc8b8ab" title="Initialized the main CoMD data stucture, SimFlat, based on command line input from the user..." alt="" coords="507,5,608,33"/>
-<area shape="rect" id="node6" href="$timestep_8h.html#a412cece7eeafdceb6343252471d3dc37" title="Advance the simulation time to t+dt using a leap frog method (equivalent to velocity verlet)..." alt="" coords="521,57,593,85"/>
-<area shape="rect" id="node5" href="$_co_m_d_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title="main" alt="" coords="656,31,706,59"/>
+<area shape="rect" id="node2" href="$link_cells_8h.html#a8b477a1646a8628d16b23fcee34c4fb9" title="Update link cell data structures when the atoms have moved." alt="" coords="173,31,293,57"/>
+<area shape="rect" id="node3" href="$timestep_8h.html#ac19a9ed6e42be6da5b3aa705ebf2aa84" title="Update local and remote link cells after atoms have moved." alt="" coords="342,31,474,57"/>
+<area shape="rect" id="node4" href="$_co_m_d_8c.html#ac304e322f79eaff8c0078ffd5bc8b8ab" title="Initialized the main CoMD data stucture, SimFlat, based on command line input from the user..." alt="" coords="523,5,627,32"/>
+<area shape="rect" id="node6" href="$timestep_8h.html#a412cece7eeafdceb6343252471d3dc37" title="Advance the simulation time to t+dt using a leap frog method (equivalent to velocity verlet)..." alt="" coords="536,56,613,83"/>
+<area shape="rect" id="node5" href="$_co_m_d_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title="main" alt="" coords="675,31,725,57"/>
 </map>

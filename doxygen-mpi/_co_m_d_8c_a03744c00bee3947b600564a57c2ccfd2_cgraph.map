@@ -1,4 +1,4 @@
 <map id="initSubsystems" name="initSubsystems">
-<area shape="rect" id="node2" href="$yaml_output_8c.html#a8bb2896c53fc14550aa1ae9cded23157" title="yamlBegin" alt="" coords="166,5,250,33"/>
-<area shape="rect" id="node3" href="$parallel_8c.html#a02072b7e11ef08f6e3c6e236bb13ac3c" title="Return non&#45;zero if printing occurs from this rank. " alt="" coords="299,5,378,33"/>
+<area shape="rect" id="node2" href="$yaml_output_8c.html#a8bb2896c53fc14550aa1ae9cded23157" title="yamlBegin" alt="" coords="171,5,258,32"/>
+<area shape="rect" id="node3" href="$parallel_8c.html#a02072b7e11ef08f6e3c6e236bb13ac3c" title="Return non&#45;zero if printing occurs from this rank." alt="" coords="307,5,386,32"/>
 </map>

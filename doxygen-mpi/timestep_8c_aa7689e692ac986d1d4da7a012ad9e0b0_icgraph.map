@@ -1,6 +1,6 @@
 <map id="kineticEnergy" name="kineticEnergy">
-<area shape="rect" id="node2" href="$_co_m_d_8c.html#ac304e322f79eaff8c0078ffd5bc8b8ab" title="Initialized the main CoMD data stucture, SimFlat, based on command line input from the user..." alt="" coords="318,22,418,50"/>
-<area shape="rect" id="node4" href="$init_atoms_8h.html#af5762021307b94e60770c2270745dd49" title="Sets the temperature of system. " alt="" coords="155,22,269,50"/>
-<area shape="rect" id="node5" href="$timestep_8h.html#a412cece7eeafdceb6343252471d3dc37" title="Advance the simulation time to t+dt using a leap frog method (equivalent to velocity verlet)..." alt="" coords="332,74,404,102"/>
-<area shape="rect" id="node3" href="$_co_m_d_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title="main" alt="" coords="467,48,517,76"/>
+<area shape="rect" id="node2" href="$_co_m_d_8c.html#ac304e322f79eaff8c0078ffd5bc8b8ab" title="Initialized the main CoMD data stucture, SimFlat, based on command line input from the user..." alt="" coords="325,22,429,49"/>
+<area shape="rect" id="node4" href="$init_atoms_8h.html#af5762021307b94e60770c2270745dd49" title="Sets the temperature of system." alt="" coords="157,22,277,49"/>
+<area shape="rect" id="node5" href="$timestep_8h.html#a412cece7eeafdceb6343252471d3dc37" title="Advance the simulation time to t+dt using a leap frog method (equivalent to velocity verlet)..." alt="" coords="339,73,416,100"/>
+<area shape="rect" id="node3" href="$_co_m_d_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title="main" alt="" coords="477,48,528,74"/>
 </map>

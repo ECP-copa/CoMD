@@ -1,8 +1,8 @@
 <map id="fileNotFound" name="fileNotFound">
-<area shape="rect" id="node2" href="$eam_8c.html#a10271ec0dc8d651b8f2262303d49e30c" title="Reads potential data from a setfl file and populates corresponding members and InterpolationObjects i..." alt="" coords="158,5,264,33"/>
-<area shape="rect" id="node7" href="$eam_8c.html#ae98f234a4b4f70220c024f64584d0e8e" title="Reads potential data from a funcfl file and populates corresponding members and InterpolationObjects ..." alt="" coords="153,57,268,85"/>
-<area shape="rect" id="node3" href="$eam_8h.html#ac1d22a30e046f7b354fdeeb235293877" title="Allocate and initialize the EAM potential data structure. " alt="" coords="317,31,403,59"/>
-<area shape="rect" id="node4" href="$_co_m_d_8c.html#af894f8613ca8116504095340b84eb366" title="decide whether to get LJ or EAM potentials " alt="" coords="451,31,541,59"/>
-<area shape="rect" id="node5" href="$_co_m_d_8c.html#ac304e322f79eaff8c0078ffd5bc8b8ab" title="Initialized the main CoMD data stucture, SimFlat, based on command line input from the user..." alt="" coords="590,31,690,59"/>
-<area shape="rect" id="node6" href="$_co_m_d_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title="main" alt="" coords="739,31,789,59"/>
+<area shape="rect" id="node2" href="$eam_8c.html#a10271ec0dc8d651b8f2262303d49e30c" title="Reads potential data from a setfl file and populates corresponding members and InterpolationObjects i..." alt="" coords="158,5,269,32"/>
+<area shape="rect" id="node7" href="$eam_8c.html#ae98f234a4b4f70220c024f64584d0e8e" title="Reads potential data from a funcfl file and populates corresponding members and InterpolationObjects ..." alt="" coords="155,56,272,83"/>
+<area shape="rect" id="node3" href="$eam_8h.html#ac1d22a30e046f7b354fdeeb235293877" title="Allocate and initialize the EAM potential data structure." alt="" coords="321,31,410,57"/>
+<area shape="rect" id="node4" href="$_co_m_d_8c.html#af894f8613ca8116504095340b84eb366" title="decide whether to get LJ or EAM potentials" alt="" coords="459,31,554,57"/>
+<area shape="rect" id="node5" href="$_co_m_d_8c.html#ac304e322f79eaff8c0078ffd5bc8b8ab" title="Initialized the main CoMD data stucture, SimFlat, based on command line input from the user..." alt="" coords="603,31,707,57"/>
+<area shape="rect" id="node6" href="$_co_m_d_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title="main" alt="" coords="755,31,805,57"/>
 </map>

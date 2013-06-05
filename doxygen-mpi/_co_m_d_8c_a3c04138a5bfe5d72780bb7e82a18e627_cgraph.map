@@ -1,51 +1,51 @@
 <map id="main" name="main">
-<area shape="rect" id="node2" href="$parallel_8c.html#a85aeae7b11c60540f0a3303773af9428" title="Wrapper for MPI_Init. " alt="" coords="161,5,244,33"/>
-<area shape="rect" id="node3" href="$performance_timers_8c.html#a49ef297e1b06c00281c031d8ef4e0056" title="Use profileStart and profileStop only for timers that should never be turned off. ..." alt="" coords="160,57,246,85"/>
-<area shape="rect" id="node5" href="$_co_m_d_8c.html#a03744c00bee3947b600564a57c2ccfd2" title="initSubsystems" alt="" coords="147,702,258,730"/>
-<area shape="rect" id="node8" href="$parallel_8c.html#a69c43fd60cb9a67518b329726a1605c3" title="Print a timestamp and message when all tasks arrive. " alt="" coords="141,265,264,293"/>
-<area shape="rect" id="node10" href="$yaml_output_8c.html#acc5e2efb4529f14e2d0b55da81e1f5cc" title="yamlAppInfo" alt="" coords="155,445,250,473"/>
-<area shape="rect" id="node14" href="$mycommand_8c.html#a1cf6657a160476a9b6ac60a6b76518c8" title="Process command line arguments into an easy to handle structure. " alt="" coords="132,1715,273,1743"/>
-<area shape="rect" id="node19" href="$mycommand_8c.html#ae7acd2909011a2525faee039de329cf6" title="Print run parameters in yaml format on the supplied output stream. " alt="" coords="150,754,255,782"/>
-<area shape="rect" id="node20" href="$_co_m_d_8c.html#ac304e322f79eaff8c0078ffd5bc8b8ab" title="Initialized the main CoMD data stucture, SimFlat, based on command line input from the user..." alt="" coords="152,1274,253,1302"/>
-<area shape="rect" id="node36" href="$_co_m_d_8c.html#a89aade9ce5d9c429467d8d0259e51ec5" title="Print information about the simulation in a format that is (mostly) YAML compliant. " alt="" coords="119,625,286,653"/>
-<area shape="rect" id="node38" href="$_co_m_d_8c.html#a12891d269303228c17f59e8c9a55d0df" title="initValidate" alt="" coords="160,806,245,834"/>
-<area shape="rect" id="node39" href="$_co_m_d_8c.html#af388a3c33b2f2ba9d202677ee1eba80f" title="sumAtoms" alt="" coords="386,858,470,886"/>
-<area shape="rect" id="node40" href="$_co_m_d_8c.html#af24c703e2c5b0eaaf5f5f8af9d3a73ea" title="Prints current time, energy, performance etc to monitor the state of the running simulation. " alt="" coords="159,161,246,189"/>
-<area shape="rect" id="node41" href="$performance_timers_8c.html#a422ef26b666f08198634e1b6de1f661a" title="Use to get elapsed time (lap timer). " alt="" coords="144,1767,261,1795"/>
-<area shape="rect" id="node42" href="$timestep_8c.html#a00db39367e4fc033b40467abd3048fb3" title="Advance the simulation time to t+dt using a leap frog method (equivalent to velocity verlet)..." alt="" coords="167,1611,239,1639"/>
-<area shape="rect" id="node43" href="$performance_timers_8c.html#a65811a8e6c92815372d648feb8ea940a" title="profileStop" alt="" coords="160,109,245,137"/>
-<area shape="rect" id="node44" href="$_co_m_d_8c.html#ac87bd130f520031edb6afb7e9cfcf68d" title="validateResult" alt="" coords="150,213,255,241"/>
-<area shape="rect" id="node45" href="$performance_timers_8c.html#a4f6bd6d44a8eb9da93ff29122fe61a84" title="Print timing results. " alt="" coords="119,342,287,370"/>
-<area shape="rect" id="node46" href="$performance_timers_8c.html#aa63888596e7072e66688fbdf8d5a3003" title="Print timing results to Yaml file. " alt="" coords="104,522,301,550"/>
-<area shape="rect" id="node47" href="$_co_m_d_8c.html#aa90c0a0ecf8bba8c512c8c556c5967c8" title="frees all data associated with *ps and frees *ps " alt="" coords="139,1871,266,1899"/>
-<area shape="rect" id="node48" href="$mem_utils_8h.html#a6e9c992503ca7d317d2d06dc7de952db" title="comdFree" alt="" coords="387,1950,469,1978"/>
-<area shape="rect" id="node49" href="$_co_m_d_8c.html#a1acbeed3793a7d59637f028fef383b1b" title="finalizeSubsystems" alt="" coords="135,1923,270,1951"/>
-<area shape="rect" id="node50" href="$parallel_8c.html#a96b1250f122944d813ee3f927e8fbab1" title="Wrapper for MPI_Finalize. " alt="" coords="148,1975,257,2003"/>
-<area shape="rect" id="node4" href="$performance_timers_8c.html#ae07af139b89147e1aad6954fc3916a20" title="Returns current time as a 64&#45;bit integer. " alt="" coords="393,31,463,59"/>
-<area shape="rect" id="node6" href="$yaml_output_8c.html#a8bb2896c53fc14550aa1ae9cded23157" title="yamlBegin" alt="" coords="386,703,470,731"/>
-<area shape="rect" id="node7" href="$parallel_8c.html#a02072b7e11ef08f6e3c6e236bb13ac3c" title="Return non&#45;zero if printing occurs from this rank. " alt="" coords="567,495,646,523"/>
-<area shape="rect" id="node9" href="$parallel_8c.html#adc84a0549a63d77c712981a3de9c541a" title="Wrapper for MPI_Barrier(MPI_COMM_WORLD). " alt="" coords="376,186,480,214"/>
-<area shape="rect" id="node11" href="$yaml_output_8c.html#afb5bb8aa7f524b012d1ddbb74eaa2cf5" title="printSeparator" alt="" coords="375,547,481,575"/>
-<area shape="rect" id="node12" href="$parallel_8c.html#aba5ca2382379dff7802265eeb84811ba" title="Return non&#45;zero if code was built with MPI active. " alt="" coords="381,393,475,421"/>
-<area shape="rect" id="node13" href="$yaml_output_8c.html#a2bdad7f8312d02d44119e7ff87d8813a" title="getTimeString" alt="" coords="376,341,480,369"/>
-<area shape="rect" id="node15" href="$cmd_line_parser_8c.html#a4563d4f33e78840edce61deb9c936f5e" title="Specifies a command line argument that should be accepted by the program. " alt="" coords="396,1742,460,1770"/>
-<area shape="rect" id="node16" href="$cmd_line_parser_8c.html#a3a31356566781c058f5ba431cfd75f0f" title="Call this to process your arguments. " alt="" coords="380,1794,476,1822"/>
-<area shape="rect" id="node17" href="$cmd_line_parser_8c.html#a545149828ace38e91ceef71db82f32b7" title="Prints the arguments to the stdout stream. " alt="" coords="391,1846,465,1874"/>
-<area shape="rect" id="node18" href="$cmd_line_parser_8c.html#a367555646937884aeceb844982817d28" title="freeArgs" alt="" coords="392,1898,464,1926"/>
-<area shape="rect" id="node21" href="$mem_utils_8h.html#a68c1412c76de7663cb4cbb94d90ddb5b" title="comdMalloc" alt="" coords="560,1274,653,1302"/>
-<area shape="rect" id="node22" href="$_co_m_d_8c.html#af894f8613ca8116504095340b84eb366" title="decide whether to get LJ or EAM potentials " alt="" coords="383,1066,473,1094"/>
-<area shape="rect" id="node23" href="$_co_m_d_8c.html#a8dc1aaba3bd76239b46a6fc6086e14a7" title="Check that the user input meets certain criteria. " alt="" coords="378,962,478,990"/>
-<area shape="rect" id="node24" href="$_co_m_d_8c.html#abe8d2c720edcf19919623504bff646d8" title="initSpecies" alt="" coords="385,1170,471,1198"/>
-<area shape="rect" id="node25" href="$decomposition_8c.html#a13940d7888d872abbac34728abb12e20" title="initDecomposition" alt="" coords="365,1274,491,1302"/>
-<area shape="rect" id="node26" href="$link_cells_8c.html#a3c208de790f48583e7f31632d501e5d5" title="In CoMD 1.1, atoms are stored in link cells. " alt="" coords="382,1326,474,1354"/>
-<area shape="rect" id="node27" href="$init_atoms_8c.html#a481d11d31b9b3556e9311597d60e0fd0" title="Allocates memory to store atom data. " alt="" coords="390,1378,466,1406"/>
-<area shape="rect" id="node28" href="$init_atoms_8c.html#a0403477e6a06509c089308f80023cc1f" title="Creates atom positions on a face centered cubic (FCC) lattice with nx * ny * nz unit cells and lattic..." alt="" coords="368,1014,488,1042"/>
-<area shape="rect" id="node30" href="$init_atoms_8c.html#a330f861d9e27dbaf6470508e846b2f80" title="Sets the temperature of system. " alt="" coords="371,1482,485,1510"/>
-<area shape="rect" id="node32" href="$init_atoms_8c.html#a4fde4a8c802237f60a1bdd8b1b2e58d9" title="Add a random displacement to the atom positions. " alt="" coords="351,1222,505,1250"/>
-<area shape="rect" id="node33" href="$halo_exchange_8c.html#ac0beb5e682d35f76acec61a5670b256a" title="Create a HaloExchange for atom data. " alt="" coords="350,1430,506,1458"/>
-<area shape="rect" id="node34" href="$timestep_8c.html#a72e4bcc3d93f9747c7e94a31b7b3308c" title="Update local and remote link cells after atoms have moved. " alt="" coords="365,1638,491,1666"/>
-<area shape="rect" id="node35" href="$timestep_8c.html#ad915cb738565cdafce1f93febc91b431" title="computeForce" alt="" coords="375,1586,481,1614"/>
-<area shape="rect" id="node31" href="$timestep_8c.html#aa7689e692ac986d1d4da7a012ad9e0b0" title="Calculates total kinetic and potential energy across all tasks. " alt="" coords="556,1534,657,1562"/>
-<area shape="rect" id="node29" href="$parallel_8c.html#ac0872a007952f503ae224827b5bad772" title="Wrapper for MPI_Allreduce integer sum. " alt="" coords="555,937,658,965"/>
-<area shape="rect" id="node37" href="$link_cells_8c.html#aa7e9d5ae64e11181fe8ebcd827fb6c2b" title="maxOccupancy" alt="" coords="371,651,485,679"/>
+<area shape="rect" id="node2" href="$parallel_8c.html#a85aeae7b11c60540f0a3303773af9428" title="Wrapper for MPI_Init." alt="" coords="163,5,247,32"/>
+<area shape="rect" id="node3" href="$performance_timers_8c.html#a49ef297e1b06c00281c031d8ef4e0056" title="Use profileStart and profileStop only for timers that should never be turned off." alt="" coords="160,56,251,83"/>
+<area shape="rect" id="node5" href="$_co_m_d_8c.html#a03744c00bee3947b600564a57c2ccfd2" title="initSubsystems" alt="" coords="147,689,264,716"/>
+<area shape="rect" id="node8" href="$parallel_8c.html#a69c43fd60cb9a67518b329726a1605c3" title="Print a timestamp and message when all tasks arrive." alt="" coords="142,259,269,285"/>
+<area shape="rect" id="node10" href="$yaml_output_8c.html#acc5e2efb4529f14e2d0b55da81e1f5cc" title="yamlAppInfo" alt="" coords="156,436,255,463"/>
+<area shape="rect" id="node14" href="$mycommand_8c.html#a1cf6657a160476a9b6ac60a6b76518c8" title="Process command line arguments into an easy to handle structure." alt="" coords="133,1677,277,1704"/>
+<area shape="rect" id="node19" href="$mycommand_8c.html#ae7acd2909011a2525faee039de329cf6" title="Print run parameters in yaml format on the supplied output stream." alt="" coords="152,740,259,767"/>
+<area shape="rect" id="node20" href="$_co_m_d_8c.html#ac304e322f79eaff8c0078ffd5bc8b8ab" title="Initialized the main CoMD data stucture, SimFlat, based on command line input from the user..." alt="" coords="153,1247,257,1273"/>
+<area shape="rect" id="node36" href="$_co_m_d_8c.html#a89aade9ce5d9c429467d8d0259e51ec5" title="Print information about the simulation in a format that is (mostly) YAML compliant." alt="" coords="120,613,291,640"/>
+<area shape="rect" id="node38" href="$_co_m_d_8c.html#a12891d269303228c17f59e8c9a55d0df" title="initValidate" alt="" coords="160,791,251,817"/>
+<area shape="rect" id="node39" href="$_co_m_d_8c.html#af388a3c33b2f2ba9d202677ee1eba80f" title="sumAtoms" alt="" coords="393,841,479,868"/>
+<area shape="rect" id="node40" href="$_co_m_d_8c.html#af24c703e2c5b0eaaf5f5f8af9d3a73ea" title="Prints current time, energy, performance etc to monitor the state of the running simulation." alt="" coords="161,157,250,184"/>
+<area shape="rect" id="node41" href="$performance_timers_8c.html#a422ef26b666f08198634e1b6de1f661a" title="Use to get elapsed time (lap timer)." alt="" coords="144,1728,267,1755"/>
+<area shape="rect" id="node42" href="$timestep_8c.html#a00db39367e4fc033b40467abd3048fb3" title="Advance the simulation time to t+dt using a leap frog method (equivalent to velocity verlet)..." alt="" coords="167,1576,244,1603"/>
+<area shape="rect" id="node43" href="$performance_timers_8c.html#a65811a8e6c92815372d648feb8ea940a" title="profileStop" alt="" coords="160,107,251,133"/>
+<area shape="rect" id="node44" href="$_co_m_d_8c.html#ac87bd130f520031edb6afb7e9cfcf68d" title="validateResult" alt="" coords="150,208,261,235"/>
+<area shape="rect" id="node45" href="$performance_timers_8c.html#a4f6bd6d44a8eb9da93ff29122fe61a84" title="Print timing results." alt="" coords="119,335,292,361"/>
+<area shape="rect" id="node46" href="$performance_timers_8c.html#aa63888596e7072e66688fbdf8d5a3003" title="Print timing results to Yaml file." alt="" coords="104,524,307,551"/>
+<area shape="rect" id="node47" href="$_co_m_d_8c.html#aa90c0a0ecf8bba8c512c8c556c5967c8" title="frees all data associated with *ps and frees *ps" alt="" coords="139,1829,272,1856"/>
+<area shape="rect" id="node48" href="$mem_utils_8h.html#a6e9c992503ca7d317d2d06dc7de952db" title="comdFree" alt="" coords="394,1905,478,1932"/>
+<area shape="rect" id="node49" href="$_co_m_d_8c.html#a1acbeed3793a7d59637f028fef383b1b" title="finalizeSubsystems" alt="" coords="135,1880,275,1907"/>
+<area shape="rect" id="node50" href="$parallel_8c.html#a96b1250f122944d813ee3f927e8fbab1" title="Wrapper for MPI_Finalize." alt="" coords="149,1931,262,1957"/>
+<area shape="rect" id="node4" href="$performance_timers_8c.html#ae07af139b89147e1aad6954fc3916a20" title="Returns current time as a 64&#45;bit integer." alt="" coords="399,31,473,57"/>
+<area shape="rect" id="node6" href="$yaml_output_8c.html#a8bb2896c53fc14550aa1ae9cded23157" title="yamlBegin" alt="" coords="393,689,479,716"/>
+<area shape="rect" id="node7" href="$parallel_8c.html#a02072b7e11ef08f6e3c6e236bb13ac3c" title="Return non&#45;zero if printing occurs from this rank." alt="" coords="579,487,658,513"/>
+<area shape="rect" id="node9" href="$parallel_8c.html#adc84a0549a63d77c712981a3de9c541a" title="Wrapper for MPI_Barrier(MPI_COMM_WORLD)." alt="" coords="384,183,488,209"/>
+<area shape="rect" id="node11" href="$yaml_output_8c.html#afb5bb8aa7f524b012d1ddbb74eaa2cf5" title="printSeparator" alt="" coords="381,537,491,564"/>
+<area shape="rect" id="node12" href="$parallel_8c.html#aba5ca2382379dff7802265eeb84811ba" title="Return non&#45;zero if code was built with MPI active." alt="" coords="387,385,485,412"/>
+<area shape="rect" id="node13" href="$yaml_output_8c.html#a2bdad7f8312d02d44119e7ff87d8813a" title="getTimeString" alt="" coords="381,335,491,361"/>
+<area shape="rect" id="node15" href="$cmd_line_parser_8c.html#a4563d4f33e78840edce61deb9c936f5e" title="Specifies a command line argument that should be accepted by the program." alt="" coords="403,1703,469,1729"/>
+<area shape="rect" id="node16" href="$cmd_line_parser_8c.html#a3a31356566781c058f5ba431cfd75f0f" title="Call this to process your arguments." alt="" coords="387,1753,485,1780"/>
+<area shape="rect" id="node17" href="$cmd_line_parser_8c.html#a545149828ace38e91ceef71db82f32b7" title="Prints the arguments to the stdout stream." alt="" coords="397,1804,475,1831"/>
+<area shape="rect" id="node18" href="$cmd_line_parser_8c.html#a367555646937884aeceb844982817d28" title="freeArgs" alt="" coords="399,1855,473,1881"/>
+<area shape="rect" id="node21" href="$mem_utils_8h.html#a68c1412c76de7663cb4cbb94d90ddb5b" title="comdMalloc" alt="" coords="571,1247,666,1273"/>
+<area shape="rect" id="node22" href="$_co_m_d_8c.html#af894f8613ca8116504095340b84eb366" title="decide whether to get LJ or EAM potentials" alt="" coords="389,1044,483,1071"/>
+<area shape="rect" id="node23" href="$_co_m_d_8c.html#a8dc1aaba3bd76239b46a6fc6086e14a7" title="Check that the user input meets certain criteria." alt="" coords="385,943,487,969"/>
+<area shape="rect" id="node24" href="$_co_m_d_8c.html#abe8d2c720edcf19919623504bff646d8" title="initSpecies" alt="" coords="391,1145,481,1172"/>
+<area shape="rect" id="node25" href="$decomposition_8c.html#a13940d7888d872abbac34728abb12e20" title="initDecomposition" alt="" coords="369,1247,503,1273"/>
+<area shape="rect" id="node26" href="$link_cells_8c.html#a3c208de790f48583e7f31632d501e5d5" title="In CoMD 1.1, atoms are stored in link cells." alt="" coords="389,1297,483,1324"/>
+<area shape="rect" id="node27" href="$init_atoms_8c.html#a481d11d31b9b3556e9311597d60e0fd0" title="Allocates memory to store atom data." alt="" coords="396,1348,476,1375"/>
+<area shape="rect" id="node28" href="$init_atoms_8c.html#a0403477e6a06509c089308f80023cc1f" title="Creates atom positions on a face centered cubic (FCC) lattice with nx * ny * nz unit cells and lattic..." alt="" coords="373,993,499,1020"/>
+<area shape="rect" id="node30" href="$init_atoms_8c.html#a330f861d9e27dbaf6470508e846b2f80" title="Sets the temperature of system." alt="" coords="376,1449,496,1476"/>
+<area shape="rect" id="node32" href="$init_atoms_8c.html#a4fde4a8c802237f60a1bdd8b1b2e58d9" title="Add a random displacement to the atom positions." alt="" coords="357,1196,515,1223"/>
+<area shape="rect" id="node33" href="$halo_exchange_8c.html#ac0beb5e682d35f76acec61a5670b256a" title="Create a HaloExchange for atom data." alt="" coords="355,1399,517,1425"/>
+<area shape="rect" id="node34" href="$timestep_8c.html#a72e4bcc3d93f9747c7e94a31b7b3308c" title="Update local and remote link cells after atoms have moved." alt="" coords="370,1601,502,1628"/>
+<area shape="rect" id="node35" href="$timestep_8c.html#ad915cb738565cdafce1f93febc91b431" title="computeForce" alt="" coords="381,1551,491,1577"/>
+<area shape="rect" id="node31" href="$timestep_8c.html#aa7689e692ac986d1d4da7a012ad9e0b0" title="Calculates total kinetic and potential energy across all tasks." alt="" coords="567,1500,671,1527"/>
+<area shape="rect" id="node29" href="$parallel_8c.html#ac0872a007952f503ae224827b5bad772" title="Wrapper for MPI_Allreduce integer sum." alt="" coords="566,917,671,944"/>
+<area shape="rect" id="node37" href="$link_cells_8c.html#aa7e9d5ae64e11181fe8ebcd827fb6c2b" title="maxOccupancy" alt="" coords="378,639,494,665"/>
 </map>

@@ -1,6 +1,6 @@
 <map id="typeNotSupported" name="typeNotSupported">
-<area shape="rect" id="node2" href="$eam_8h.html#ac1d22a30e046f7b354fdeeb235293877" title="Allocate and initialize the EAM potential data structure. " alt="" coords="184,5,270,33"/>
-<area shape="rect" id="node3" href="$_co_m_d_8c.html#af894f8613ca8116504095340b84eb366" title="decide whether to get LJ or EAM potentials " alt="" coords="318,5,408,33"/>
-<area shape="rect" id="node4" href="$_co_m_d_8c.html#ac304e322f79eaff8c0078ffd5bc8b8ab" title="Initialized the main CoMD data stucture, SimFlat, based on command line input from the user..." alt="" coords="456,5,557,33"/>
-<area shape="rect" id="node5" href="$_co_m_d_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title="main" alt="" coords="606,5,656,33"/>
+<area shape="rect" id="node2" href="$eam_8h.html#ac1d22a30e046f7b354fdeeb235293877" title="Allocate and initialize the EAM potential data structure." alt="" coords="193,5,282,32"/>
+<area shape="rect" id="node3" href="$_co_m_d_8c.html#af894f8613ca8116504095340b84eb366" title="decide whether to get LJ or EAM potentials" alt="" coords="331,5,426,32"/>
+<area shape="rect" id="node4" href="$_co_m_d_8c.html#ac304e322f79eaff8c0078ffd5bc8b8ab" title="Initialized the main CoMD data stucture, SimFlat, based on command line input from the user..." alt="" coords="475,5,579,32"/>
+<area shape="rect" id="node5" href="$_co_m_d_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title="main" alt="" coords="627,5,677,32"/>
 </map>

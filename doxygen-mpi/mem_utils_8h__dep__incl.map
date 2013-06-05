@@ -1,10 +1,10 @@
 <map id="memUtils.h" name="memUtils.h">
-<area shape="rect" id="node2" href="$cmd_line_parser_8c.html" title="A parser for command line arguments. " alt="" coords="5,83,125,111"/>
-<area shape="rect" id="node3" href="$_co_m_d_8c.html" title="Main program. " alt="" coords="149,83,219,111"/>
-<area shape="rect" id="node4" href="$decomposition_8c.html" title="Parallel domain decomposition. " alt="" coords="242,83,360,111"/>
-<area shape="rect" id="node5" href="$eam_8c.html" title="Compute forces for the Embedded Atom Model (EAM). " alt="" coords="385,83,441,111"/>
-<area shape="rect" id="node6" href="$halo_exchange_8c.html" title="Communicate halo data such as &quot;ghost&quot; atoms with neighboring tasks. " alt="" coords="466,83,581,111"/>
-<area shape="rect" id="node7" href="$init_atoms_8c.html" title="Initialize the atom configuration. " alt="" coords="606,83,692,111"/>
-<area shape="rect" id="node8" href="$link_cells_8c.html" title="Functions to maintain link cell structures for fast pair finding. " alt="" coords="717,83,797,111"/>
-<area shape="rect" id="node9" href="$lj_force_8c.html" title="Computes forces for the 12&#45;6 Lennard Jones (LJ) potential. " alt="" coords="821,83,892,111"/>
+<area shape="rect" id="node2" href="$cmd_line_parser_8c.html" title="A parser for command line arguments." alt="" coords="5,80,128,107"/>
+<area shape="rect" id="node3" href="$_co_m_d_8c.html" title="Main program." alt="" coords="153,80,225,107"/>
+<area shape="rect" id="node4" href="$decomposition_8c.html" title="Parallel domain decomposition." alt="" coords="250,80,373,107"/>
+<area shape="rect" id="node5" href="$eam_8c.html" title="Compute forces for the Embedded Atom Model (EAM)." alt="" coords="399,80,457,107"/>
+<area shape="rect" id="node6" href="$halo_exchange_8c.html" title="Communicate halo data such as &quot;ghost&quot; atoms with neighboring tasks." alt="" coords="482,80,600,107"/>
+<area shape="rect" id="node7" href="$init_atoms_8c.html" title="Initialize the atom configuration." alt="" coords="625,80,716,107"/>
+<area shape="rect" id="node8" href="$link_cells_8c.html" title="Functions to maintain link cell structures for fast pair finding." alt="" coords="740,80,823,107"/>
+<area shape="rect" id="node9" href="$lj_force_8c.html" title="Computes forces for the 12&#45;6 Lennard Jones (LJ) potential." alt="" coords="847,80,921,107"/>
 </map>

@@ -1,6 +1,6 @@
 <map id="performanceTimers.c" name="performanceTimers.c">
-<area shape="rect" id="node2" href="$performance_timers_8h.html" title="Performance timer functions. " alt="" coords="5,83,152,111"/>
-<area shape="rect" id="node9" href="$mytype_8h.html" title="Frequently needed typedefs. " alt="" coords="838,161,913,189"/>
-<area shape="rect" id="node10" href="$parallel_8h.html" title="Wrappers for MPI functions. " alt="" coords="876,83,951,111"/>
-<area shape="rect" id="node11" href="$yaml_output_8h.html" title="Write simulation information in YAML format. " alt="" coords="700,83,800,111"/>
+<area shape="rect" id="node2" href="$performance_timers_8h.html" title="Performance timer functions." alt="" coords="5,80,155,107"/>
+<area shape="rect" id="node9" href="$mytype_8h.html" title="Frequently needed typedefs." alt="" coords="858,155,936,181"/>
+<area shape="rect" id="node10" href="$parallel_8h.html" title="Wrappers for MPI functions." alt="" coords="898,80,973,107"/>
+<area shape="rect" id="node11" href="$yaml_output_8h.html" title="Write simulation information in YAML format." alt="" coords="719,80,823,107"/>
 </map>

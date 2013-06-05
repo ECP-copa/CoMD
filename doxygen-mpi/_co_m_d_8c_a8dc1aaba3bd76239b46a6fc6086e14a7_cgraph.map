@@ -1,5 +1,5 @@
 <map id="sanityChecks" name="sanityChecks">
-<area shape="rect" id="node2" href="$parallel_8c.html#a00f6e4f2b757b05b377ed3f6fd6e18d2" title="Return total number of processors. " alt="" coords="160,5,248,33"/>
-<area shape="rect" id="node3" href="$parallel_8c.html#a02072b7e11ef08f6e3c6e236bb13ac3c" title="Return non&#45;zero if printing occurs from this rank. " alt="" coords="165,57,243,85"/>
-<area shape="rect" id="node4" href="$parallel_8c.html#a130d9ea361cbd97bb5efc195060e49b1" title="Wrapper for MPI_Bcast. " alt="" coords="155,109,253,137"/>
+<area shape="rect" id="node2" href="$parallel_8c.html#a00f6e4f2b757b05b377ed3f6fd6e18d2" title="Return total number of processors." alt="" coords="163,5,253,32"/>
+<area shape="rect" id="node3" href="$parallel_8c.html#a02072b7e11ef08f6e3c6e236bb13ac3c" title="Return non&#45;zero if printing occurs from this rank." alt="" coords="169,56,247,83"/>
+<area shape="rect" id="node4" href="$parallel_8c.html#a130d9ea361cbd97bb5efc195060e49b1" title="Wrapper for MPI_Bcast." alt="" coords="158,107,258,133"/>
 </map>

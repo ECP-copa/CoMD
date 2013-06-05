@@ -1,19 +1,19 @@
 <map id="comdFree" name="comdFree">
-<area shape="rect" id="node2" href="$_co_m_d_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title="main" alt="" coords="1160,133,1210,161"/>
-<area shape="rect" id="node3" href="$_co_m_d_8c.html#aa90c0a0ecf8bba8c512c8c556c5967c8" title="frees all data associated with *ps and frees *ps " alt="" coords="363,106,490,134"/>
-<area shape="rect" id="node4" href="$eam_8c.html#abd959aeb739f0c01dac13ab3544be142" title="eamDestroy" alt="" coords="380,314,473,342"/>
-<area shape="rect" id="node8" href="$eam_8c.html#aaf90bd49f8b1479ff7ff1f590e993caa" title="destroyInterpolationObject" alt="" coords="137,365,314,393"/>
-<area shape="rect" id="node9" href="$eam_8c.html#a10271ec0dc8d651b8f2262303d49e30c" title="Reads potential data from a setfl file and populates corresponding members and InterpolationObjects i..." alt="" coords="544,210,650,238"/>
-<area shape="rect" id="node10" href="$eam_8c.html#ae98f234a4b4f70220c024f64584d0e8e" title="Reads potential data from a funcfl file and populates corresponding members and InterpolationObjects ..." alt="" coords="540,262,655,290"/>
-<area shape="rect" id="node11" href="$halo_exchange_8c.html#a448c7af8a5ee9fcc5a05966d263c8699" title="This is the function that does the heavy lifting for the communication of halo data. " alt="" coords="172,417,279,445"/>
-<area shape="rect" id="node16" href="$link_cells_8h.html#a083adb76109c54272e0a0177050119a7" title="destroyLinkCells" alt="" coords="166,58,285,86"/>
-<area shape="rect" id="node17" href="$lj_force_8c.html#a17026b1d1e6c8a6e6c18ce6c50df1372" title="ljDestroy" alt="" coords="390,159,463,187"/>
-<area shape="rect" id="node5" href="$eam_8h.html#ac1d22a30e046f7b354fdeeb235293877" title="Allocate and initialize the EAM potential data structure. " alt="" coords="704,262,790,290"/>
-<area shape="rect" id="node6" href="$_co_m_d_8c.html#af894f8613ca8116504095340b84eb366" title="decide whether to get LJ or EAM potentials " alt="" coords="855,158,945,186"/>
-<area shape="rect" id="node7" href="$_co_m_d_8c.html#ac304e322f79eaff8c0078ffd5bc8b8ab" title="Initialized the main CoMD data stucture, SimFlat, based on command line input from the user..." alt="" coords="1011,158,1112,186"/>
-<area shape="rect" id="node12" href="$halo_exchange_8h.html#a6299c18094f40719d8f69818eedebcc7" title="Execute a halo exchange. " alt="" coords="374,417,480,445"/>
-<area shape="rect" id="node13" href="$eam_8c.html#a1edcafec72eaafd6eb3ec01dedb6c70f" title="Calculate potential energy and forces for the EAM potential. " alt="" coords="557,366,638,394"/>
-<area shape="rect" id="node14" href="$timestep_8h.html#ac19a9ed6e42be6da5b3aa705ebf2aa84" title="Update local and remote link cells after atoms have moved. " alt="" coords="837,210,963,238"/>
-<area shape="rect" id="node15" href="$timestep_8h.html#a412cece7eeafdceb6343252471d3dc37" title="Advance the simulation time to t+dt using a leap frog method (equivalent to velocity verlet)..." alt="" coords="1025,210,1097,238"/>
-<area shape="rect" id="node18" href="$lj_force_8h.html#a596bba394f5975f115691e00e4f45452" title="Initialize an Lennard Jones potential for Copper. " alt="" coords="712,158,781,186"/>
+<area shape="rect" id="node2" href="$_co_m_d_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title="main" alt="" coords="1195,135,1245,162"/>
+<area shape="rect" id="node3" href="$_co_m_d_8c.html#aa90c0a0ecf8bba8c512c8c556c5967c8" title="frees all data associated with *ps and frees *ps" alt="" coords="376,110,509,137"/>
+<area shape="rect" id="node4" href="$eam_8c.html#abd959aeb739f0c01dac13ab3544be142" title="eamDestroy" alt="" coords="394,313,491,339"/>
+<area shape="rect" id="node8" href="$eam_8c.html#aaf90bd49f8b1479ff7ff1f590e993caa" title="destroyInterpolationObject" alt="" coords="139,363,328,390"/>
+<area shape="rect" id="node9" href="$eam_8c.html#a10271ec0dc8d651b8f2262303d49e30c" title="Reads potential data from a setfl file and populates corresponding members and InterpolationObjects i..." alt="" coords="561,211,671,238"/>
+<area shape="rect" id="node10" href="$eam_8c.html#ae98f234a4b4f70220c024f64584d0e8e" title="Reads potential data from a funcfl file and populates corresponding members and InterpolationObjects ..." alt="" coords="557,262,675,289"/>
+<area shape="rect" id="node11" href="$halo_exchange_8c.html#a448c7af8a5ee9fcc5a05966d263c8699" title="This is the function that does the heavy lifting for the communication of halo data." alt="" coords="178,414,289,441"/>
+<area shape="rect" id="node16" href="$link_cells_8h.html#a083adb76109c54272e0a0177050119a7" title="destroyLinkCells" alt="" coords="171,59,295,86"/>
+<area shape="rect" id="node17" href="$lj_force_8c.html#a17026b1d1e6c8a6e6c18ce6c50df1372" title="ljDestroy" alt="" coords="403,161,482,187"/>
+<area shape="rect" id="node5" href="$eam_8h.html#ac1d22a30e046f7b354fdeeb235293877" title="Allocate and initialize the EAM potential data structure." alt="" coords="723,262,813,289"/>
+<area shape="rect" id="node6" href="$_co_m_d_8c.html#af894f8613ca8116504095340b84eb366" title="decide whether to get LJ or EAM potentials" alt="" coords="881,161,975,187"/>
+<area shape="rect" id="node7" href="$_co_m_d_8c.html#ac304e322f79eaff8c0078ffd5bc8b8ab" title="Initialized the main CoMD data stucture, SimFlat, based on command line input from the user..." alt="" coords="1043,161,1147,187"/>
+<area shape="rect" id="node12" href="$halo_exchange_8h.html#a6299c18094f40719d8f69818eedebcc7" title="Execute a halo exchange." alt="" coords="389,414,497,441"/>
+<area shape="rect" id="node13" href="$eam_8c.html#a1edcafec72eaafd6eb3ec01dedb6c70f" title="Calculate potential energy and forces for the EAM potential." alt="" coords="575,363,657,390"/>
+<area shape="rect" id="node14" href="$timestep_8h.html#ac19a9ed6e42be6da5b3aa705ebf2aa84" title="Update local and remote link cells after atoms have moved." alt="" coords="862,211,994,238"/>
+<area shape="rect" id="node15" href="$timestep_8h.html#a412cece7eeafdceb6343252471d3dc37" title="Advance the simulation time to t+dt using a leap frog method (equivalent to velocity verlet)..." alt="" coords="1056,211,1133,238"/>
+<area shape="rect" id="node18" href="$lj_force_8h.html#a596bba394f5975f115691e00e4f45452" title="Initialize an Lennard Jones potential for Copper." alt="" coords="731,161,805,187"/>
 </map>

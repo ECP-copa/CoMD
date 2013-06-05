@@ -1,8 +1,8 @@
 <map id="copyAtom" name="copyAtom">
-<area shape="rect" id="node2" href="$link_cells_8h.html#a9bc4fd09a4281c7f39cba820d9425590" title="Move an atom from one link cell to another. " alt="" coords="133,31,219,59"/>
-<area shape="rect" id="node3" href="$link_cells_8h.html#a8b477a1646a8628d16b23fcee34c4fb9" title="Update link cell data structures when the atoms have moved. " alt="" coords="267,31,383,59"/>
-<area shape="rect" id="node4" href="$timestep_8h.html#ac19a9ed6e42be6da5b3aa705ebf2aa84" title="Update local and remote link cells after atoms have moved. " alt="" coords="432,31,557,59"/>
-<area shape="rect" id="node5" href="$_co_m_d_8c.html#ac304e322f79eaff8c0078ffd5bc8b8ab" title="Initialized the main CoMD data stucture, SimFlat, based on command line input from the user..." alt="" coords="606,5,706,33"/>
-<area shape="rect" id="node7" href="$timestep_8h.html#a412cece7eeafdceb6343252471d3dc37" title="Advance the simulation time to t+dt using a leap frog method (equivalent to velocity verlet)..." alt="" coords="620,57,692,85"/>
-<area shape="rect" id="node6" href="$_co_m_d_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title="main" alt="" coords="755,31,805,59"/>
+<area shape="rect" id="node2" href="$link_cells_8h.html#a9bc4fd09a4281c7f39cba820d9425590" title="Move an atom from one link cell to another." alt="" coords="139,31,229,57"/>
+<area shape="rect" id="node3" href="$link_cells_8h.html#a8b477a1646a8628d16b23fcee34c4fb9" title="Update link cell data structures when the atoms have moved." alt="" coords="277,31,397,57"/>
+<area shape="rect" id="node4" href="$timestep_8h.html#ac19a9ed6e42be6da5b3aa705ebf2aa84" title="Update local and remote link cells after atoms have moved." alt="" coords="446,31,578,57"/>
+<area shape="rect" id="node5" href="$_co_m_d_8c.html#ac304e322f79eaff8c0078ffd5bc8b8ab" title="Initialized the main CoMD data stucture, SimFlat, based on command line input from the user..." alt="" coords="627,5,731,32"/>
+<area shape="rect" id="node7" href="$timestep_8h.html#a412cece7eeafdceb6343252471d3dc37" title="Advance the simulation time to t+dt using a leap frog method (equivalent to velocity verlet)..." alt="" coords="640,56,717,83"/>
+<area shape="rect" id="node6" href="$_co_m_d_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title="main" alt="" coords="779,31,829,57"/>
 </map>

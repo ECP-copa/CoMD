@@ -1,5 +1,5 @@
 <map id="initDecomposition" name="initDecomposition">
-<area shape="rect" id="node2" href="$parallel_8c.html#a00f6e4f2b757b05b377ed3f6fd6e18d2" title="Return total number of processors. " alt="" coords="184,5,272,33"/>
-<area shape="rect" id="node3" href="$mem_utils_8h.html#a68c1412c76de7663cb4cbb94d90ddb5b" title="comdMalloc" alt="" coords="182,57,274,85"/>
-<area shape="rect" id="node4" href="$parallel_8c.html#a1396bd09185d8abc5cbf751b76512cfa" title="Return local rank. " alt="" coords="184,109,272,137"/>
+<area shape="rect" id="node2" href="$parallel_8c.html#a00f6e4f2b757b05b377ed3f6fd6e18d2" title="Return total number of processors." alt="" coords="189,5,280,32"/>
+<area shape="rect" id="node3" href="$mem_utils_8h.html#a68c1412c76de7663cb4cbb94d90ddb5b" title="comdMalloc" alt="" coords="187,56,282,83"/>
+<area shape="rect" id="node4" href="$parallel_8c.html#a1396bd09185d8abc5cbf751b76512cfa" title="Return local rank." alt="" coords="189,107,280,133"/>
 </map>

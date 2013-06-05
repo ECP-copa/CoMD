@@ -1,12 +1,12 @@
 <map id="decomposition.h" name="decomposition.h">
-<area shape="rect" id="node2" href="$_co_m_d_types_8h.html" title="CoMD data structures. " alt="" coords="248,83,353,111"/>
-<area shape="rect" id="node3" href="$_co_m_d_8c.html" title="Main program. " alt="" coords="5,238,75,266"/>
-<area shape="rect" id="node11" href="$decomposition_8c.html" title="Parallel domain decomposition. " alt="" coords="710,83,828,111"/>
-<area shape="rect" id="node8" href="$halo_exchange_8c.html" title="Communicate halo data such as &quot;ghost&quot; atoms with neighboring tasks. " alt="" coords="414,161,529,189"/>
-<area shape="rect" id="node5" href="$init_atoms_8c.html" title="Initialize the atom configuration. " alt="" coords="467,238,553,266"/>
-<area shape="rect" id="node9" href="$link_cells_8c.html" title="Functions to maintain link cell structures for fast pair finding. " alt="" coords="554,161,635,189"/>
-<area shape="rect" id="node4" href="$timestep_8h.html" title="Leapfrog time integrator. " alt="" coords="307,161,389,189"/>
-<area shape="rect" id="node7" href="$eam_8c.html" title="Compute forces for the Embedded Atom Model (EAM). " alt="" coords="225,161,281,189"/>
-<area shape="rect" id="node10" href="$lj_force_8c.html" title="Computes forces for the 12&#45;6 Lennard Jones (LJ) potential. " alt="" coords="77,161,148,189"/>
-<area shape="rect" id="node6" href="$timestep_8c.html" title="Leapfrog time integrator. " alt="" coords="226,238,307,266"/>
+<area shape="rect" id="node2" href="$_co_m_d_types_8h.html" title="CoMD data structures." alt="" coords="251,80,361,107"/>
+<area shape="rect" id="node3" href="$_co_m_d_8c.html" title="Main program." alt="" coords="5,229,77,256"/>
+<area shape="rect" id="node11" href="$decomposition_8c.html" title="Parallel domain decomposition." alt="" coords="725,80,848,107"/>
+<area shape="rect" id="node8" href="$halo_exchange_8c.html" title="Communicate halo data such as &quot;ghost&quot; atoms with neighboring tasks." alt="" coords="423,155,541,181"/>
+<area shape="rect" id="node5" href="$init_atoms_8c.html" title="Initialize the atom configuration." alt="" coords="475,229,565,256"/>
+<area shape="rect" id="node9" href="$link_cells_8c.html" title="Functions to maintain link cell structures for fast pair finding." alt="" coords="567,155,649,181"/>
+<area shape="rect" id="node4" href="$timestep_8h.html" title="Leapfrog time integrator." alt="" coords="311,155,399,181"/>
+<area shape="rect" id="node7" href="$eam_8c.html" title="Compute forces for the Embedded Atom Model (EAM)." alt="" coords="228,155,287,181"/>
+<area shape="rect" id="node10" href="$lj_force_8c.html" title="Computes forces for the 12&#45;6 Lennard Jones (LJ) potential." alt="" coords="79,155,153,181"/>
+<area shape="rect" id="node6" href="$timestep_8c.html" title="Leapfrog time integrator." alt="" coords="228,229,316,256"/>
 </map>

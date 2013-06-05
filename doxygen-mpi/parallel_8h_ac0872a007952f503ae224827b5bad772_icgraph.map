@@ -1,7 +1,7 @@
 <map id="addIntParallel" name="addIntParallel">
-<area shape="rect" id="node2" href="$_co_m_d_8c.html#af388a3c33b2f2ba9d202677ee1eba80f" title="sumAtoms" alt="" coords="175,22,259,50"/>
-<area shape="rect" id="node5" href="$init_atoms_8h.html#a284281938a9345c8dc0adc73fd1dbdcd" title="Creates atom positions on a face centered cubic (FCC) lattice with nx * ny * nz unit cells and lattic..." alt="" coords="158,74,277,102"/>
-<area shape="rect" id="node3" href="$_co_m_d_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title="main" alt="" coords="475,22,525,50"/>
-<area shape="rect" id="node4" href="$_co_m_d_8c.html#a12891d269303228c17f59e8c9a55d0df" title="initValidate" alt="" coords="333,22,419,50"/>
-<area shape="rect" id="node6" href="$_co_m_d_8c.html#ac304e322f79eaff8c0078ffd5bc8b8ab" title="Initialized the main CoMD data stucture, SimFlat, based on command line input from the user..." alt="" coords="326,74,426,102"/>
+<area shape="rect" id="node2" href="$_co_m_d_8c.html#af388a3c33b2f2ba9d202677ee1eba80f" title="sumAtoms" alt="" coords="181,23,267,49"/>
+<area shape="rect" id="node5" href="$init_atoms_8h.html#a284281938a9345c8dc0adc73fd1dbdcd" title="Creates atom positions on a face centered cubic (FCC) lattice with nx * ny * nz unit cells and lattic..." alt="" coords="161,73,287,100"/>
+<area shape="rect" id="node3" href="$_co_m_d_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title="main" alt="" coords="488,23,539,49"/>
+<area shape="rect" id="node4" href="$_co_m_d_8c.html#a12891d269303228c17f59e8c9a55d0df" title="initValidate" alt="" coords="343,23,433,49"/>
+<area shape="rect" id="node6" href="$_co_m_d_8c.html#ac304e322f79eaff8c0078ffd5bc8b8ab" title="Initialized the main CoMD data stucture, SimFlat, based on command line input from the user..." alt="" coords="336,73,440,100"/>
 </map>

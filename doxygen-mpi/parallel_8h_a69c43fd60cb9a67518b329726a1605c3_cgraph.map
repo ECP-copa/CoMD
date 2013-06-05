@@ -1,4 +1,4 @@
 <map id="timestampBarrier" name="timestampBarrier">
-<area shape="rect" id="node2" href="$parallel_8c.html#adc84a0549a63d77c712981a3de9c541a" title="Wrapper for MPI_Barrier(MPI_COMM_WORLD). " alt="" coords="176,5,280,33"/>
-<area shape="rect" id="node3" href="$parallel_8c.html#a02072b7e11ef08f6e3c6e236bb13ac3c" title="Return non&#45;zero if printing occurs from this rank. " alt="" coords="189,57,267,85"/>
+<area shape="rect" id="node2" href="$parallel_8c.html#adc84a0549a63d77c712981a3de9c541a" title="Wrapper for MPI_Barrier(MPI_COMM_WORLD)." alt="" coords="181,5,285,32"/>
+<area shape="rect" id="node3" href="$parallel_8c.html#a02072b7e11ef08f6e3c6e236bb13ac3c" title="Return non&#45;zero if printing occurs from this rank." alt="" coords="194,56,273,83"/>
 </map>

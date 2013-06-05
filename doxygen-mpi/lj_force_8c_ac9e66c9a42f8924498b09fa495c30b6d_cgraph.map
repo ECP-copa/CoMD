@@ -1,11 +1,11 @@
 <map id="initLjPot" name="initLjPot">
-<area shape="rect" id="node2" href="$mem_utils_8h.html#a68c1412c76de7663cb4cbb94d90ddb5b" title="comdMalloc" alt="" coords="123,5,216,33"/>
-<area shape="rect" id="node3" href="$lj_force_8c.html#a096591066d248dbfd199497ce077d27d" title="ljForce" alt="" coords="139,57,200,85"/>
-<area shape="rect" id="node8" href="$lj_force_8c.html#a7a432b68fa37454805aae8c5928ebbc8" title="ljPrint" alt="" coords="142,109,197,137"/>
-<area shape="rect" id="node9" href="$lj_force_8c.html#a17026b1d1e6c8a6e6c18ce6c50df1372" title="ljDestroy" alt="" coords="133,161,206,189"/>
-<area shape="rect" id="node4" href="$mytype_8h.html#a2696e643a4ebdb2e22d4bcd447c4bc41" title="zeroReal3" alt="" coords="288,31,370,59"/>
-<area shape="rect" id="node5" href="$link_cells_8c.html#a48714ea69b5963a72fa46fdc2bf49f0a" title="getNeighborBoxes" alt="" coords="264,83,395,111"/>
-<area shape="rect" id="node6" href="$link_cells_8c.html#ab4fc23d98bc77ed3b81f4a06b58aad4b" title="Get the grid coordinates of the link cell with index iBox. " alt="" coords="470,58,543,86"/>
-<area shape="rect" id="node7" href="$link_cells_8c.html#aefdb5c50c2b08f163c52c9e7ab5129f4" title="Calculates the link cell index from the grid coords. " alt="" coords="443,110,570,138"/>
-<area shape="rect" id="node10" href="$mem_utils_8h.html#a6e9c992503ca7d317d2d06dc7de952db" title="comdFree" alt="" coords="289,161,370,189"/>
+<area shape="rect" id="node2" href="$mem_utils_8h.html#a68c1412c76de7663cb4cbb94d90ddb5b" title="comdMalloc" alt="" coords="129,5,223,32"/>
+<area shape="rect" id="node3" href="$lj_force_8c.html#a096591066d248dbfd199497ce077d27d" title="ljForce" alt="" coords="144,56,208,83"/>
+<area shape="rect" id="node8" href="$lj_force_8c.html#a7a432b68fa37454805aae8c5928ebbc8" title="ljPrint" alt="" coords="147,107,205,133"/>
+<area shape="rect" id="node9" href="$lj_force_8c.html#a17026b1d1e6c8a6e6c18ce6c50df1372" title="ljDestroy" alt="" coords="137,157,215,184"/>
+<area shape="rect" id="node4" href="$mytype_8h.html#a2696e643a4ebdb2e22d4bcd447c4bc41" title="zeroReal3" alt="" coords="301,31,384,57"/>
+<area shape="rect" id="node5" href="$link_cells_8c.html#a48714ea69b5963a72fa46fdc2bf49f0a" title="getNeighborBoxes" alt="" coords="273,81,413,108"/>
+<area shape="rect" id="node6" href="$link_cells_8c.html#ab4fc23d98bc77ed3b81f4a06b58aad4b" title="Get the grid coordinates of the link cell with index iBox." alt="" coords="491,56,568,83"/>
+<area shape="rect" id="node7" href="$link_cells_8c.html#aefdb5c50c2b08f163c52c9e7ab5129f4" title="Calculates the link cell index from the grid coords." alt="" coords="462,107,597,133"/>
+<area shape="rect" id="node10" href="$mem_utils_8h.html#a6e9c992503ca7d317d2d06dc7de952db" title="comdFree" alt="" coords="301,157,385,184"/>
 </map>

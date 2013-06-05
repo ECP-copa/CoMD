@@ -1,4 +1,4 @@
 <map id="mkAtomCellList" name="mkAtomCellList">
-<area shape="rect" id="node2" href="$mem_utils_8h.html#a68c1412c76de7663cb4cbb94d90ddb5b" title="comdMalloc" alt="" coords="186,5,278,33"/>
-<area shape="rect" id="node3" href="$link_cells_8c.html#aefdb5c50c2b08f163c52c9e7ab5129f4" title="Calculates the link cell index from the grid coords. " alt="" coords="169,57,295,85"/>
+<area shape="rect" id="node2" href="$mem_utils_8h.html#a68c1412c76de7663cb4cbb94d90ddb5b" title="comdMalloc" alt="" coords="194,5,289,32"/>
+<area shape="rect" id="node3" href="$link_cells_8c.html#aefdb5c50c2b08f163c52c9e7ab5129f4" title="Calculates the link cell index from the grid coords." alt="" coords="174,56,309,83"/>
 </map>

@@ -1,6 +1,6 @@
 <map id="mkSeed" name="mkSeed">
-<area shape="rect" id="node2" href="$init_atoms_8h.html#af5762021307b94e60770c2270745dd49" title="Sets the temperature of system. " alt="" coords="146,5,260,33"/>
-<area shape="rect" id="node5" href="$init_atoms_8h.html#a556b8beeb495b3f7be36aed1f9bf9002" title="Add a random displacement to the atom positions. " alt="" coords="126,57,280,85"/>
-<area shape="rect" id="node3" href="$_co_m_d_8c.html#ac304e322f79eaff8c0078ffd5bc8b8ab" title="Initialized the main CoMD data stucture, SimFlat, based on command line input from the user..." alt="" coords="328,31,429,59"/>
-<area shape="rect" id="node4" href="$_co_m_d_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title="main" alt="" coords="478,31,528,59"/>
+<area shape="rect" id="node2" href="$init_atoms_8h.html#af5762021307b94e60770c2270745dd49" title="Sets the temperature of system." alt="" coords="148,5,268,32"/>
+<area shape="rect" id="node5" href="$init_atoms_8h.html#a556b8beeb495b3f7be36aed1f9bf9002" title="Add a random displacement to the atom positions." alt="" coords="129,56,287,83"/>
+<area shape="rect" id="node3" href="$_co_m_d_8c.html#ac304e322f79eaff8c0078ffd5bc8b8ab" title="Initialized the main CoMD data stucture, SimFlat, based on command line input from the user..." alt="" coords="336,31,440,57"/>
+<area shape="rect" id="node4" href="$_co_m_d_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title="main" alt="" coords="488,31,539,57"/>
 </map>

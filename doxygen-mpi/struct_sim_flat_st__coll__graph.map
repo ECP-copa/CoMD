@@ -1,8 +1,8 @@
 <map id="SimFlatSt" name="SimFlatSt">
-<area shape="rect" id="node2" href="$struct_domain_st.html" title="Domain decomposition information. " alt="" coords="4,6,83,34"/>
-<area shape="rect" id="node3" href="$struct_base_potential_st.html" title="The base struct from which all potentials derive. " alt="" coords="109,6,224,34"/>
-<area shape="rect" id="node4" href="$struct_link_cell_st.html" title="Link cell data. " alt="" coords="249,6,329,34"/>
-<area shape="rect" id="node5" href="$struct_species_data_st.html" title="species data: chosen to match the data found in the setfl/funcfl files " alt="" coords="355,6,464,34"/>
-<area shape="rect" id="node6" href="$struct_atoms_st.html" title="Atom data. " alt="" coords="488,6,559,34"/>
-<area shape="rect" id="node7" href="$struct_halo_exchange_st.html" title="A polymorphic structure to store information about a halo exchange. " alt="" coords="584,6,704,34"/>
+<area shape="rect" id="node2" href="$struct_domain_st.html" title="Domain decomposition information." alt="" coords="5,5,88,32"/>
+<area shape="rect" id="node3" href="$struct_base_potential_st.html" title="The base struct from which all potentials derive." alt="" coords="113,5,236,32"/>
+<area shape="rect" id="node4" href="$struct_link_cell_st.html" title="Link cell data." alt="" coords="261,5,347,32"/>
+<area shape="rect" id="node5" href="$struct_species_data_st.html" title="species data: chosen to match the data found in the setfl/funcfl files" alt="" coords="371,5,488,32"/>
+<area shape="rect" id="node6" href="$struct_atoms_st.html" title="Atom data." alt="" coords="512,5,589,32"/>
+<area shape="rect" id="node7" href="$struct_halo_exchange_st.html" title="A polymorphic structure to store information about a halo exchange." alt="" coords="614,5,740,32"/>
 </map>

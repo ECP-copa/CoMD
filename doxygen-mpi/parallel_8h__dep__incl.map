@@ -1,14 +1,14 @@
 <map id="parallel.h" name="parallel.h">
-<area shape="rect" id="node2" href="$_co_m_d_8c.html" title="Main program. " alt="" coords="5,83,75,111"/>
-<area shape="rect" id="node3" href="$decomposition_8c.html" title="Parallel domain decomposition. " alt="" coords="98,83,216,111"/>
-<area shape="rect" id="node4" href="$eam_8c.html" title="Compute forces for the Embedded Atom Model (EAM). " alt="" coords="241,83,297,111"/>
-<area shape="rect" id="node5" href="$halo_exchange_8c.html" title="Communicate halo data such as &quot;ghost&quot; atoms with neighboring tasks. " alt="" coords="322,83,437,111"/>
-<area shape="rect" id="node6" href="$init_atoms_8c.html" title="Initialize the atom configuration. " alt="" coords="462,83,548,111"/>
-<area shape="rect" id="node7" href="$link_cells_8c.html" title="Functions to maintain link cell structures for fast pair finding. " alt="" coords="573,83,653,111"/>
-<area shape="rect" id="node8" href="$lj_force_8c.html" title="Computes forces for the 12&#45;6 Lennard Jones (LJ) potential. " alt="" coords="677,83,748,111"/>
-<area shape="rect" id="node9" href="$mycommand_8c.html" title="Handle command line arguments. " alt="" coords="773,83,880,111"/>
-<area shape="rect" id="node10" href="$parallel_8c.html" title="Wrappers for MPI functions. " alt="" coords="905,83,980,111"/>
-<area shape="rect" id="node11" href="$performance_timers_8c.html" title="Performance timer functions. " alt="" coords="1004,83,1151,111"/>
-<area shape="rect" id="node12" href="$timestep_8c.html" title="Leapfrog time integrator. " alt="" coords="1175,83,1256,111"/>
-<area shape="rect" id="node13" href="$yaml_output_8c.html" title="Write simulation information in YAML format. " alt="" coords="1281,83,1380,111"/>
+<area shape="rect" id="node2" href="$_co_m_d_8c.html" title="Main program." alt="" coords="5,80,77,107"/>
+<area shape="rect" id="node3" href="$decomposition_8c.html" title="Parallel domain decomposition." alt="" coords="102,80,225,107"/>
+<area shape="rect" id="node4" href="$eam_8c.html" title="Compute forces for the Embedded Atom Model (EAM)." alt="" coords="251,80,309,107"/>
+<area shape="rect" id="node5" href="$halo_exchange_8c.html" title="Communicate halo data such as &quot;ghost&quot; atoms with neighboring tasks." alt="" coords="334,80,452,107"/>
+<area shape="rect" id="node6" href="$init_atoms_8c.html" title="Initialize the atom configuration." alt="" coords="477,80,568,107"/>
+<area shape="rect" id="node7" href="$link_cells_8c.html" title="Functions to maintain link cell structures for fast pair finding." alt="" coords="592,80,675,107"/>
+<area shape="rect" id="node8" href="$lj_force_8c.html" title="Computes forces for the 12&#45;6 Lennard Jones (LJ) potential." alt="" coords="699,80,773,107"/>
+<area shape="rect" id="node9" href="$mycommand_8c.html" title="Handle command line arguments." alt="" coords="798,80,908,107"/>
+<area shape="rect" id="node10" href="$parallel_8c.html" title="Wrappers for MPI functions." alt="" coords="933,80,1008,107"/>
+<area shape="rect" id="node11" href="$performance_timers_8c.html" title="Performance timer functions." alt="" coords="1033,80,1183,107"/>
+<area shape="rect" id="node12" href="$timestep_8c.html" title="Leapfrog time integrator." alt="" coords="1208,80,1296,107"/>
+<area shape="rect" id="node13" href="$yaml_output_8c.html" title="Write simulation information in YAML format." alt="" coords="1320,80,1424,107"/>
 </map>

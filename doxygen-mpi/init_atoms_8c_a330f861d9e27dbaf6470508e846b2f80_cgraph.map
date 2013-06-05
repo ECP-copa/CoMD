@@ -1,9 +1,9 @@
 <map id="setTemperature" name="setTemperature">
-<area shape="rect" id="node2" href="$random_8c.html#aadd97e20415a3a2bbbed0b85ac53486c" title="Return a seed suitable for calling lcg61 or gasdev. " alt="" coords="169,5,239,33"/>
-<area shape="rect" id="node4" href="$random_8c.html#a5fe212b132eab711c8f11cdd28104751" title="Return a random number from a Gaussian distribution. " alt="" coords="172,57,236,85"/>
-<area shape="rect" id="node5" href="$init_atoms_8c.html#aa5a94092b69a6d55860b008683fc12d7" title="Sets the center of mass velocity of the system. " alt="" coords="171,109,237,137"/>
-<area shape="rect" id="node8" href="$timestep_8c.html#aa7689e692ac986d1d4da7a012ad9e0b0" title="Calculates total kinetic and potential energy across all tasks. " alt="" coords="288,161,389,189"/>
-<area shape="rect" id="node3" href="$random_8c.html#a71f19ef3da3eb1ae7dbe5ca71bb9e6ca" title="Return a random number from a uniform distribution. " alt="" coords="312,57,365,85"/>
-<area shape="rect" id="node6" href="$init_atoms_8c.html#a906b7e6649f4dc2b98b8548e6eeb65fd" title="Computes the center of mass velocity of the system. " alt="" coords="289,109,388,137"/>
-<area shape="rect" id="node7" href="$parallel_8c.html#a325e87182f425e51b2214e967c50df93" title="Wrapper for MPI_Allreduce real sum. " alt="" coords="438,135,554,163"/>
+<area shape="rect" id="node2" href="$random_8c.html#aadd97e20415a3a2bbbed0b85ac53486c" title="Return a seed suitable for calling lcg61 or gasdev." alt="" coords="174,5,247,32"/>
+<area shape="rect" id="node4" href="$random_8c.html#a5fe212b132eab711c8f11cdd28104751" title="Return a random number from a Gaussian distribution." alt="" coords="177,56,244,83"/>
+<area shape="rect" id="node5" href="$init_atoms_8c.html#aa5a94092b69a6d55860b008683fc12d7" title="Sets the center of mass velocity of the system." alt="" coords="176,107,245,133"/>
+<area shape="rect" id="node8" href="$timestep_8c.html#aa7689e692ac986d1d4da7a012ad9e0b0" title="Calculates total kinetic and potential energy across all tasks." alt="" coords="296,157,400,184"/>
+<area shape="rect" id="node3" href="$random_8c.html#a71f19ef3da3eb1ae7dbe5ca71bb9e6ca" title="Return a random number from a uniform distribution." alt="" coords="321,56,375,83"/>
+<area shape="rect" id="node6" href="$init_atoms_8c.html#a906b7e6649f4dc2b98b8548e6eeb65fd" title="Computes the center of mass velocity of the system." alt="" coords="297,107,399,133"/>
+<area shape="rect" id="node7" href="$parallel_8c.html#a325e87182f425e51b2214e967c50df93" title="Wrapper for MPI_Allreduce real sum." alt="" coords="448,132,565,159"/>
 </map>

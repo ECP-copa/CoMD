@@ -1,0 +1,21 @@
+\form#0:\[ U = \sum_{ij} \varphi(r_{ij}) + \sum_i F({\bar\rho_i}) \]
+\form#1:$\varphi_{ij}$
+\form#2:$F(\bar\rho)$
+\form#3:$\bar\rho$
+\form#4:\[ \bar\rho_i = \sum_j \rho_j(r_{ij}) \]
+\form#5:${\bf F}_i$
+\form#6:\begin{eqnarray*} {\bf F}_i & = & -\nabla_i \sum_{jk} U(r_{jk})\\ & = & - \sum_j\left\{ \varphi'(r_{ij}) + [F'(\bar\rho_i) + F'(\bar\rho_j)]\rho'(r_{ij}) \right\} \hat{r}_{ij} \end{eqnarray*}
+\form#7:$\hat{r}_{ij}$
+\form#8:$ F'(\bar\rho) $
+\form#9:$ \bar\rho $
+\form#10:$ F'(\bar\rho_j) $
+\form#11:$ \bar\rho_j $
+\form#12:$[x_0, x_n]$
+\form#13:$x_n = n*dx$
+\form#14:\[phi = Z(r) * Z(r) / r\]
+\form#15:\[ E_{tot} = \sum_{ij} U_{LJ}(r_{ij}) \]
+\form#16:\[ U_{LJ}(r_{ij}) = 4 \epsilon \left\{ \left(\frac{\sigma}{r_{ij}}\right)^{12} - \left(\frac{\sigma}{r_{ij}}\right)^6 \right\} \]
+\form#17:$\epsilon$
+\form#18:$\sigma$
+\form#19:\[ F_i = -\nabla_i \sum_{jk} U_{LJ}(r_{jk}) \]
+\form#20:\begin{eqnarray*} F_i &=& - \sum_j U'_{LJ}(r_{ij})\hat{r}_{ij}\\ &=& \sum_j 24 \frac{\epsilon}{r_{ij}} \left\{ 2 \left(\frac{\sigma}{r_{ij}}\right)^{12} - \left(\frac{\sigma}{r_{ij}}\right)^6 \right\} \hat{r}_{ij} \end{eqnarray*}

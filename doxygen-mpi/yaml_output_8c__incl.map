@@ -1,5 +1,6 @@
 <map id="yamlOutput.c" name="yamlOutput.c">
-<area shape="rect" id="node2" href="$yaml_output_8h.html" title="Write simulation information in YAML format. " alt="" coords="4,83,104,111"/>
-<area shape="rect" id="node7" href="$mytype_8h.html" title="Frequently needed typedefs. " alt="" coords="486,161,561,189"/>
-<area shape="rect" id="node8" href="$parallel_8h.html" title="Wrappers for MPI functions. " alt="" coords="524,83,599,111"/>
+<area shape="rect" id="node2" href="$yaml_output_8h.html" title="Write simulation information in YAML format." alt="" coords="5,80,109,107"/>
+<area shape="rect" id="node6" href="$_co_m_d__info_8h.html" title="CoMD_info.h" alt="" coords="360,80,461,107"/>
+<area shape="rect" id="node7" href="$mytype_8h.html" title="Frequently needed typedefs." alt="" coords="497,155,575,181"/>
+<area shape="rect" id="node8" href="$parallel_8h.html" title="Wrappers for MPI functions." alt="" coords="537,80,612,107"/>
 </map>

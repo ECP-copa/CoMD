@@ -1,4 +1,4 @@
 <map id="randomDisplacements" name="randomDisplacements">
-<area shape="rect" id="node2" href="$random_8c.html#aadd97e20415a3a2bbbed0b85ac53486c" title="Return a seed suitable for calling lcg61 or gasdev. " alt="" coords="209,5,279,33"/>
-<area shape="rect" id="node3" href="$random_8c.html#a71f19ef3da3eb1ae7dbe5ca71bb9e6ca" title="Return a random number from a uniform distribution. " alt="" coords="328,31,381,59"/>
+<area shape="rect" id="node2" href="$random_8c.html#aadd97e20415a3a2bbbed0b85ac53486c" title="Return a seed suitable for calling lcg61 or gasdev." alt="" coords="214,5,287,32"/>
+<area shape="rect" id="node3" href="$random_8c.html#a71f19ef3da3eb1ae7dbe5ca71bb9e6ca" title="Return a random number from a uniform distribution." alt="" coords="337,31,391,57"/>
 </map>

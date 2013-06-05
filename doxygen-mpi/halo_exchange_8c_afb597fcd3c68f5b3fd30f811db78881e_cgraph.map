@@ -1,4 +1,4 @@
 <map id="mkForceSendCellList" name="mkForceSendCellList">
-<area shape="rect" id="node2" href="$mem_utils_8h.html#a68c1412c76de7663cb4cbb94d90ddb5b" title="comdMalloc" alt="" coords="220,5,313,33"/>
-<area shape="rect" id="node3" href="$link_cells_8c.html#aefdb5c50c2b08f163c52c9e7ab5129f4" title="Calculates the link cell index from the grid coords. " alt="" coords="203,57,330,85"/>
+<area shape="rect" id="node2" href="$mem_utils_8h.html#a68c1412c76de7663cb4cbb94d90ddb5b" title="comdMalloc" alt="" coords="229,5,323,32"/>
+<area shape="rect" id="node3" href="$link_cells_8c.html#aefdb5c50c2b08f163c52c9e7ab5129f4" title="Calculates the link cell index from the grid coords." alt="" coords="209,56,343,83"/>
 </map>
