@@ -12,7 +12,7 @@
 /// new architectures, programming models, etc.
 ///
 /// The current version of CoMD is available from:
-/// https://github.com/exmatex/CoMD
+/// http://exmatex.github.io/CoMD
 ///
 /// To contact the developers of CoMD send email to: exmatex-comd@llnl.gov.
 ///
@@ -601,6 +601,11 @@ void sanityChecks(Command cmd, double cutoff, double latticeConst, char latticeT
 /// choose problem sizes which force the code to access main memory, even
 /// though there may be strong scaling scenarios where the code is indeed 
 /// running mainly in cache.
+///
+/// *** Architecture/Configuration for above timing numbers:
+/// SGI XE1300 cluster with dual-socket Intel quad-core Nehalem processors. 
+/// Each node has 2 Quad-Core Xeon X5550 processors runnning at 2.66 GHz
+/// with 3 GB of memory per core.
 
 // --------------------------------------------------------------
 
