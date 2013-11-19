@@ -56,6 +56,8 @@ void destroyAtoms(Atoms *atoms)
    freeMe(atoms,r);
    freeMe(atoms,p);
    freeMe(atoms,f);
+   freeMe(atoms,U);
+   comdFree(atoms);
 }
 
 /// Creates atom positions on a face centered cubic (FCC) lattice with

@@ -134,7 +134,7 @@ int main(int argc, char** argv)
    validateResult(validate, sim);
    profileStop(totalTimer);
 
-   printPerformanceResults(sim->atoms->nGlobal);
+   printPerformanceResults(sim->atoms->nGlobal, sim->printRate);
    printPerformanceResultsYaml(yamlFile);
 
    destroySimulation(&sim);
@@ -226,6 +226,8 @@ void destroySimulation(SimFlat** ps)
    destroyLinkCells(&(s->boxes));
    destroyAtoms(s->atoms);
    destroyHaloExchange(&(s->atomExchange));
+   comdFree(s->species);
+   comdFree(s->domain);
    comdFree(s);
    *ps = NULL;
 
@@ -409,6 +411,24 @@ void printSimulationDataYaml(FILE* file, SimFlat* s)
    fprintf(file,"Potential data: \n");
    s->pot->print(file, s->pot);
    
+   // Memory footprint diagnostics
+   int perAtomSize = 10*sizeof(real_t)+2*sizeof(int);
+   float mbPerAtom = perAtomSize/1024/1024;
+   float totalMemLocal = (float)(perAtomSize*s->atoms->nLocal)/1024/1024;
+   float totalMemGlobal = (float)(perAtomSize*s->atoms->nGlobal)/1024/1024;
+
+   int nLocalBoxes = s->boxes->gridSize[0]*s->boxes->gridSize[1]*s->boxes->gridSize[2];
+   int nTotalBoxes = (s->boxes->gridSize[0]+2)*(s->boxes->gridSize[1]+2)*(s->boxes->gridSize[2]+2);
+   float paddedMemLocal = (float) nLocalBoxes*(perAtomSize*MAXATOMS)/1024/1024;
+   float paddedMemTotal = (float) nTotalBoxes*(perAtomSize*MAXATOMS)/1024/1024;
+
+   printSeparator(file);
+   fprintf(file,"Memory data: \n");
+   fprintf(file, "  Intrinsic atom footprint = %4d B/atom \n", perAtomSize);
+   fprintf(file, "  Total atom footprint     = %7.3f MB (%6.2f MB/node)\n", totalMemGlobal, totalMemLocal);
+   fprintf(file, "  Link cell atom footprint = %7.3f MB/node\n", paddedMemLocal);
+   fprintf(file, "  Link cell atom footprint = %7.3f MB/node (including halo cell data\n", paddedMemTotal);
+
    fflush(file);      
 }
 

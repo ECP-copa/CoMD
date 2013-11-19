@@ -78,7 +78,16 @@ typedef struct TimersSt
    double stdev;       //!< stdev across ranks
 } Timers;
 
+/// Global timing data collected.
+typedef struct TimerGlobalSt
+{
+   double atomRate;       //!< average time (us) per atom per rank 
+   double atomAllRate;    //!< average time (us) per atom
+   double atomsPerUSec;   //!< average atoms per time (us)
+} TimerGlobal;
+
 static Timers perfTimer[numberOfTimers];
+static TimerGlobal perfGlobal;
 
 void profileStart(const enum TimerHandle handle)
 {
@@ -108,7 +117,7 @@ double getElapsedTime(const enum TimerHandle handle)
 /// The report contains two blocks.  The upper block is performance
 /// information for the printRank.  The lower block is statistical
 /// information over all ranks.
-void printPerformanceResults(int nGlobalAtoms)
+void printPerformanceResults(int nGlobalAtoms, int printRate)
 {
    // Collect timer statistics overall and across ranks
    timerStats();
@@ -148,11 +157,23 @@ void printPerformanceResults(int nGlobalAtoms)
             perfTimer[ii].maxRank, perfTimer[ii].maxValue*tick,
             perfTimer[ii].average*tick, perfTimer[ii].stdev*tick);
    }
-   real_t atomsPerTask = nGlobalAtoms/(real_t)getNRanks();
-   real_t atomRate = perfTimer[computeForceTimer].average * tick * 1e6 /
-      (atomsPerTask * perfTimer[computeForceTimer].count);
+   double atomsPerTask = nGlobalAtoms/(real_t)getNRanks();
+   perfGlobal.atomRate = perfTimer[timestepTimer].average * tick * 1e6 /
+      (atomsPerTask * perfTimer[timestepTimer].count * printRate);
+   perfGlobal.atomAllRate = perfTimer[timestepTimer].average * tick * 1e6 /
+      (nGlobalAtoms * perfTimer[timestepTimer].count * printRate);
+   perfGlobal.atomsPerUSec = 1.0 / perfGlobal.atomAllRate;
+
    fprintf(screenOut, "\n---------------------------------------------------\n");
-   fprintf(screenOut, " Average atom update rate: %6.2f us/atom/task\n", atomRate);
+   fprintf(screenOut, " Average atom update rate:     %6.2f us/atom/task\n", perfGlobal.atomRate);
+   fprintf(screenOut, "---------------------------------------------------\n\n");
+
+   fprintf(screenOut, "\n---------------------------------------------------\n");
+   fprintf(screenOut, " Average all atom update rate: %6.2f us/atom\n", perfGlobal.atomAllRate);
+   fprintf(screenOut, "---------------------------------------------------\n\n");
+
+   fprintf(screenOut, "\n---------------------------------------------------\n");
+   fprintf(screenOut, " Average atom rate:            %6.2f atoms/us\n", perfGlobal.atomsPerUSec);
    fprintf(screenOut, "---------------------------------------------------\n\n");
 }
 
@@ -174,9 +195,9 @@ void printPerformanceResultsYaml(FILE* file)
       {
          double totalTime = perfTimer[ii].total*tick;
          fprintf(file, "  Timer: %s\n", timerName[ii]);
-         fprintf(file, "    CallCount: %"PRIu64"\n", perfTimer[ii].count); 
+         fprintf(file, "    CallCount:  %"PRIu64"\n", perfTimer[ii].count); 
          fprintf(file, "    AvgPerCall: %8.4f\n", totalTime/(double)perfTimer[ii].count);
-         fprintf(file, "    Total: %8.4f\n", totalTime);
+         fprintf(file, "    Total:      %8.4f\n", totalTime);
          fprintf(file, "    PercentLoop: %8.2f\n", totalTime/loopTime*100);
       }
    }
@@ -196,6 +217,17 @@ void printPerformanceResultsYaml(FILE* file)
       }
    }
 
+   fprintf(file,"Performance Global Update Rates:\n");
+   fprintf(file, "  AtomUpdateRate:\n");
+   fprintf(file, "    AverageRate: %6.2f\n", perfGlobal.atomRate);
+   fprintf(file, "    Units: us/atom/task\n");
+   fprintf(file, "  AllAtomUpdateRate:\n");
+   fprintf(file, "    AverageRate: %6.2f\n", perfGlobal.atomAllRate);
+   fprintf(file, "    Units: us/atom\n");
+   fprintf(file, "  AtomRate:\n");
+   fprintf(file, "    AverageRate: %6.2f\n", perfGlobal.atomsPerUSec);
+   fprintf(file, "    Units: atoms/us\n");
+ 
    fprintf(file, "\n");
 }
 

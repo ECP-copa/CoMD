@@ -136,7 +136,7 @@ int main(int argc, char** argv)
    validateResult(validate, sim);
    profileStop(totalTimer);
 
-   printPerformanceResults(sim->atoms->nGlobal);
+   printPerformanceResults(sim->atoms->nGlobal, sim->printRate);
    printPerformanceResultsYaml(yamlFile);
 
    destroySimulation(&sim);

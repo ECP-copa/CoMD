@@ -6,10 +6,19 @@
 #include <stdio.h>
 
 /// Timer handles
-enum TimerHandle{totalTimer, loopTimer, timestepTimer,
-                 positionTimer, velocityTimer,  redistributeTimer,
-                 atomHaloTimer, computeForceTimer, eamHaloTimer,
-                 commHaloTimer, commReduceTimer, numberOfTimers};
+enum TimerHandle{
+   totalTimer, 
+   loopTimer, 
+   timestepTimer, 
+   positionTimer, 
+   velocityTimer,  
+   redistributeTimer, 
+   atomHaloTimer, 
+   computeForceTimer, 
+   eamHaloTimer, 
+   commHaloTimer, 
+   commReduceTimer, 
+   numberOfTimers};
 
 /// Use the startTimer and stopTimer macros for timers in code regions
 /// that may be performance sensitive.  These can be compiled away by
@@ -28,14 +37,14 @@ enum TimerHandle{totalTimer, loopTimer, timestepTimer,
 #ifndef NTIMING
 #define startTimer(handle)    \
    do                         \
-   {                          \
-      profileStart(handle);   \
-   } while(0)
+{                          \
+   profileStart(handle);   \
+} while(0)
 #define stopTimer(handle)     \
    do                         \
-   {                          \
-      profileStop(handle);    \
-   } while(0)
+{                          \
+   profileStop(handle);    \
+} while(0)
 #else
 #define startTimer(handle)
 #define stopTimer(handle)
@@ -52,7 +61,7 @@ void profileStop(const enum TimerHandle handle);
 double getElapsedTime(const enum TimerHandle handle);
 
 /// Print timing results.
-void printPerformanceResults(int nGlobalAtoms);
+void printPerformanceResults(int nGlobalAtoms, int printRate);
 
 /// Print timing results to Yaml file
 void printPerformanceResultsYaml(FILE* file);

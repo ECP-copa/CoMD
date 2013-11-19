@@ -1,27 +1,6 @@
 /// \file
 /// Functions to maintain link cell structures for fast pair finding.
-
-#include "linkCells.h"
-
-#include <stdio.h>
-#include <string.h>
-#include <assert.h>
-#include <math.h>
-
-#include "parallel.h"
-#include "memUtils.h"
-#include "decomposition.h"
-#include "performanceTimers.h"
-#include "CoMDTypes.h"
-
-#define   MIN(A,B) ((A) < (B) ? (A) : (B))
-#define   MAX(A,B) ((A) > (B) ? (A) : (B))
-
-static void copyAtom(LinkCell* boxes, Atoms* atoms, int iAtom, int iBox, int jAtom, int jBox);
-static int getBoxFromCoord(LinkCell* boxes, real_t rr[3]);
-static void emptyHaloCells(LinkCell* boxes);
-static void getTuple(LinkCell* boxes, int iBox, int* ixp, int* iyp, int* izp);
-
+///
 /// In CoMD 1.1, atoms are stored in link cells.  Link cells are widely
 /// used in classical MD to avoid an O(N^2) search for atoms that
 /// interact.  Link cells are formed by subdividing the local spatial
@@ -79,6 +58,28 @@ static void getTuple(LinkCell* boxes, int iBox, int* ixp, int* iyp, int* izp);
 /// \see getTuple is the 1D->3D mapping
 ///
 /// \param [in] cutoff The cutoff distance of the potential.
+
+#include "linkCells.h"
+
+#include <stdio.h>
+#include <string.h>
+#include <assert.h>
+#include <math.h>
+
+#include "parallel.h"
+#include "memUtils.h"
+#include "decomposition.h"
+#include "performanceTimers.h"
+#include "CoMDTypes.h"
+
+#define   MIN(A,B) ((A) < (B) ? (A) : (B))
+#define   MAX(A,B) ((A) > (B) ? (A) : (B))
+
+static void copyAtom(LinkCell* boxes, Atoms* atoms, int iAtom, int iBox, int jAtom, int jBox);
+static int getBoxFromCoord(LinkCell* boxes, real_t rr[3]);
+static void emptyHaloCells(LinkCell* boxes);
+static void getTuple(LinkCell* boxes, int iBox, int* ixp, int* iyp, int* izp);
+
 LinkCell* initLinkCells(const Domain* domain, real_t cutoff)
 {
    assert(domain);

@@ -239,7 +239,8 @@ HaloExchange* initForceHaloExchange(Domain* domain, LinkCell* boxes)
 void destroyHaloExchange(HaloExchange** haloExchange)
 {
    (*haloExchange)->destroy((*haloExchange)->parms);
-   free(*haloExchange);
+   comdFree((*haloExchange)->parms);
+   comdFree(*haloExchange);
    *haloExchange = NULL;
 }
 
@@ -430,8 +431,8 @@ void destroyAtomsExchange(void* vparms)
 
    for (int ii=0; ii<6; ++ii)
    {
-      free(parms->pbcFactor[ii]);
-      free(parms->cellList[ii]);
+      comdFree(parms->pbcFactor[ii]);
+      comdFree(parms->cellList[ii]);
    }
 }
 
@@ -596,8 +597,8 @@ void destroyForceExchange(void* vparms)
 
    for (int ii=0; ii<6; ++ii)
    {
-      free(parms->sendCells[ii]);
-      free(parms->recvCells[ii]);
+      comdFree(parms->sendCells[ii]);
+      comdFree(parms->recvCells[ii]);
    }
 }
 
