@@ -640,8 +640,13 @@ void eamReadSetfl(EamPotential* pot, const char* dir, const char* potName)
    if (potFile == NULL)
       fileNotFound("eamReadSetfl", tmp);
    
-   // read the first 3 lines (comments)
+   // get the name from line 1
    fgets(tmp, sizeof(tmp), potFile);
+   char name[3];
+   sscanf(tmp, "%s", name);
+   strcpy(pot->name, name);
+
+   // read the next 2 lines (comments)
    fgets(tmp, sizeof(tmp), potFile);
    fgets(tmp, sizeof(tmp), potFile);
 
