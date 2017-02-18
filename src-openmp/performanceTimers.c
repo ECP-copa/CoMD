@@ -68,7 +68,7 @@ typedef struct TimersSt
    uint64_t total;     //!< current total time
    uint64_t count;     //!< current call count
    uint64_t elapsed;   //!< lap time
- 
+
    int minRank;        //!< rank with min value
    int maxRank;        //!< rank with max value
 
@@ -81,7 +81,7 @@ typedef struct TimersSt
 /// Global timing data collected.
 typedef struct TimerGlobalSt
 {
-   double atomRate;       //!< average time (us) per atom per rank 
+   double atomRate;       //!< average time (us) per atom per rank
    double atomAllRate;    //!< average time (us) per atom
    double atomsPerUSec;   //!< average atoms per time (us)
 } TimerGlobal;
@@ -128,7 +128,7 @@ void printPerformanceResults(int nGlobalAtoms, int printRate)
    // only print timers with non-zero values.
    double tick = getTick();
    double loopTime = perfTimer[loopTimer].total*tick;
-   
+
    fprintf(screenOut, "\n\nTimings for Rank %d\n", getMyRank());
    fprintf(screenOut, "        Timer        # Calls    Avg/Call (s)   Total (s)    %% Loop\n");
    fprintf(screenOut, "___________________________________________________________________\n");
@@ -136,7 +136,7 @@ void printPerformanceResults(int nGlobalAtoms, int printRate)
    {
       double totalTime = perfTimer[ii].total*tick;
       if (perfTimer[ii].count > 0)
-         fprintf(screenOut, "%-16s%12"PRIu64"     %8.4f      %8.4f    %8.2f\n", 
+         fprintf(screenOut, "%-16s%12"PRIu64"     %8.4f      %8.4f    %8.2f\n",
                  timerName[ii],
                  perfTimer[ii].count,
                  totalTime/(double)perfTimer[ii].count,
@@ -151,8 +151,8 @@ void printPerformanceResults(int nGlobalAtoms, int printRate)
    for (int ii = 0; ii < numberOfTimers; ++ii)
    {
       if (perfTimer[ii].count > 0)
-         fprintf(screenOut, "%-16s%6d:%10.4f  %6d:%10.4f  %10.4f  %10.4f\n", 
-            timerName[ii], 
+         fprintf(screenOut, "%-16s%6d:%10.4f  %6d:%10.4f  %10.4f  %10.4f\n",
+            timerName[ii],
             perfTimer[ii].minRank, perfTimer[ii].minValue*tick,
             perfTimer[ii].maxRank, perfTimer[ii].maxValue*tick,
             perfTimer[ii].average*tick, perfTimer[ii].stdev*tick);
@@ -194,8 +194,8 @@ void printPerformanceResultsYaml(FILE* file)
       if (perfTimer[ii].count > 0)
       {
          double totalTime = perfTimer[ii].total*tick;
-         fprintf(file, "  Timer: %s\n", timerName[ii]);
-         fprintf(file, "    CallCount:  %"PRIu64"\n", perfTimer[ii].count); 
+         fprintf(file, "  - Timer: %s\n", timerName[ii]);
+         fprintf(file, "    CallCount:  %"PRIu64"\n", perfTimer[ii].count);
          fprintf(file, "    AvgPerCall: %8.4f\n", totalTime/(double)perfTimer[ii].count);
          fprintf(file, "    Total:      %8.4f\n", totalTime);
          fprintf(file, "    PercentLoop: %8.2f\n", totalTime/loopTime*100);
@@ -207,9 +207,9 @@ void printPerformanceResultsYaml(FILE* file)
    {
       if (perfTimer[ii].count > 0)
       {
-         fprintf(file, "  Timer: %s\n", timerName[ii]);
+         fprintf(file, "  - Timer: %s\n", timerName[ii]);
          fprintf(file, "    MinRank: %d\n", perfTimer[ii].minRank);
-         fprintf(file, "    MinTime: %8.4f\n", perfTimer[ii].minValue*tick);     
+         fprintf(file, "    MinTime: %8.4f\n", perfTimer[ii].minValue*tick);
          fprintf(file, "    MaxRank: %d\n", perfTimer[ii].maxRank);
          fprintf(file, "    MaxTime: %8.4f\n", perfTimer[ii].maxValue*tick);
          fprintf(file, "    AvgTime: %8.4f\n", perfTimer[ii].average*tick);
@@ -227,7 +227,7 @@ void printPerformanceResultsYaml(FILE* file)
    fprintf(file, "  AtomRate:\n");
    fprintf(file, "    AverageRate: %6.2f\n", perfGlobal.atomsPerUSec);
    fprintf(file, "    Units: atoms/us\n");
- 
+
    fprintf(file, "\n");
 }
 
@@ -247,7 +247,7 @@ static uint64_t getTime(void)
    gettimeofday(&ptime, (struct timezone *)NULL);
    t = ((uint64_t)1000000)*(uint64_t)ptime.tv_sec + (uint64_t)ptime.tv_usec;
 
-   return t; 
+   return t;
 }
 
 /// Returns the factor for converting the integer time reported by
@@ -257,14 +257,14 @@ static uint64_t getTime(void)
 static double getTick(void)
 {
    double seconds_per_cycle = 1.0e-6;
-   return seconds_per_cycle; 
+   return seconds_per_cycle;
 }
 
 /// Collect timer statistics across ranks.
 void timerStats(void)
 {
    double sendBuf[numberOfTimers], recvBuf[numberOfTimers];
-   
+
    // Determine average of each timer across ranks
    for (int ii = 0; ii < numberOfTimers; ii++)
       sendBuf[ii] = (double)perfTimer[ii].total;
@@ -281,19 +281,19 @@ void timerStats(void)
       reduceSendBuf[ii].val = (double)perfTimer[ii].total;
       reduceSendBuf[ii].rank = getMyRank();
    }
-   minRankDoubleParallel(reduceSendBuf, reduceRecvBuf, numberOfTimers);   
+   minRankDoubleParallel(reduceSendBuf, reduceRecvBuf, numberOfTimers);
    for (int ii = 0; ii < numberOfTimers; ii++)
    {
       perfTimer[ii].minValue = reduceRecvBuf[ii].val;
       perfTimer[ii].minRank = reduceRecvBuf[ii].rank;
    }
-   maxRankDoubleParallel(reduceSendBuf, reduceRecvBuf, numberOfTimers);   
+   maxRankDoubleParallel(reduceSendBuf, reduceRecvBuf, numberOfTimers);
    for (int ii = 0; ii < numberOfTimers; ii++)
    {
       perfTimer[ii].maxValue = reduceRecvBuf[ii].val;
       perfTimer[ii].maxRank = reduceRecvBuf[ii].rank;
    }
-   
+
    // Determine standard deviation
    for (int ii = 0; ii < numberOfTimers; ii++)
    {
@@ -306,4 +306,3 @@ void timerStats(void)
       perfTimer[ii].stdev = sqrt(recvBuf[ii] / (double) getNRanks());
    }
 }
-
