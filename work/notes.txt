@@ -1,0 +1,33 @@
+MPI Wrappers:
+initParallel -> Does all the usual initialisation of ranks/size
+destroyParallel -> Finalizes MPI
+barrierParallel -> MPI_Barrier
+sendReceiveParallel-> Does a send-receive and returns the number of bytes received
+addIntParallel -> Allreduce for sum of ints
+addRealParallel -> Allreduce for sum of reals
+addDoubleParallel -> Allreduce for sum of doubles
+maxIntParallel -> Allreduce for max int
+minRankDoubleParallel -> Allreduce using MPI_MINLOC on MPI_DOUBLE_INTs
+maxRankDoubleParallel -> Allreduce using MPI_MAXLOC on MPI_DOUBLE_INTs
+bcastParallel -> Broadcast
+
+Program flow:
+
+Parallelism:
+
+sumAtoms() -> addIntParallel
+
+timestep()
+    advanceVelocity() -> parallel for
+
+    advancePosition() -> parallel for
+
+    redistribute atoms()
+        updateLinkCells() -> none
+        haloExchange()
+            exchangeData() -> sendReceiveParallel x 2
+        parallel for
+    
+    computeForce() ->  none
+
+    advanceVelocity() -> parallel for

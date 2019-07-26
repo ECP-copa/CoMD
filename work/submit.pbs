@@ -1,0 +1,41 @@
+#!/bin/bash --login
+
+#PBS -N CoMD
+#PBS -l select=1:ncpus=36
+#PBS -l place=scatter:excl
+#PBS -A dc025
+#PBS -j oe
+
+cd $PBS_O_WORKDIR
+
+module load mpt
+
+source parameters.config
+
+for t in "${numprocs[@]}"
+do
+    case $t in
+        1)
+            xproc=1
+            yproc=1
+            zproc=1
+            ;;
+        2)
+            xproc=1
+            yproc=1
+            zproc=2
+            ;;
+        4)
+            xproc=1
+            yproc=2
+            zproc=2
+            ;;
+        8)
+            xproc=2
+            yproc=2
+            zproc=2
+            ;;
+    esac
+
+    mpirun -np $t ../bin/CoMD-openmp-mpi -i$xproc -j$yproc -k$zproc -x $x -y $y -z $z
+done
