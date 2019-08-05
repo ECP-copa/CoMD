@@ -2,9 +2,18 @@
 
 set -ex
 
+prefix=""
+
 if [ $# -eq 0 ]; then
     echo 'Please enter walltime'
     exit 1
+fi
+
+if [ $2 = "tampi" ]; then
+    ./build.sh tampi
+    prefix="tampi_"
+else
+    ./build.sh
 fi
 
 timestamp=$(date +%Y-%m-%d_%H-%M-%S)
@@ -23,8 +32,8 @@ while [ $numDone -lt 1 ]; do
         mv *.yaml yamls/"$timestamp"
 
         python output_parser.py CoMD.o"$jobID" timing_"$timestamp".dat
-        mv timing_"$timestamp".dat results
-        mv CoMD.o"$jobID" results/CoMD_"$timestamp".dat
+        mv timing_"$timestamp".dat results/"$prefix""$timestamp".dat
+        mv CoMD.o"$jobID" results/"$prefix"CoMD_"$timestamp".dat
         numDone=1
     fi
 done

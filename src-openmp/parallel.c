@@ -9,6 +9,7 @@
 
 #ifdef DO_MPI
 #include <mpi.h>
+#include <TAMPI.h>
 #endif
 
 #include <stdio.h>
@@ -63,9 +64,19 @@ void timestampBarrier(const char* msg)
 void initParallel(int* argc, char*** argv)
 {
 #ifdef DO_MPI
+   #ifdef DO_TAMPI
+   int provided;
+   MPI_Init_thread(argc, argv, MPI_THREAD_MULTIPLE, &provided);
+   if (provided != MPI_THREAD_MULTIPLE) {
+       fprintf(stderr, "Error: MPI_THREAD_MULTIPLE not supported!");
+   }
+   MPI_Comm_rank(MPI_COMM_WORLD, &myRank);
+   MPI_Comm_size(MPI_COMM_WORLD, &nRanks);
+   #else
    MPI_Init(argc, argv);
    MPI_Comm_rank(MPI_COMM_WORLD, &myRank);
    MPI_Comm_size(MPI_COMM_WORLD, &nRanks);
+   #endif
 #endif
 }
 
