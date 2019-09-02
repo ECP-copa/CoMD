@@ -43,9 +43,23 @@
 #define MAX(A,B) ((A) > (B) ? (A) : (B))
 
 /// Don't change the order of the faces in this enum.
-enum HaloFaceOrder {HALO_X_MINUS, HALO_X_PLUS,
+enum HaloNeighbourOrder {HALO_X_MINUS, HALO_X_PLUS,
                     HALO_Y_MINUS, HALO_Y_PLUS,
-                    HALO_Z_MINUS, HALO_Z_PLUS};
+                    HALO_Z_MINUS, HALO_Z_PLUS,
+                    HALO_X_MINUS_Y_MINUS, HALO_X_MINUS_Y_PLUS,
+                    HALO_X_PLUS_Y_MINUS, HALO_X_PLUS_Y_PLUS,
+                    HALO_X_MINUS_Z_MINUS, HALO_X_MINUS_Z_PLUS,
+                    HALO_X_PLUS_Z_MINUS, HALO_X_PLUS_Z_PLUS,
+                    HALO_Y_MINUS_Z_MINUS, HALO_Y_MINUS_Z_PLUS,
+                    HALO_Y_PLUS_Z_MINUS, HALO_Y_PLUS_Z_PLUS,
+                    HALO_X_MINUS_Y_MINUS_Z_MINUS,
+                    HALO_X_MINUS_Y_MINUS_Z_PLUS,
+                    HALO_X_MINUS_Y_PLUS_Z_MINUS,
+                    HALO_X_MINUS_Y_PLUS_Z_PLUS,
+                    HALO_X_PLUS_Y_MINUS_Z_MINUS,
+                    HALO_X_PLUS_Y_MINUS_Z_PLUS,
+                    HALO_X_PLUS_Y_PLUS_Z_MINUS,
+                    HALO_X_PLUS_Y_PLUS_Z_PLUS};
 
 /// Don't change the order of the axes in this enum.
 enum HaloAxisOrder {HALO_X_AXIS, HALO_Y_AXIS, HALO_Z_AXIS};
@@ -55,9 +69,9 @@ enum HaloAxisOrder {HALO_X_AXIS, HALO_Y_AXIS, HALO_Z_AXIS};
 /// structure of this type.
 typedef struct AtomExchangeParmsSt
 {
-   int nCells[6];        //!< Number of cells in cellList for each face.
-   int* cellList[6];     //!< List of link cells from which to load data for each face.
-   real_t* pbcFactor[6]; //!< Whether this face is a periodic boundary.
+   int nCells[26];        //!< Number of cells in cellList for each neighbour.
+   int* cellList[26];     //!< List of link cells from which to load data for each neighbour.
+   real_t* pbcFactor[26]; //!< Whether this neighbour is a periodic boundary.
 }
 AtomExchangeParms;
 
@@ -66,9 +80,9 @@ AtomExchangeParms;
 /// structure of this type.
 typedef struct ForceExchangeParmsSt
 {
-   int nCells[6];     //!< Number of cells to send/recv for each face.
-   int* sendCells[6]; //!< List of link cells to send for each face.
-   int* recvCells[6]; //!< List of link cells to recv for each face.
+   int nCells[26];     //!< Number of cells to send/recv for each face.
+   int* sendCells[26]; //!< List of link cells to send for each face.
+   int* recvCells[26]; //!< List of link cells to recv for each face.
 }
 ForceExchangeParms;
 
@@ -93,7 +107,7 @@ ForceMsg;
 static HaloExchange* initHaloExchange(Domain* domain);
 static void exchangeData(HaloExchange* haloExchange, void* data, int iAxis);
 
-static int* mkAtomCellList(LinkCell* boxes, enum HaloFaceOrder iFace, const int nCells);
+static int* mkAtomCellList(LinkCell* boxes, enum HaloNeighbourOrder iFace, const int nCells);
 static int loadAtomsBuffer(void* vparms, void* data, int face, char* charBuf);
 static void unloadAtomsBuffer(void* vparms, void* data, int face, int bufSize, char* charBuf);
 static void destroyAtomsExchange(void* vparms);
@@ -246,8 +260,8 @@ void destroyHaloExchange(HaloExchange** haloExchange)
 
 void haloExchange(HaloExchange* haloExchange, void* data)
 {
-   for (int iAxis=0; iAxis<3; ++iAxis)
-      exchangeData(haloExchange, data, iAxis);
+   for (int neighbour=0; neighbour<26; ++neighbour)
+      exchangeData(haloExchange, data, neighbour);
 }
 
 /// Base class constructor.
@@ -255,13 +269,33 @@ HaloExchange* initHaloExchange(Domain* domain)
 {
    HaloExchange* hh = comdMalloc(sizeof(HaloExchange));
 
-   // Rank of neighbor task for each face.
-   hh->nbrRank[HALO_X_MINUS] = processorNum(domain, -1,  0,  0);
-   hh->nbrRank[HALO_X_PLUS]  = processorNum(domain, +1,  0,  0);
-   hh->nbrRank[HALO_Y_MINUS] = processorNum(domain,  0, -1,  0);
-   hh->nbrRank[HALO_Y_PLUS]  = processorNum(domain,  0, +1,  0);
-   hh->nbrRank[HALO_Z_MINUS] = processorNum(domain,  0,  0, -1);
-   hh->nbrRank[HALO_Z_PLUS]  = processorNum(domain,  0,  0, +1);
+   // Rank of neighbor task for each neighbour.
+   hh->nbrRank[HALO_X_MINUS]                 = processorNum(domain, -1,  0,  0);
+   hh->nbrRank[HALO_X_PLUS]                  = processorNum(domain, +1,  0,  0);
+   hh->nbrRank[HALO_Y_MINUS]                 = processorNum(domain,  0, -1,  0);
+   hh->nbrRank[HALO_Y_PLUS]                  = processorNum(domain,  0, +1,  0);
+   hh->nbrRank[HALO_Z_MINUS]                 = processorNum(domain,  0,  0, -1);
+   hh->nbrRank[HALO_Z_PLUS]                  = processorNum(domain,  0,  0, +1);
+   hh->nbrRank[HALO_X_MINUS_Y_MINUS]         = processorNum(domain, -1, -1,  0);
+   hh->nbrRank[HALO_X_MINUS_Y_PLUS]          = processorNum(domain, -1, +1,  0);
+   hh->nbrRank[HALO_X_PLUS_Y_MINUS]          = processorNum(domain, +1, -1,  0);
+   hh->nbrRank[HALO_X_PLUS_Y_PLUS]           = processorNum(domain, +1, +1,  0);
+   hh->nbrRank[HALO_X_MINUS_Z_MINUS]         = processorNum(domain, -1,  0, -1);
+   hh->nbrRank[HALO_X_MINUS_Z_PLUS]          = processorNum(domain, -1,  0, +1);
+   hh->nbrRank[HALO_X_PLUS_Z_MINUS]          = processorNum(domain, +1,  0, -1);
+   hh->nbrRank[HALO_X_PLUS_Z_PLUS]           = processorNum(domain, +1,  0, +1);
+   hh->nbrRank[HALO_Y_MINUS_Z_MINUS]         = processorNum(domain,  0, -1, -1);
+   hh->nbrRank[HALO_Y_MINUS_Z_PLUS]          = processorNum(domain,  0, -1, +1);
+   hh->nbrRank[HALO_Y_PLUS_Z_MINUS]          = processorNum(domain,  0, +1, -1);
+   hh->nbrRank[HALO_Y_PLUS_Z_PLUS]           = processorNum(domain,  0, +1, +1);
+   hh->nbrRank[HALO_X_MINUS_Y_MINUS_Z_MINUS] = processorNum(domain, -1, -1, -1);
+   hh->nbrRank[HALO_X_MINUS_Y_MINUS_Z_PLUS]  = processorNum(domain, -1, -1, +1);
+   hh->nbrRank[HALO_X_MINUS_Y_PLUS_Z_MINUS]  = processorNum(domain, -1, +1, -1);
+   hh->nbrRank[HALO_X_MINUS_Y_PLUS_Z_PLUS]   = processorNum(domain, -1, +1, +1);
+   hh->nbrRank[HALO_X_PLUS_Y_MINUS_Z_MINUS]  = processorNum(domain, +1, -1, -1);
+   hh->nbrRank[HALO_X_PLUS_Y_MINUS_Z_PLUS]   = processorNum(domain, +1, -1, +1);
+   hh->nbrRank[HALO_X_PLUS_Y_PLUS_Z_MINUS]   = processorNum(domain, +1, +1, -1);
+   hh->nbrRank[HALO_X_PLUS_Y_PLUS_Z_PLUS]    = processorNum(domain, +1, +1, +1);
    hh->bufCapacity = 0; // will be set by sub-class.
 
    return hh;
@@ -275,35 +309,26 @@ HaloExchange* initHaloExchange(Domain* domain)
 /// \param [in] iAxis     Axis index.
 /// \param [in, out] data Pointer to data that will be passed to the load and
 ///                       unload functions
-void exchangeData(HaloExchange* haloExchange, void* data, int iAxis)
+void exchangeData(HaloExchange* haloExchange, void* data, int neighbour)
 {
-   enum HaloFaceOrder faceM = 2*iAxis;
-   enum HaloFaceOrder faceP = faceM+1;
+   enum HaloNeighbourOrder target = neighbour;
 
-   char* sendBufM = comdMalloc(haloExchange->bufCapacity);
-   char* sendBufP = comdMalloc(haloExchange->bufCapacity);
-   char* recvBufM = comdMalloc(haloExchange->bufCapacity);
-   char* recvBufP = comdMalloc(haloExchange->bufCapacity);
+   char* sendBuf = comdMalloc(haloExchange->bufCapacity);
+   char* recvBuf = comdMalloc(haloExchange->bufCapacity);
 
-   int nSendM = haloExchange->loadBuffer(haloExchange->parms, data, faceM, sendBufM);
-   int nSendP = haloExchange->loadBuffer(haloExchange->parms, data, faceP, sendBufP);
+   int nSend = haloExchange->loadBuffer(haloExchange->parms, data, target, sendBuf);
 
-   int nbrRankM = haloExchange->nbrRank[faceM];
-   int nbrRankP = haloExchange->nbrRank[faceP];
+   int nbrRank = haloExchange->nbrRank[target];
 
-   int nRecvM, nRecvP;
+   int nRecv;
 
    startTimer(commHaloTimer);
-   nRecvP = sendReceiveParallel(sendBufM, nSendM, nbrRankM, recvBufP, haloExchange->bufCapacity, nbrRankP);
-   nRecvM = sendReceiveParallel(sendBufP, nSendP, nbrRankP, recvBufM, haloExchange->bufCapacity, nbrRankM);
+   nRecvP = sendReceiveParallel(sendBuf, nSend, nbrRank, recvBuf, haloExchange->bufCapacity, nbrRank);
    stopTimer(commHaloTimer);
    
-   haloExchange->unloadBuffer(haloExchange->parms, data, faceM, nRecvM, recvBufM);
-   haloExchange->unloadBuffer(haloExchange->parms, data, faceP, nRecvP, recvBufP);
-   comdFree(recvBufP);
-   comdFree(recvBufM);
-   comdFree(sendBufP);
-   comdFree(sendBufM);
+   haloExchange->unloadBuffer(haloExchange->parms, data, target, nRecv, recvBufM);
+   comdFree(recvBuf);
+   comdFree(sendBuf);
 }
 
 /// Make a list of link cells that need to be sent across the specified
@@ -325,7 +350,7 @@ void exchangeData(HaloExchange* haloExchange, void* data, int iAxis)
 ///                    consistency check.
 /// \return The list of cells to send.  Caller is responsible to free
 /// the list.
-int* mkAtomCellList(LinkCell* boxes, enum HaloFaceOrder iFace, const int nCells)
+int* mkAtomCellList(LinkCell* boxes, enum HaloNeighbourOrder iFace, const int nCells)
 {
    int* list = comdMalloc(nCells*sizeof(int));
    int xBegin = -1;
