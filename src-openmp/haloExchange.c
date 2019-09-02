@@ -159,9 +159,9 @@ HaloExchange* initAtomHaloExchange(Domain* domain, LinkCell* boxes)
 {
    HaloExchange* hh = initHaloExchange(domain);
    
-   int size0 = (boxes->gridSize[1]+2)*(boxes->gridSize[2]+2);
-   int size1 = (boxes->gridSize[0]+2)*(boxes->gridSize[2]+2);
-   int size2 = (boxes->gridSize[0]+2)*(boxes->gridSize[1]+2);
+   int size0 = (boxes->gridSize[1])*(boxes->gridSize[2]);
+   int size1 = (boxes->gridSize[0])*(boxes->gridSize[2]);
+   int size2 = (boxes->gridSize[0])*(boxes->gridSize[1]);
    int maxSize = MAX(size0, size1);
    maxSize = MAX(size1, size2);
    hh->bufCapacity = maxSize*2*MAXATOMS*sizeof(AtomMsg);
@@ -172,12 +172,37 @@ HaloExchange* initAtomHaloExchange(Domain* domain, LinkCell* boxes)
 
    AtomExchangeParms* parms = comdMalloc(sizeof(AtomExchangeParms));
 
-   parms->nCells[HALO_X_MINUS] = 2*(boxes->gridSize[1]+2)*(boxes->gridSize[2]+2);
-   parms->nCells[HALO_Y_MINUS] = 2*(boxes->gridSize[0]+2)*(boxes->gridSize[2]+2);
-   parms->nCells[HALO_Z_MINUS] = 2*(boxes->gridSize[0]+2)*(boxes->gridSize[1]+2);
-   parms->nCells[HALO_X_PLUS]  = parms->nCells[HALO_X_MINUS];
-   parms->nCells[HALO_Y_PLUS]  = parms->nCells[HALO_Y_MINUS];
-   parms->nCells[HALO_Z_PLUS]  = parms->nCells[HALO_Z_MINUS];
+   parms->nCells[HALO_X_MINUS]                 = 2*(boxes->gridSize[1])*(boxes->gridSize[2]);
+   parms->nCells[HALO_X_PLUS]                  = parms->nCells[HALO_X_MINUS];
+
+   parms->nCells[HALO_Y_MINUS]                 = 2*(boxes->gridSize[0])*(boxes->gridSize[2]);
+   parms->nCells[HALO_Y_PLUS]                  = parms->nCells[HALO_Y_MINUS];
+
+   parms->nCells[HALO_Z_MINUS]                 = 2*(boxes->gridSize[0])*(boxes->gridSize[1]);
+   parms->nCells[HALO_Z_PLUS]                  = parms->nCells[HALO_Z_MINUS];
+
+   parms->nCells[HALO_X_MINUS_Y_MINUS]         = 2*(boxes->gridSize[2])
+   parms->nCells[HALO_X_MINUS_Y_PLUS]          = parms->nCells[HALO_X_MINUS_Y_MINUS]
+   parms->nCells[HALO_X_PLUS_Y_MINUS]          = parms->nCells[HALO_X_MINUS_Y_MINUS]
+   parms->nCells[HALO_X_PLUS_Y_PLUS]           = parms->nCells[HALO_X_MINUS_Y_MINUS]
+
+   parms->nCells[HALO_X_MINUS_Z_MINUS]         = 2*(boxes->gridSize[1])
+   parms->nCells[HALO_X_MINUS_Z_PLUS]          = parms->nCells[HALO_X_MINUS_Z_MINUS]
+   parms->nCells[HALO_X_PLUS_Z_MINUS]          = parms->nCells[HALO_X_MINUS_Z_MINUS]
+   parms->nCells[HALO_X_PLUS_Z_PLUS]           = parms->nCells[HALO_X_MINUS_Z_MINUS]
+
+   parms->nCells[HALO_Y_MINUS_Z_MINUS]         = 2*(boxes->gridSize[0])
+   parms->nCells[HALO_Y_MINUS_Z_PLUS]          = parms->nCells[HALO_Y_MINUS_Z_MINUS]
+   parms->nCells[HALO_Y_PLUS_Z_MINUS]          = parms->nCells[HALO_Y_MINUS_Z_MINUS]
+   parms->nCells[HALO_Y_PLUS_Z_PLUS]           = parms->nCells[HALO_Y_MINUS_Z_MINUS]
+
+   parms->nCells[HALO_X_MINUS_Y_MINUS_Z_MINUS] = 2
+   parms->nCells[HALO_X_MINUS_Y_MINUS_Z_PLUS]  = parms->nCells[HALO_X_MINUS_Y_MINUS]
+   parms->nCells[HALO_X_MINUS_Y_PLUS_Z_MINUS]  = parms->nCells[HALO_X_MINUS_Y_MINUS]
+   parms->nCells[HALO_X_MINUS_Y_PLUS_Z_PLUS]   = parms->nCells[HALO_X_MINUS_Y_MINUS]
+   parms->nCells[HALO_X_PLUS_Y_MINUS_Z_PLUS]   = parms->nCells[HALO_X_MINUS_Y_MINUS]
+   parms->nCells[HALO_X_PLUS_Y_PLUS_Z_MINUS]   = parms->nCells[HALO_X_MINUS_Y_MINUS]
+   parms->nCells[HALO_X_PLUS_Y_PLUS_Z_PLUS]    = parms->nCells[HALO_X_MINUS_Y_MINUS]
 
    for (int ii=0; ii<6; ++ii)
       parms->cellList[ii] = mkAtomCellList(boxes, ii, parms->nCells[ii]);
