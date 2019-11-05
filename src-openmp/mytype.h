@@ -16,6 +16,7 @@ typedef double real_t; //!< define native type for CoMD as double precision
 #endif
 
 typedef real_t real3[3]; //!< a convenience vector with three real_t 
+typedef real_t real26[26]; //!< a convenience vector with twenty-six real_t 
 
 static void zeroReal3(real3 a)
 {

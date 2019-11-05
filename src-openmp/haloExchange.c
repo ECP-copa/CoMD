@@ -32,6 +32,9 @@
 
 #include <assert.h>
 
+// Remove this later
+#include <math.h>
+
 #include "CoMDTypes.h"
 #include "decomposition.h"
 #include "parallel.h"
@@ -181,33 +184,34 @@ HaloExchange* initAtomHaloExchange(Domain* domain, LinkCell* boxes)
    parms->nCells[HALO_Z_MINUS]                 = 2*(boxes->gridSize[0])*(boxes->gridSize[1]);
    parms->nCells[HALO_Z_PLUS]                  = parms->nCells[HALO_Z_MINUS];
 
-   parms->nCells[HALO_X_MINUS_Y_MINUS]         = 2*(boxes->gridSize[2])
-   parms->nCells[HALO_X_MINUS_Y_PLUS]          = parms->nCells[HALO_X_MINUS_Y_MINUS]
-   parms->nCells[HALO_X_PLUS_Y_MINUS]          = parms->nCells[HALO_X_MINUS_Y_MINUS]
-   parms->nCells[HALO_X_PLUS_Y_PLUS]           = parms->nCells[HALO_X_MINUS_Y_MINUS]
+   parms->nCells[HALO_X_MINUS_Y_MINUS]         = 2*(boxes->gridSize[2]);
+   parms->nCells[HALO_X_MINUS_Y_PLUS]          = parms->nCells[HALO_X_MINUS_Y_MINUS];
+   parms->nCells[HALO_X_PLUS_Y_MINUS]          = parms->nCells[HALO_X_MINUS_Y_MINUS];
+   parms->nCells[HALO_X_PLUS_Y_PLUS]           = parms->nCells[HALO_X_MINUS_Y_MINUS];
 
-   parms->nCells[HALO_X_MINUS_Z_MINUS]         = 2*(boxes->gridSize[1])
-   parms->nCells[HALO_X_MINUS_Z_PLUS]          = parms->nCells[HALO_X_MINUS_Z_MINUS]
-   parms->nCells[HALO_X_PLUS_Z_MINUS]          = parms->nCells[HALO_X_MINUS_Z_MINUS]
-   parms->nCells[HALO_X_PLUS_Z_PLUS]           = parms->nCells[HALO_X_MINUS_Z_MINUS]
+   parms->nCells[HALO_X_MINUS_Z_MINUS]         = 2*(boxes->gridSize[1]);
+   parms->nCells[HALO_X_MINUS_Z_PLUS]          = parms->nCells[HALO_X_MINUS_Z_MINUS];
+   parms->nCells[HALO_X_PLUS_Z_MINUS]          = parms->nCells[HALO_X_MINUS_Z_MINUS];
+   parms->nCells[HALO_X_PLUS_Z_PLUS]           = parms->nCells[HALO_X_MINUS_Z_MINUS];
 
-   parms->nCells[HALO_Y_MINUS_Z_MINUS]         = 2*(boxes->gridSize[0])
-   parms->nCells[HALO_Y_MINUS_Z_PLUS]          = parms->nCells[HALO_Y_MINUS_Z_MINUS]
-   parms->nCells[HALO_Y_PLUS_Z_MINUS]          = parms->nCells[HALO_Y_MINUS_Z_MINUS]
-   parms->nCells[HALO_Y_PLUS_Z_PLUS]           = parms->nCells[HALO_Y_MINUS_Z_MINUS]
+   parms->nCells[HALO_Y_MINUS_Z_MINUS]         = 2*(boxes->gridSize[0]);
+   parms->nCells[HALO_Y_MINUS_Z_PLUS]          = parms->nCells[HALO_Y_MINUS_Z_MINUS];
+   parms->nCells[HALO_Y_PLUS_Z_MINUS]          = parms->nCells[HALO_Y_MINUS_Z_MINUS];
+   parms->nCells[HALO_Y_PLUS_Z_PLUS]           = parms->nCells[HALO_Y_MINUS_Z_MINUS];
 
-   parms->nCells[HALO_X_MINUS_Y_MINUS_Z_MINUS] = 2
-   parms->nCells[HALO_X_MINUS_Y_MINUS_Z_PLUS]  = parms->nCells[HALO_X_MINUS_Y_MINUS]
-   parms->nCells[HALO_X_MINUS_Y_PLUS_Z_MINUS]  = parms->nCells[HALO_X_MINUS_Y_MINUS]
-   parms->nCells[HALO_X_MINUS_Y_PLUS_Z_PLUS]   = parms->nCells[HALO_X_MINUS_Y_MINUS]
-   parms->nCells[HALO_X_PLUS_Y_MINUS_Z_PLUS]   = parms->nCells[HALO_X_MINUS_Y_MINUS]
-   parms->nCells[HALO_X_PLUS_Y_PLUS_Z_MINUS]   = parms->nCells[HALO_X_MINUS_Y_MINUS]
-   parms->nCells[HALO_X_PLUS_Y_PLUS_Z_PLUS]    = parms->nCells[HALO_X_MINUS_Y_MINUS]
+   parms->nCells[HALO_X_MINUS_Y_MINUS_Z_MINUS] = 2;
+   parms->nCells[HALO_X_MINUS_Y_MINUS_Z_PLUS]  = parms->nCells[HALO_X_MINUS_Y_MINUS_Z_MINUS];
+   parms->nCells[HALO_X_MINUS_Y_PLUS_Z_MINUS]  = parms->nCells[HALO_X_MINUS_Y_MINUS_Z_MINUS];
+   parms->nCells[HALO_X_MINUS_Y_PLUS_Z_PLUS]   = parms->nCells[HALO_X_MINUS_Y_MINUS_Z_MINUS];
+   parms->nCells[HALO_X_PLUS_Y_MINUS_Z_MINUS]  = parms->nCells[HALO_X_MINUS_Y_MINUS_Z_MINUS];
+   parms->nCells[HALO_X_PLUS_Y_MINUS_Z_PLUS]   = parms->nCells[HALO_X_MINUS_Y_MINUS_Z_MINUS];
+   parms->nCells[HALO_X_PLUS_Y_PLUS_Z_MINUS]   = parms->nCells[HALO_X_MINUS_Y_MINUS_Z_MINUS];
+   parms->nCells[HALO_X_PLUS_Y_PLUS_Z_PLUS]    = parms->nCells[HALO_X_MINUS_Y_MINUS_Z_MINUS];
 
-   for (int ii=0; ii<6; ++ii)
+   for (int ii=0; ii<26; ++ii)
       parms->cellList[ii] = mkAtomCellList(boxes, ii, parms->nCells[ii]);
 
-   for (int ii=0; ii<6; ++ii)
+   for (int ii=0; ii<26; ++ii)
    {
       parms->pbcFactor[ii] = comdMalloc(3*sizeof(real_t));
       for (int jj=0; jj<3; ++jj)
@@ -250,22 +254,47 @@ HaloExchange* initForceHaloExchange(Domain* domain, LinkCell* boxes)
    hh->destroy = destroyForceExchange;
 
    int size0 = (boxes->gridSize[1])*(boxes->gridSize[2]);
-   int size1 = (boxes->gridSize[0]+2)*(boxes->gridSize[2]);
-   int size2 = (boxes->gridSize[0]+2)*(boxes->gridSize[1]+2);
+   int size1 = (boxes->gridSize[0])*(boxes->gridSize[2]);
+   int size2 = (boxes->gridSize[0])*(boxes->gridSize[1]);
    int maxSize = MAX(size0, size1);
    maxSize = MAX(size1, size2);
    hh->bufCapacity = (maxSize)*MAXATOMS*sizeof(ForceMsg);
 
    ForceExchangeParms* parms = comdMalloc(sizeof(ForceExchangeParms));
 
-   parms->nCells[HALO_X_MINUS] = (boxes->gridSize[1]  )*(boxes->gridSize[2]  );
-   parms->nCells[HALO_Y_MINUS] = (boxes->gridSize[0]+2)*(boxes->gridSize[2]  );
-   parms->nCells[HALO_Z_MINUS] = (boxes->gridSize[0]+2)*(boxes->gridSize[1]+2);
+   parms->nCells[HALO_X_MINUS] = (boxes->gridSize[1])*(boxes->gridSize[2]);
    parms->nCells[HALO_X_PLUS]  = parms->nCells[HALO_X_MINUS];
+
+   parms->nCells[HALO_Y_MINUS] = (boxes->gridSize[0])*(boxes->gridSize[2]);
    parms->nCells[HALO_Y_PLUS]  = parms->nCells[HALO_Y_MINUS];
+
+   parms->nCells[HALO_Z_MINUS] = (boxes->gridSize[0])*(boxes->gridSize[1]);
    parms->nCells[HALO_Z_PLUS]  = parms->nCells[HALO_Z_MINUS];
 
-   for (int ii=0; ii<6; ++ii)
+   parms->nCells[HALO_X_MINUS_Y_MINUS]         = (boxes->gridSize[2]);
+   parms->nCells[HALO_X_MINUS_Y_PLUS]          = parms->nCells[HALO_X_MINUS_Y_MINUS];
+   parms->nCells[HALO_X_PLUS_Y_MINUS]          = parms->nCells[HALO_X_MINUS_Y_MINUS];
+   parms->nCells[HALO_X_PLUS_Y_PLUS]           = parms->nCells[HALO_X_MINUS_Y_MINUS];
+
+   parms->nCells[HALO_X_MINUS_Z_MINUS]         = (boxes->gridSize[1]);
+   parms->nCells[HALO_X_MINUS_Z_PLUS]          = parms->nCells[HALO_X_MINUS_Z_MINUS];
+   parms->nCells[HALO_X_PLUS_Z_MINUS]          = parms->nCells[HALO_X_MINUS_Z_MINUS];
+   parms->nCells[HALO_X_PLUS_Z_PLUS]           = parms->nCells[HALO_X_MINUS_Z_MINUS];
+
+   parms->nCells[HALO_Y_MINUS_Z_MINUS]         = (boxes->gridSize[0]);
+   parms->nCells[HALO_Y_MINUS_Z_PLUS]          = parms->nCells[HALO_Y_MINUS_Z_MINUS];
+   parms->nCells[HALO_Y_PLUS_Z_MINUS]          = parms->nCells[HALO_Y_MINUS_Z_MINUS];
+   parms->nCells[HALO_Y_PLUS_Z_PLUS]           = parms->nCells[HALO_Y_MINUS_Z_MINUS];
+
+   parms->nCells[HALO_X_MINUS_Y_MINUS_Z_MINUS] = 1;
+   parms->nCells[HALO_X_MINUS_Y_MINUS_Z_PLUS]  = parms->nCells[HALO_X_MINUS_Y_MINUS_Z_MINUS];
+   parms->nCells[HALO_X_MINUS_Y_PLUS_Z_MINUS]  = parms->nCells[HALO_X_MINUS_Y_MINUS_Z_MINUS];
+   parms->nCells[HALO_X_MINUS_Y_PLUS_Z_PLUS]   = parms->nCells[HALO_X_MINUS_Y_MINUS_Z_MINUS];
+   parms->nCells[HALO_X_PLUS_Y_MINUS_Z_PLUS]   = parms->nCells[HALO_X_MINUS_Y_MINUS_Z_MINUS];
+   parms->nCells[HALO_X_PLUS_Y_PLUS_Z_MINUS]   = parms->nCells[HALO_X_MINUS_Y_MINUS_Z_MINUS];
+   parms->nCells[HALO_X_PLUS_Y_PLUS_Z_PLUS]    = parms->nCells[HALO_X_MINUS_Y_MINUS_Z_MINUS];
+
+   for (int ii=0; ii<26; ++ii)
    {
       parms->sendCells[ii] = mkForceSendCellList(boxes, ii, parms->nCells[ii]);
       parms->recvCells[ii] = mkForceRecvCellList(boxes, ii, parms->nCells[ii]);
@@ -348,10 +377,10 @@ void exchangeData(HaloExchange* haloExchange, void* data, int neighbour)
    int nRecv;
 
    startTimer(commHaloTimer);
-   nRecvP = sendReceiveParallel(sendBuf, nSend, nbrRank, recvBuf, haloExchange->bufCapacity, nbrRank);
+   nRecv = sendReceiveParallel(sendBuf, nSend, nbrRank, recvBuf, haloExchange->bufCapacity, nbrRank);
    stopTimer(commHaloTimer);
    
-   haloExchange->unloadBuffer(haloExchange->parms, data, target, nRecv, recvBufM);
+   haloExchange->unloadBuffer(haloExchange->parms, data, target, nRecv, recvBuf);
    comdFree(recvBuf);
    comdFree(sendBuf);
 }
@@ -378,24 +407,272 @@ void exchangeData(HaloExchange* haloExchange, void* data, int neighbour)
 int* mkAtomCellList(LinkCell* boxes, enum HaloNeighbourOrder iFace, const int nCells)
 {
    int* list = comdMalloc(nCells*sizeof(int));
-   int xBegin = -1;
-   int xEnd   = boxes->gridSize[0]+1;
-   int yBegin = -1;
-   int yEnd   = boxes->gridSize[1]+1;
-   int zBegin = -1;
-   int zEnd   = boxes->gridSize[2]+1;
+   int xBegin     = 0;
+   int xEnd       = boxes->gridSize[0];
+   int xBeginHalo = 0;
+   int xEndHalo   = boxes->gridSize[0];
 
-   if (iFace == HALO_X_MINUS) xEnd = xBegin+2;
-   if (iFace == HALO_X_PLUS)  xBegin = xEnd-2;
-   if (iFace == HALO_Y_MINUS) yEnd = yBegin+2;
-   if (iFace == HALO_Y_PLUS)  yBegin = yEnd-2;
-   if (iFace == HALO_Z_MINUS) zEnd = zBegin+2;
-   if (iFace == HALO_Z_PLUS)  zBegin = zEnd-2;
+   int yBegin     = 0;
+   int yEnd       = boxes->gridSize[1];
+   int yBeginHalo = 0;
+   int yEndHalo   = boxes->gridSize[1];
+
+   int zBegin     = 0;
+   int zEnd       = boxes->gridSize[2];
+   int zBeginHalo = 0;
+   int zEndHalo   = boxes->gridSize[2];
+
+
+   if (iFace == HALO_X_MINUS)
+   {
+       xEnd = xBegin+1;
+       xBeginHalo -= 1;
+       xEndHalo = xBeginHalo+1;
+   }
+   if (iFace == HALO_X_PLUS)
+   {
+       xBegin = xEnd-1;
+       xEndHalo += 1;
+       xBeginHalo = xEndHalo-1;
+   }
+   if (iFace == HALO_Y_MINUS)
+   {
+       yEnd = yBegin+1;
+       yBeginHalo -= 1;
+       yEndHalo = yBeginHalo+1;
+   }
+   if (iFace == HALO_Y_PLUS)
+   {
+       yBegin = yEnd-1;
+       yEndHalo += 1;
+       yBeginHalo = yEndHalo-1;
+   }
+   if (iFace == HALO_Z_MINUS)
+   {
+       zEnd = zBegin+1;
+       zBeginHalo -= 1;
+       zEndHalo = zBeginHalo+1;
+   }
+   if (iFace == HALO_Z_PLUS)
+   {
+       zBegin = zEnd-1;
+       zEndHalo += 1;
+       zBeginHalo = zEndHalo-1;
+   }
+   if (iFace == HALO_X_MINUS_Y_MINUS)
+   {
+       xEnd = xBegin+1;
+       xBeginHalo -= 1;
+       xEndHalo = xBeginHalo+1;
+       yEnd = yBegin+1;
+       yBeginHalo -= 1;
+       yEndHalo = yBeginHalo+1;
+   }
+   if (iFace == HALO_X_MINUS_Y_PLUS)
+   {
+       xEnd = xBegin+1;
+       xBeginHalo -= 1;
+       xEndHalo = xBeginHalo+1;
+       yBegin = yEnd-1;
+       yEndHalo += 1;
+       yBeginHalo = yEndHalo-1;
+   }
+   if (iFace == HALO_X_PLUS_Y_MINUS)
+   {
+       xBegin = xEnd-1;
+       xEndHalo += 1;
+       xBeginHalo = xEndHalo-1;
+       yEnd = yBegin+1;
+       yBeginHalo -= 1;
+       yEndHalo = yBeginHalo+1;
+   }
+   if (iFace == HALO_X_PLUS_Y_PLUS)
+   {
+       xBegin = xEnd-1;
+       xEndHalo += 1;
+       xBeginHalo = xEndHalo-1;
+       yBegin = yEnd-1;
+       yEndHalo += 1;
+       yBeginHalo = yEndHalo-1;
+   }
+   if (iFace == HALO_X_MINUS_Z_MINUS)
+   {
+       xEnd = xBegin+1;
+       xBeginHalo -= 1;
+       xEndHalo = xBeginHalo+1;
+       zEnd = zBegin+1;
+       zBeginHalo -= 1;
+       zEndHalo = zBeginHalo+1;
+   }
+   if (iFace == HALO_X_MINUS_Z_PLUS)
+   {
+       xEnd = xBegin+1;
+       xBeginHalo -= 1;
+       xEndHalo = xBeginHalo+1;
+       zBegin = zEnd-1;
+       zEndHalo += 1;
+       zBeginHalo = zEndHalo-1;
+   }
+   if (iFace == HALO_X_PLUS_Z_MINUS)
+   {
+       xBegin = xEnd-1;
+       xEndHalo += 1;
+       xBeginHalo = xEndHalo-1;
+       zEnd = zBegin+1;
+       zBeginHalo -= 1;
+       zEndHalo = zBeginHalo+1;
+   }
+   if (iFace == HALO_X_PLUS_Z_PLUS)
+   {
+       xBegin = xEnd-1;
+       xEndHalo += 1;
+       xBeginHalo = xEndHalo-1;
+       zBegin = zEnd-1;
+       zEndHalo += 1;
+       zBeginHalo = zEndHalo-1;
+   }
+   if (iFace == HALO_Y_MINUS_Z_MINUS)
+   {
+       yEnd = yBegin+1;
+       yBeginHalo -= 1;
+       yEndHalo = yBeginHalo+1;
+       zEnd = zBegin+1;
+       zBeginHalo -= 1;
+       zEndHalo = zBeginHalo+1;
+   }
+   if (iFace == HALO_Y_MINUS_Z_PLUS)
+   {
+       yEnd = yBegin+1;
+       yBeginHalo -= 1;
+       yEndHalo = yBeginHalo+1;
+       zBegin = zEnd-1;
+       zEndHalo += 1;
+       zBeginHalo = zEndHalo-1;
+   }
+   if (iFace == HALO_Y_PLUS_Z_MINUS)
+   {
+       yBegin = yEnd-1;
+       yEndHalo += 1;
+       yBeginHalo = yEndHalo-1;
+       zEnd = zBegin+1;
+       zBeginHalo -= 1;
+       zEndHalo = zBeginHalo+1;
+   }
+   if (iFace == HALO_Y_PLUS_Z_PLUS)
+   {
+       yBegin = yEnd-1;
+       yEndHalo += 1;
+       yBeginHalo = yEndHalo-1;
+       zBegin = zEnd-1;
+       zEndHalo += 1;
+       zBeginHalo = zEndHalo-1;
+   }
+   if (iFace == HALO_X_MINUS_Y_MINUS_Z_MINUS)
+   {
+       xEnd = xBegin+1;
+       xBeginHalo -= 1;
+       xEndHalo = xBeginHalo+1;
+       yEnd = yBegin+1;
+       yBeginHalo -= 1;
+       yEndHalo = yBeginHalo+1;
+       zEnd = zBegin+1;
+       zBeginHalo -= 1;
+       zEndHalo = zBeginHalo+1;
+   }
+   if (iFace == HALO_X_MINUS_Y_MINUS_Z_PLUS)
+   {
+       xEnd = xBegin+1;
+       xBeginHalo -= 1;
+       xEndHalo = xBeginHalo+1;
+       yEnd = yBegin+1;
+       yBeginHalo -= 1;
+       yEndHalo = yBeginHalo+1;
+       zBegin = zEnd-1;
+       zEndHalo += 1;
+       zBeginHalo = zEndHalo-1;
+   }
+   if (iFace == HALO_X_MINUS_Y_PLUS_Z_MINUS)
+   {
+       xEnd = xBegin+1;
+       xBeginHalo -= 1;
+       xEndHalo = xBeginHalo+1;
+       yBegin = yEnd-1;
+       yEndHalo += 1;
+       yBeginHalo = yEndHalo-1;
+       zEnd = zBegin+1;
+       zBeginHalo -= 1;
+       zEndHalo = zBeginHalo+1;
+   }
+   if (iFace == HALO_X_MINUS_Y_PLUS_Z_PLUS)
+   {
+       xEnd = xBegin+1;
+       xBeginHalo -= 1;
+       xEndHalo = xBeginHalo+1;
+       yBegin = yEnd-1;
+       yEndHalo += 1;
+       yBeginHalo = yEndHalo-1;
+       zBegin = zEnd-1;
+       zEndHalo += 1;
+       zBeginHalo = zEndHalo-1;
+   }
+   if (iFace == HALO_X_PLUS_Y_MINUS_Z_MINUS)
+   {
+       xBegin = xEnd-1;
+       xEndHalo += 1;
+       xBeginHalo = xEndHalo-1;
+       yEnd = yBegin+1;
+       yBeginHalo -= 1;
+       yEndHalo = yBeginHalo+1;
+       zEnd = zBegin+1;
+       zBeginHalo -= 1;
+       zEndHalo = zBeginHalo+1;
+   }
+   if (iFace == HALO_X_PLUS_Y_MINUS_Z_PLUS)
+   {
+       xBegin = xEnd-1;
+       xEndHalo += 1;
+       xBeginHalo = xEndHalo-1;
+       yEnd = yBegin+1;
+       yBeginHalo -= 1;
+       yEndHalo = yBeginHalo+1;
+       zBegin = zEnd-1;
+       zEndHalo += 1;
+       zBeginHalo = zEndHalo-1;
+   }
+   if (iFace == HALO_X_PLUS_Y_PLUS_Z_MINUS)
+   {
+       xBegin = xEnd-1;
+       xEndHalo += 1;
+       xBeginHalo = xEndHalo-1;
+       yBegin = yEnd-1;
+       yEndHalo += 1;
+       yBeginHalo = yEndHalo-1;
+       zEnd = zBegin+1;
+       zBeginHalo -= 1;
+       zEndHalo = zBeginHalo+1;
+   }
+   if (iFace == HALO_X_PLUS_Y_PLUS_Z_PLUS)
+   {
+       xBegin = xEnd-1;
+       xEndHalo += 1;
+       xBeginHalo = xEndHalo-1;
+       yBegin = yEnd-1;
+       yEndHalo += 1;
+       yBeginHalo = yEndHalo-1;
+       zBegin = zEnd-1;
+       zEndHalo += 1;
+       zBeginHalo = zEndHalo-1;
+   }
 
    int count = 0;
-   for (int ix=xBegin; ix<xEnd; ++ix)
-      for (int iy=yBegin; iy<yEnd; ++iy)
-         for (int iz=zBegin; iz<zEnd; ++iz)
+   int ix,iy,iz;
+   for (ix=xBegin; ix<xEnd; ++ix)
+      for (iy=yBegin; iy<yEnd; ++iy)
+         for (iz=zBegin; iz<zEnd; ++iz)
+            list[count++] = getBoxFromTuple(boxes, ix, iy, iz);
+   for (ix=xBeginHalo; ix<xEndHalo; ++ix)
+      for (iy=yBeginHalo; iy<yEndHalo; ++iy)
+         for (iz=zBeginHalo; iz<zEndHalo; ++iz)
             list[count++] = getBoxFromTuple(boxes, ix, iy, iz);
    assert(count == nCells);
    return list;
@@ -422,6 +699,7 @@ int loadAtomsBuffer(void* vparms, void* data, int face, char* charBuf)
    
    int nCells = parms->nCells[face];
    int* cellList = parms->cellList[face];
+
    int nBuf = 0;
    for (int iCell=0; iCell<nCells; ++iCell)
    {
@@ -471,6 +749,18 @@ void unloadAtomsBuffer(void* vparms, void* data, int face, int bufSize, char* ch
       real_t px = buf[ii].px;
       real_t py = buf[ii].py;
       real_t pz = buf[ii].pz;
+
+   if((int)(floor((rz - s->boxes->localMin[2])*s->boxes->invBoxSize[2]))<-1)
+   {
+       printf("z = %lf\n",rz);
+       printf("minz = %lf\n",s->boxes->localMin[2]);
+       printf("invz = %lf\n",s->boxes->invBoxSize[2]);
+       printf("floorz = %lf\n",floor((rz - s->boxes->localMin[2])));
+       printf("nonintz = %lf\n",floor((rz - s->boxes->localMin[2]))*s->boxes->invBoxSize[2]);
+       printf("\n################\n\n");
+       fflush(stdout);
+   }
+
       putAtomInBox(s->boxes, s->atoms, gid, type, rx, ry, rz, px, py, pz);
    }
 }
@@ -510,27 +800,94 @@ int* mkForceSendCellList(LinkCell* boxes, int face, int nCells)
       xBegin=nx-1; xEnd=nx;   yBegin=0;    yEnd=ny;   zBegin=0;    zEnd=nz;
       break;
      case HALO_Y_MINUS:
-      xBegin=-1;   xEnd=nx+1; yBegin=0;    yEnd=1;    zBegin=0;    zEnd=nz;
+      xBegin=0;    xEnd=nx;   yBegin=0;    yEnd=1;    zBegin=0;    zEnd=nz;
       break;
      case HALO_Y_PLUS:
-      xBegin=-1;   xEnd=nx+1; yBegin=ny-1; yEnd=ny;   zBegin=0;    zEnd=nz;
+      xBegin=0;    xEnd=nx;   yBegin=ny-1; yEnd=ny;   zBegin=0;    zEnd=nz;
       break;
      case HALO_Z_MINUS:
-      xBegin=-1;   xEnd=nx+1; yBegin=-1;   yEnd=ny+1; zBegin=0;    zEnd=1;
+      xBegin=0;    xEnd=nx+1; yBegin=0;    yEnd=ny;   zBegin=0;    zEnd=1;
       break;
      case HALO_Z_PLUS:
-      xBegin=-1;   xEnd=nx+1; yBegin=-1;   yEnd=ny+1; zBegin=nz-1; zEnd=nz;
+      xBegin=0;    xEnd=nx;   yBegin=0;    yEnd=ny;   zBegin=nz-1; zEnd=nz;
+      break;
+     case HALO_X_MINUS_Y_MINUS:
+      xBegin=0;    xEnd=1;    yBegin=0;    yEnd=1;   zBegin=0;     zEnd=nz;
+      break;
+     case HALO_X_MINUS_Y_PLUS:
+      xBegin=0;    xEnd=1;    yBegin=ny-1; yEnd=ny;  zBegin=0;     zEnd=nz;
+      break;
+     case HALO_X_PLUS_Y_MINUS:
+      xBegin=nx-1; xEnd=nx;   yBegin=0;    yEnd=1;   zBegin=0;     zEnd=nz;
+      break;
+     case HALO_X_PLUS_Y_PLUS:
+      xBegin=nx-1; xEnd=nx;   yBegin=ny-1; yEnd=ny;  zBegin=0;     zEnd=nz;
+      break;
+     case HALO_X_MINUS_Z_MINUS:
+      xBegin=0;    xEnd=1;    yBegin=0;    yEnd=ny;  zBegin=0;     zEnd=1; 
+      break;
+     case HALO_X_MINUS_Z_PLUS:
+      xBegin=0;    xEnd=1;    yBegin=0;    yEnd=ny;  zBegin=nz-1;  zEnd=nz;
+      break;
+     case HALO_X_PLUS_Z_MINUS:
+      xBegin=nx-1; xEnd=nx;   yBegin=0;    yEnd=ny;  zBegin=0;     zEnd=1; 
+      break;
+     case HALO_X_PLUS_Z_PLUS:
+      xBegin=nx-1; xEnd=nx;   yBegin=0;    yEnd=ny;  zBegin=nz-1;  zEnd=nz;
+      break;
+     case HALO_Y_MINUS_Z_MINUS:
+      xBegin=0;    xEnd=nx;   yBegin=0;    yEnd=1;   zBegin=0;     zEnd=1; 
+      break;
+     case HALO_Y_MINUS_Z_PLUS:
+      xBegin=0;    xEnd=nx;   yBegin=0;    yEnd=1;   zBegin=nz-1;  zEnd=nz;
+      break;
+     case HALO_Y_PLUS_Z_MINUS:
+      xBegin=0;    xEnd=nx;   yBegin=ny-1; yEnd=ny;  zBegin=0;     zEnd=1; 
+      break;
+     case HALO_Y_PLUS_Z_PLUS:
+      xBegin=0;    xEnd=nx;   yBegin=ny-1; yEnd=ny;  zBegin=nz-1;  zEnd=nz;
+      break;
+     case HALO_X_MINUS_Y_MINUS_Z_MINUS:
+      xBegin=0;    xEnd=1;    yBegin=0;    yEnd=1;   zBegin=0;     zEnd=1; 
+      break;
+     case HALO_X_MINUS_Y_MINUS_Z_PLUS:
+      xBegin=0;    xEnd=1;    yBegin=0;    yEnd=1;   zBegin=nz-1;  zEnd=nz;
+      break;
+     case HALO_X_MINUS_Y_PLUS_Z_MINUS:
+      xBegin=0;    xEnd=1;    yBegin=ny-1; yEnd=ny;  zBegin=0;     zEnd=1; 
+      break;
+     case HALO_X_MINUS_Y_PLUS_Z_PLUS:
+      xBegin=0;    xEnd=1;    yBegin=ny-1; yEnd=ny;  zBegin=nz-1;  zEnd=nz;
+      break;
+     case HALO_X_PLUS_Y_MINUS_Z_MINUS:
+      xBegin=nx-1; xEnd=nx;   yBegin=0;    yEnd=1;   zBegin=0;     zEnd=1; 
+      break;
+     case HALO_X_PLUS_Y_MINUS_Z_PLUS:
+      xBegin=nx-1; xEnd=nx;   yBegin=0;    yEnd=1;   zBegin=nz-1;  zEnd=nz;
+      break;
+     case HALO_X_PLUS_Y_PLUS_Z_MINUS:
+      xBegin=nx-1; xEnd=nx;   yBegin=ny-1; yEnd=ny;  zBegin=0;     zEnd=1; 
+      break;
+     case HALO_X_PLUS_Y_PLUS_Z_PLUS:
+      xBegin=nx-1; xEnd=nx;   yBegin=ny-1; yEnd=ny;  zBegin=nz-1;  zEnd=nz;
       break;
      default:
       assert(1==0);
    }
-   
+
    int count = 0;
-   for (int ix=xBegin; ix<xEnd; ++ix)
-      for (int iy=yBegin; iy<yEnd; ++iy)
-         for (int iz=zBegin; iz<zEnd; ++iz)
+   int ix, iy, iz;
+   for (ix=xBegin; ix<xEnd; ++ix)
+   {
+      for (iy=yBegin; iy<yEnd; ++iy)
+      {
+         for (iz=zBegin; iz<zEnd; ++iz)
+         {
             list[count++] = getBoxFromTuple(boxes, ix, iy, iz);
-   
+         }
+      }
+   }
+
    assert(count == nCells);
    return list;
 }
@@ -559,17 +916,76 @@ int* mkForceRecvCellList(LinkCell* boxes, int face, int nCells)
       xBegin=nx; xEnd=nx+1; yBegin=0;  yEnd=ny;   zBegin=0;  zEnd=nz;
       break;
      case HALO_Y_MINUS:
-      xBegin=-1; xEnd=nx+1; yBegin=-1; yEnd=0;    zBegin=0;  zEnd=nz;
+      xBegin=0;  xEnd=nx;   yBegin=-1; yEnd=0;    zBegin=0;  zEnd=nz;
       break;
      case HALO_Y_PLUS:
-      xBegin=-1; xEnd=nx+1; yBegin=ny; yEnd=ny+1; zBegin=0;  zEnd=nz;
+      xBegin=0;  xEnd=nx;   yBegin=ny; yEnd=ny+1; zBegin=0;  zEnd=nz;
       break;
      case HALO_Z_MINUS:
-      xBegin=-1; xEnd=nx+1; yBegin=-1; yEnd=ny+1; zBegin=-1; zEnd=0;
+      xBegin=0;  xEnd=nx;   yBegin=0;  yEnd=ny;   zBegin=-1; zEnd=0;
       break;
      case HALO_Z_PLUS:
-      xBegin=-1; xEnd=nx+1; yBegin=-1; yEnd=ny+1; zBegin=nz; zEnd=nz+1;
+      xBegin=0;  xEnd=nx;   yBegin=0;  yEnd=ny;   zBegin=nz; zEnd=nz+1;
       break;
+     case HALO_X_MINUS_Y_MINUS:
+      xBegin=-1;   xEnd=0;    yBegin=-1;   yEnd=0;   zBegin=0;     zEnd=nz;
+      break;
+     case HALO_X_MINUS_Y_PLUS:
+      xBegin=-1;   xEnd=0;    yBegin=ny;   yEnd=ny+1;zBegin=0;     zEnd=nz;
+      break;
+     case HALO_X_PLUS_Y_MINUS:
+      xBegin=nx;   xEnd=nx+1; yBegin=-1;   yEnd=0;   zBegin=0;     zEnd=nz;
+      break;
+     case HALO_X_PLUS_Y_PLUS:
+      xBegin=nx;   xEnd=nx+1; yBegin=ny;   yEnd=ny+1;zBegin=0;     zEnd=nz;
+      break;
+     case HALO_X_MINUS_Z_MINUS:
+      xBegin=-1;   xEnd=0;    yBegin=0;    yEnd=ny;  zBegin=-1;    zEnd=0; 
+      break;
+     case HALO_X_MINUS_Z_PLUS:
+      xBegin=-1;   xEnd=0;    yBegin=0;    yEnd=ny;  zBegin=nz;    zEnd=nz+1;
+      break;
+     case HALO_X_PLUS_Z_MINUS:
+      xBegin=nx;   xEnd=nx+1; yBegin=0;    yEnd=ny;  zBegin=-1;    zEnd=0; 
+      break;
+     case HALO_X_PLUS_Z_PLUS:
+      xBegin=nx;   xEnd=nx+1; yBegin=0;    yEnd=ny;  zBegin=nz;    zEnd=nz+1;
+      break;
+     case HALO_Y_MINUS_Z_MINUS:
+      xBegin=0;    xEnd=nx;   yBegin=-1;   yEnd=0;   zBegin=-1;    zEnd=0; 
+      break;
+     case HALO_Y_MINUS_Z_PLUS:
+      xBegin=0;    xEnd=nx;   yBegin=-1;   yEnd=0;   zBegin=nz;    zEnd=nz+1;
+      break;
+     case HALO_Y_PLUS_Z_MINUS:
+      xBegin=0;    xEnd=nx;   yBegin=ny;   yEnd=ny+1;zBegin=-1;    zEnd=0; 
+      break;
+     case HALO_Y_PLUS_Z_PLUS:
+      xBegin=0;    xEnd=nx;   yBegin=ny;   yEnd=ny+1;zBegin=nz;    zEnd=nz+1;
+      break;
+     case HALO_X_MINUS_Y_MINUS_Z_MINUS:
+      xBegin=-1;   xEnd=0;    yBegin=-1;   yEnd=0;   zBegin=-1;    zEnd=0; 
+      break;
+     case HALO_X_MINUS_Y_MINUS_Z_PLUS:
+      xBegin=-1;   xEnd=0;    yBegin=-1;   yEnd=0;   zBegin=nz;    zEnd=nz+1;
+      break;
+     case HALO_X_MINUS_Y_PLUS_Z_MINUS:
+      xBegin=-1;   xEnd=0;    yBegin=ny;   yEnd=ny+1;zBegin=-1;    zEnd=0; 
+      break;
+     case HALO_X_MINUS_Y_PLUS_Z_PLUS:
+      xBegin=-1;   xEnd=0;    yBegin=ny;   yEnd=ny+1;zBegin=nz;    zEnd=nz+1;
+      break;
+     case HALO_X_PLUS_Y_MINUS_Z_MINUS:
+      xBegin=nx;   xEnd=nx+1; yBegin=-1;   yEnd=0;   zBegin=-1;    zEnd=0; 
+      break;
+     case HALO_X_PLUS_Y_MINUS_Z_PLUS:
+      xBegin=nx;   xEnd=nx+1; yBegin=-1;   yEnd=0;   zBegin=nz;    zEnd=nz+1;
+      break;
+     case HALO_X_PLUS_Y_PLUS_Z_MINUS:
+      xBegin=nx;   xEnd=nx+1; yBegin=ny;   yEnd=ny+1;zBegin=-1;    zEnd=0; 
+      break;
+     case HALO_X_PLUS_Y_PLUS_Z_PLUS:
+      xBegin=nx;   xEnd=nx+1; yBegin=ny;   yEnd=ny+1;zBegin=nz;    zEnd=nz+1;
      default:
       assert(1==0);
    }
