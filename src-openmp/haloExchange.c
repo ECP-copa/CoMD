@@ -219,12 +219,78 @@ HaloExchange* initAtomHaloExchange(Domain* domain, LinkCell* boxes)
    }
    int* procCoord = domain->procCoord; //alias
    int* procGrid  = domain->procGrid; //alias
-   if (procCoord[HALO_X_AXIS] == 0)                       parms->pbcFactor[HALO_X_MINUS][HALO_X_AXIS] = +1.0;
-   if (procCoord[HALO_X_AXIS] == procGrid[HALO_X_AXIS]-1) parms->pbcFactor[HALO_X_PLUS][HALO_X_AXIS]  = -1.0;
-   if (procCoord[HALO_Y_AXIS] == 0)                       parms->pbcFactor[HALO_Y_MINUS][HALO_Y_AXIS] = +1.0;
-   if (procCoord[HALO_Y_AXIS] == procGrid[HALO_Y_AXIS]-1) parms->pbcFactor[HALO_Y_PLUS][HALO_Y_AXIS]  = -1.0;
-   if (procCoord[HALO_Z_AXIS] == 0)                       parms->pbcFactor[HALO_Z_MINUS][HALO_Z_AXIS] = +1.0;
-   if (procCoord[HALO_Z_AXIS] == procGrid[HALO_Z_AXIS]-1) parms->pbcFactor[HALO_Z_PLUS][HALO_Z_AXIS]  = -1.0;
+   if (procCoord[HALO_X_AXIS] == 0)
+   {
+       parms->pbcFactor[HALO_X_MINUS][HALO_X_AXIS]                 = +1.0;
+       parms->pbcFactor[HALO_X_MINUS_Y_MINUS][HALO_X_AXIS]         = +1.0;
+       parms->pbcFactor[HALO_X_MINUS_Y_PLUS][HALO_X_AXIS]          = +1.0;
+       parms->pbcFactor[HALO_X_MINUS_Z_MINUS][HALO_X_AXIS]         = +1.0;
+       parms->pbcFactor[HALO_X_MINUS_Z_PLUS][HALO_X_AXIS]          = +1.0;
+       parms->pbcFactor[HALO_X_MINUS_Y_MINUS_Z_MINUS][HALO_X_AXIS] = +1.0;
+       parms->pbcFactor[HALO_X_MINUS_Y_PLUS_Z_MINUS][HALO_X_AXIS]  = +1.0;
+       parms->pbcFactor[HALO_X_MINUS_Y_MINUS_Z_PLUS][HALO_X_AXIS]  = +1.0;
+       parms->pbcFactor[HALO_X_MINUS_Y_PLUS_Z_PLUS][HALO_X_AXIS]   = +1.0;
+   }
+   if (procCoord[HALO_X_AXIS] == procGrid[HALO_X_AXIS]-1) 
+   {
+       parms->pbcFactor[HALO_X_PLUS][HALO_X_AXIS]                  = -1.0;
+       parms->pbcFactor[HALO_X_PLUS_Y_MINUS][HALO_X_AXIS]          = -1.0;
+       parms->pbcFactor[HALO_X_PLUS_Y_PLUS][HALO_X_AXIS]           = -1.0;
+       parms->pbcFactor[HALO_X_PLUS_Z_MINUS][HALO_X_AXIS]          = -1.0;
+       parms->pbcFactor[HALO_X_PLUS_Z_PLUS][HALO_X_AXIS]           = -1.0;
+       parms->pbcFactor[HALO_X_PLUS_Y_MINUS_Z_MINUS][HALO_X_AXIS]  = -1.0;
+       parms->pbcFactor[HALO_X_PLUS_Y_PLUS_Z_MINUS][HALO_X_AXIS]   = -1.0;
+       parms->pbcFactor[HALO_X_PLUS_Y_MINUS_Z_PLUS][HALO_X_AXIS]   = -1.0;
+       parms->pbcFactor[HALO_X_PLUS_Y_PLUS_Z_PLUS][HALO_X_AXIS]    = -1.0;
+   }
+   if (procCoord[HALO_Y_AXIS] == 0)                       
+   {
+       parms->pbcFactor[HALO_Y_MINUS][HALO_Y_AXIS]                 = +1.0;
+       parms->pbcFactor[HALO_X_MINUS_Y_MINUS][HALO_X_AXIS]         = +1.0;
+       parms->pbcFactor[HALO_X_PLUS_Y_MINUS][HALO_X_AXIS]          = +1.0;
+       parms->pbcFactor[HALO_Y_MINUS_Z_MINUS][HALO_X_AXIS]         = +1.0;
+       parms->pbcFactor[HALO_Y_MINUS_Z_PLUS][HALO_X_AXIS]          = +1.0;
+       parms->pbcFactor[HALO_X_MINUS_Y_MINUS_Z_MINUS][HALO_X_AXIS] = +1.0;
+       parms->pbcFactor[HALO_X_PLUS_Y_MINUS_Z_MINUS][HALO_X_AXIS]  = +1.0;
+       parms->pbcFactor[HALO_X_MINUS_Y_MINUS_Z_PLUS][HALO_X_AXIS]  = +1.0;
+       parms->pbcFactor[HALO_X_PLUS_Y_MINUS_Z_PLUS][HALO_X_AXIS]   = +1.0;
+   }
+   if (procCoord[HALO_Y_AXIS] == procGrid[HALO_Y_AXIS]-1) 
+   {
+       parms->pbcFactor[HALO_Y_PLUS][HALO_Y_AXIS]                  = -1.0;
+       parms->pbcFactor[HALO_X_MINUS_Y_PLUS][HALO_X_AXIS]          = -1.0;
+       parms->pbcFactor[HALO_X_PLUS_Y_PLUS][HALO_X_AXIS]           = -1.0;
+       parms->pbcFactor[HALO_Y_PLUS_Z_MINUS][HALO_X_AXIS]          = -1.0;
+       parms->pbcFactor[HALO_Y_PLUS_Z_PLUS][HALO_X_AXIS]           = -1.0;
+       parms->pbcFactor[HALO_X_MINUS_Y_PLUS_Z_MINUS][HALO_X_AXIS]  = -1.0;
+       parms->pbcFactor[HALO_X_PLUS_Y_PLUS_Z_MINUS][HALO_X_AXIS]   = -1.0;
+       parms->pbcFactor[HALO_X_MINUS_Y_PLUS_Z_PLUS][HALO_X_AXIS]   = -1.0;
+       parms->pbcFactor[HALO_X_PLUS_Y_PLUS_Z_PLUS][HALO_X_AXIS]    = -1.0;
+   }
+   if (procCoord[HALO_Z_AXIS] == 0)                       
+   {
+       parms->pbcFactor[HALO_Z_MINUS][HALO_Z_AXIS]                 = +1.0;
+       parms->pbcFactor[HALO_X_MINUS_Z_MINUS][HALO_X_AXIS]         = +1.0;
+       parms->pbcFactor[HALO_X_PLUS_Z_MINUS][HALO_X_AXIS]          = +1.0;
+       parms->pbcFactor[HALO_Y_MINUS_Z_MINUS][HALO_X_AXIS]         = +1.0;
+       parms->pbcFactor[HALO_Y_PLUS_Z_MINUS][HALO_X_AXIS]          = +1.0;
+       parms->pbcFactor[HALO_X_MINUS_Y_MINUS_Z_MINUS][HALO_X_AXIS] = +1.0;
+       parms->pbcFactor[HALO_X_PLUS_Y_MINUS_Z_MINUS][HALO_X_AXIS]  = +1.0;
+       parms->pbcFactor[HALO_X_MINUS_Y_PLUS_Z_MINUS][HALO_X_AXIS]  = +1.0;
+       parms->pbcFactor[HALO_X_PLUS_Y_PLUS_Z_MINUS][HALO_X_AXIS]   = +1.0;
+   }
+   if (procCoord[HALO_Z_AXIS] == procGrid[HALO_Z_AXIS]-1) 
+   {
+       parms->pbcFactor[HALO_Z_PLUS][HALO_Z_AXIS]                  = -1.0;
+       parms->pbcFactor[HALO_X_MINUS_Z_PLUS][HALO_X_AXIS]          = -1.0;
+       parms->pbcFactor[HALO_X_PLUS_Z_PLUS][HALO_X_AXIS]           = -1.0;
+       parms->pbcFactor[HALO_Y_MINUS_Z_PLUS][HALO_X_AXIS]          = -1.0;
+       parms->pbcFactor[HALO_Y_PLUS_Z_PLUS][HALO_X_AXIS]           = -1.0;
+       parms->pbcFactor[HALO_X_MINUS_Y_MINUS_Z_PLUS][HALO_X_AXIS]  = -1.0;
+       parms->pbcFactor[HALO_X_PLUS_Y_MINUS_Z_PLUS][HALO_X_AXIS]   = -1.0;
+       parms->pbcFactor[HALO_X_MINUS_Y_PLUS_Z_PLUS][HALO_X_AXIS]   = -1.0;
+       parms->pbcFactor[HALO_X_PLUS_Y_PLUS_Z_PLUS][HALO_X_AXIS]    = -1.0;
+   }
    
    hh->parms = parms;
    return hh;
@@ -693,6 +759,7 @@ int loadAtomsBuffer(void* vparms, void* data, int face, char* charBuf)
    
    real_t* pbcFactor = parms->pbcFactor[face];
    real3 shift;
+
    shift[0] = pbcFactor[0] * s->domain->globalExtent[0];
    shift[1] = pbcFactor[1] * s->domain->globalExtent[1];
    shift[2] = pbcFactor[2] * s->domain->globalExtent[2];
@@ -750,16 +817,16 @@ void unloadAtomsBuffer(void* vparms, void* data, int face, int bufSize, char* ch
       real_t py = buf[ii].py;
       real_t pz = buf[ii].pz;
 
-   if((int)(floor((rz - s->boxes->localMin[2])*s->boxes->invBoxSize[2]))<-1)
-   {
-       printf("z = %lf\n",rz);
-       printf("minz = %lf\n",s->boxes->localMin[2]);
-       printf("invz = %lf\n",s->boxes->invBoxSize[2]);
-       printf("floorz = %lf\n",floor((rz - s->boxes->localMin[2])));
-       printf("nonintz = %lf\n",floor((rz - s->boxes->localMin[2]))*s->boxes->invBoxSize[2]);
-       printf("\n################\n\n");
-       fflush(stdout);
-   }
+//   if((int)(floor((rz - s->boxes->localMin[2])*s->boxes->invBoxSize[2]))<-1)
+//   {
+//       printf("z = %lf\n",rz);
+//       printf("minz = %lf\n",s->boxes->localMin[2]);
+//       printf("invz = %lf\n",s->boxes->invBoxSize[2]);
+//       printf("floorz = %lf\n",floor((rz - s->boxes->localMin[2])));
+//       printf("nonintz = %lf\n",floor((rz - s->boxes->localMin[2]))*s->boxes->invBoxSize[2]);
+//       printf("\n################\n\n");
+//       fflush(stdout);
+//   }
 
       putAtomInBox(s->boxes, s->atoms, gid, type, rx, ry, rz, px, py, pz);
    }
