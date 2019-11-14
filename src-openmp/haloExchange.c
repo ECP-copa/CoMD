@@ -33,7 +33,8 @@
 #include <assert.h>
 
 // Remove this later
-#include <math.h>
+#include <string.h>
+#include "mpi.h"
 
 #include "CoMDTypes.h"
 #include "decomposition.h"
@@ -438,6 +439,22 @@ void exchangeData(HaloExchange* haloExchange, void* data, int neighbour)
 
    int nSend = haloExchange->loadBuffer(haloExchange->parms, data, target, sendBuf);
 
+   // Remove later
+   AtomMsg* buf = (AtomMsg*) sendBuf;
+   int nBuf = nSend / sizeof(AtomMsg);
+   assert(nSend % sizeof(AtomMsg) == 0);
+   //for (int ii=0; ii<nBuf; ++ii)
+   //{
+   //   int gid1   = buf[ii].gid;
+   //   int type1  = buf[ii].type;
+   //   real_t rx1 = buf[ii].rx;
+   //   real_t ry1 = buf[ii].ry;
+   //   real_t rz1 = buf[ii].rz;
+   //   real_t px1 = buf[ii].px;
+   //   real_t py1 = buf[ii].py;
+   //   real_t pz1 = buf[ii].pz;
+   //}
+
    int nbrRank = haloExchange->nbrRank[target];
 
    int nRecv;
@@ -446,9 +463,130 @@ void exchangeData(HaloExchange* haloExchange, void* data, int neighbour)
    nRecv = sendReceiveParallel(sendBuf, nSend, nbrRank, recvBuf, haloExchange->bufCapacity, nbrRank);
    stopTimer(commHaloTimer);
    
+   // Remove later
+   AtomMsg* buf2 = (AtomMsg*) recvBuf;
+   assert(nRecv % sizeof(AtomMsg) == 0);
+   //for (int ii=0; ii<nRecv/sizeof(AtomMsg); ++ii)
+   //{
+   //   int gid2   = buf2[ii].gid;
+   //   int type2  = buf2[ii].type;
+   //   real_t rx2 = buf2[ii].rx;
+   //   real_t ry2 = buf2[ii].ry;
+   //   real_t rz2 = buf2[ii].rz;
+   //   real_t px2 = buf2[ii].px;
+   //   real_t py2 = buf2[ii].py;
+   //   real_t pz2 = buf2[ii].pz;
+   //}
+
    haloExchange->unloadBuffer(haloExchange->parms, data, target, nRecv, recvBuf);
+
+   int testrank;
+   if (MPI_Comm_rank(MPI_COMM_WORLD,&testrank)==target)
+   {
+       if(memcmp(buf,buf2,nRecv) != 0)
+        {
+            printf("not matching\n");
+            assert(nSend == nRecv);
+            
+            for (int ii=0; ii<nRecv/sizeof(AtomMsg); ++ii)
+            {
+                if(buf[ii].gid != buf2[ii].gid)
+                {
+                    printf("gid_sent = %i\tgid_recv = %i\n",buf[ii].gid,buf2[ii].gid);
+                }
+                if(buf[ii].type != buf2[ii].type)
+                {
+                    printf("type_sent = %i\ttype_recv = %i\n",buf[ii].type,buf2[ii].type);
+                }
+                if(buf[ii].rx != buf2[ii].rx)
+                {
+                    printf("rx_sent = %lf\trx_recv = %lf\n",buf[ii].rx,buf2[ii].rx);
+                }
+                if(buf[ii].ry != buf2[ii].ry)
+                {
+                    printf("ry_sent = %lf\try_recv = %lf\n",buf[ii].ry,buf2[ii].ry);
+                }
+                if(buf[ii].rz != buf2[ii].rz)
+                {
+                    printf("rz_sent = %lf\trz_recv = %lf\n",buf[ii].rz,buf2[ii].rz);
+                }
+                if(buf[ii].px != buf2[ii].px)
+                {
+                    printf("px_sent = %lf\tpx_recv = %lf\n",buf[ii].px,buf2[ii].px);
+                }
+                if(buf[ii].py != buf2[ii].py)
+                {
+                    printf("py_sent = %lf\tpy_recv = %lf\n",buf[ii].py,buf2[ii].py);
+                }
+                if(buf[ii].pz != buf2[ii].pz)
+                {
+                    printf("pz_sent = %lf\tpz_recv = %lf\n\n",buf[ii].pz,buf2[ii].pz);
+                }
+            }
+        }
+       else
+       {
+            printf("matching\n");
+       }
+   }   
+
+   else
+   {
+       char* recvBuf2 = comdMalloc(haloExchange->bufCapacity);
+       nRecv = sendReceiveParallel(recvBuf, nRecv, nbrRank, recvBuf2, haloExchange->bufCapacity, nbrRank);
+       AtomMsg* buf3 = (AtomMsg*) recvBuf2;
+       assert(nRecv % sizeof(AtomMsg) == 0);
+
+       if(memcmp(buf,buf3,nRecv) != 0)
+        {
+            printf("not matching\n");
+            assert(nSend == nRecv);
+            
+            for (int ii=0; ii<nRecv/sizeof(AtomMsg); ++ii)
+            {
+                if(buf[ii].gid != buf3[ii].gid)
+                {
+                    printf("gid_sent = %i\tgid_recv = %i\n",buf[ii].gid,buf3[ii].gid);
+                }
+                if(buf[ii].type != buf3[ii].type)
+                {
+                    printf("type_sent = %i\ttype_recv = %i\n",buf[ii].type,buf3[ii].type);
+                }
+                if(buf[ii].rx != buf3[ii].rx)
+                {
+                    printf("rx_sent = %lf\trx_recv = %lf\n",buf[ii].rx,buf3[ii].rx);
+                }
+                if(buf[ii].ry != buf3[ii].ry)
+                {
+                    printf("ry_sent = %lf\try_recv = %lf\n",buf[ii].ry,buf3[ii].ry);
+                }
+                if(buf[ii].rz != buf3[ii].rz)
+                {
+                    printf("rz_sent = %lf\trz_recv = %lf\n",buf[ii].rz,buf3[ii].rz);
+                }
+                if(buf[ii].px != buf3[ii].px)
+                {
+                    printf("px_sent = %lf\tpx_recv = %lf\n",buf[ii].px,buf3[ii].px);
+                }
+                if(buf[ii].py != buf3[ii].py)
+                {
+                    printf("py_sent = %lf\tpy_recv = %lf\n",buf[ii].py,buf3[ii].py);
+                }
+                if(buf[ii].pz != buf3[ii].pz)
+                {
+                    printf("pz_sent = %lf\tpz_recv = %lf\n\n",buf[ii].pz,buf3[ii].pz);
+                }
+            }
+        }
+       else
+       {
+            printf("matching\n");
+       }
+   }
+
    comdFree(recvBuf);
    comdFree(sendBuf);
+   
 }
 
 /// Make a list of link cells that need to be sent across the specified

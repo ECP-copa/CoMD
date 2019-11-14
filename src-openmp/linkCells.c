@@ -178,16 +178,16 @@ void putAtomInBox(LinkCell* boxes, Atoms* atoms,
    //  invz = 0.165975
    //  floorz = -90.000000
    //  nonintz = -14.937759
-   if((int)(floor((xyz[2] - boxes->localMin[2])*boxes->invBoxSize[2]))<-1)
-   {
-       printf("z = %lf\n",xyz[2]);
-       printf("ID = %lf\n",gid);
-       printf("minz = %lf\n",boxes->localMin[2]);
-       printf("invz = %lf\n",boxes->invBoxSize[2]);
-       printf("floorz = %lf\n",floor((xyz[2] - boxes->localMin[2])));
-       printf("nonintz = %lf\n",floor((xyz[2] - boxes->localMin[2]))*boxes->invBoxSize[2]);
-       printf("\n################\n\n");
-   }
+//   if((int)(floor((xyz[2] - boxes->localMin[2])*boxes->invBoxSize[2]))<-1)
+//   {
+//       printf("z = %lf\n",xyz[2]);
+//       printf("ID = %lf\n",gid);
+//       printf("minz = %lf\n",boxes->localMin[2]);
+//       printf("invz = %lf\n",boxes->invBoxSize[2]);
+//       printf("floorz = %lf\n",floor((xyz[2] - boxes->localMin[2])));
+//       printf("nonintz = %lf\n",floor((xyz[2] - boxes->localMin[2]))*boxes->invBoxSize[2]);
+//       printf("\n################\n\n");
+//   }
    // Find correct box.
    int iBox = getBoxFromCoord(boxes, xyz);
    int iOff = iBox*MAXATOMS;
@@ -258,6 +258,7 @@ int getBoxFromTuple(LinkCell* boxes, int ix, int iy, int iz)
    {
       iBox = ix + gridSize[0]*iy + gridSize[0]*gridSize[1]*iz;
    }
+
    assert(iBox >= 0);
    assert(iBox < boxes->nTotalBoxes);
 
@@ -374,16 +375,16 @@ int getBoxFromCoord(LinkCell* boxes, real_t rr[3])
    // invz = 0.165975
    // floorz = -90.000000
    // nonintz = -14.937759
-   if(iz<-1)
-   {       
-       printf("iz = %i\n",iz);
-       printf("z = %lf\n",rr[2]);
-       printf("minz = %lf\n",localMin[2]);
-       printf("invz = %lf\n",boxes->invBoxSize[2]);
-       printf("floorz = %lf\n",floor((rr[2] - localMin[2])));
-       printf("nonintz = %lf\n",floor((rr[2] - localMin[2]))*boxes->invBoxSize[2]);
-       fflush(stdout);
-   }
+//   if(iz<-1)
+//   {       
+//       printf("iz = %i\n",iz);
+//       printf("z = %lf\n",rr[2]);
+//       printf("minz = %lf\n",localMin[2]);
+//       printf("invz = %lf\n",boxes->invBoxSize[2]);
+//       printf("floorz = %lf\n",floor((rr[2] - localMin[2])));
+//       printf("nonintz = %lf\n",floor((rr[2] - localMin[2]))*boxes->invBoxSize[2]);
+//       fflush(stdout);
+//   }
 
    // For each axis, if we are inside the local domain, make sure we get
    // a local link cell.  Otherwise, make sure we get a halo link cell.
@@ -405,7 +406,7 @@ int getBoxFromCoord(LinkCell* boxes, real_t rr[3])
    }
    else
       iz = gridSize[2];
-   
+  
    return getBoxFromTuple(boxes, ix, iy, iz);
 }
 
