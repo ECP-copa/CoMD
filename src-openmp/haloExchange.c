@@ -247,52 +247,61 @@ HaloExchange* initAtomHaloExchange(Domain* domain, LinkCell* boxes)
    if (procCoord[HALO_Y_AXIS] == 0)                       
    {
        parms->pbcFactor[HALO_Y_MINUS][HALO_Y_AXIS]                 = +1.0;
-       parms->pbcFactor[HALO_X_MINUS_Y_MINUS][HALO_X_AXIS]         = +1.0;
-       parms->pbcFactor[HALO_X_PLUS_Y_MINUS][HALO_X_AXIS]          = +1.0;
-       parms->pbcFactor[HALO_Y_MINUS_Z_MINUS][HALO_X_AXIS]         = +1.0;
-       parms->pbcFactor[HALO_Y_MINUS_Z_PLUS][HALO_X_AXIS]          = +1.0;
-       parms->pbcFactor[HALO_X_MINUS_Y_MINUS_Z_MINUS][HALO_X_AXIS] = +1.0;
-       parms->pbcFactor[HALO_X_PLUS_Y_MINUS_Z_MINUS][HALO_X_AXIS]  = +1.0;
-       parms->pbcFactor[HALO_X_MINUS_Y_MINUS_Z_PLUS][HALO_X_AXIS]  = +1.0;
-       parms->pbcFactor[HALO_X_PLUS_Y_MINUS_Z_PLUS][HALO_X_AXIS]   = +1.0;
+       parms->pbcFactor[HALO_X_MINUS_Y_MINUS][HALO_Y_AXIS]         = +1.0;
+       parms->pbcFactor[HALO_X_PLUS_Y_MINUS][HALO_Y_AXIS]          = +1.0;
+       parms->pbcFactor[HALO_Y_MINUS_Z_MINUS][HALO_Y_AXIS]         = +1.0;
+       parms->pbcFactor[HALO_Y_MINUS_Z_PLUS][HALO_Y_AXIS]          = +1.0;
+       parms->pbcFactor[HALO_X_MINUS_Y_MINUS_Z_MINUS][HALO_Y_AXIS] = +1.0;
+       parms->pbcFactor[HALO_X_PLUS_Y_MINUS_Z_MINUS][HALO_Y_AXIS]  = +1.0;
+       parms->pbcFactor[HALO_X_MINUS_Y_MINUS_Z_PLUS][HALO_Y_AXIS]  = +1.0;
+       parms->pbcFactor[HALO_X_PLUS_Y_MINUS_Z_PLUS][HALO_Y_AXIS]   = +1.0;
    }
    if (procCoord[HALO_Y_AXIS] == procGrid[HALO_Y_AXIS]-1) 
    {
        parms->pbcFactor[HALO_Y_PLUS][HALO_Y_AXIS]                  = -1.0;
-       parms->pbcFactor[HALO_X_MINUS_Y_PLUS][HALO_X_AXIS]          = -1.0;
-       parms->pbcFactor[HALO_X_PLUS_Y_PLUS][HALO_X_AXIS]           = -1.0;
-       parms->pbcFactor[HALO_Y_PLUS_Z_MINUS][HALO_X_AXIS]          = -1.0;
-       parms->pbcFactor[HALO_Y_PLUS_Z_PLUS][HALO_X_AXIS]           = -1.0;
-       parms->pbcFactor[HALO_X_MINUS_Y_PLUS_Z_MINUS][HALO_X_AXIS]  = -1.0;
-       parms->pbcFactor[HALO_X_PLUS_Y_PLUS_Z_MINUS][HALO_X_AXIS]   = -1.0;
-       parms->pbcFactor[HALO_X_MINUS_Y_PLUS_Z_PLUS][HALO_X_AXIS]   = -1.0;
-       parms->pbcFactor[HALO_X_PLUS_Y_PLUS_Z_PLUS][HALO_X_AXIS]    = -1.0;
+       parms->pbcFactor[HALO_X_MINUS_Y_PLUS][HALO_Y_AXIS]          = -1.0;
+       parms->pbcFactor[HALO_X_PLUS_Y_PLUS][HALO_Y_AXIS]           = -1.0;
+       parms->pbcFactor[HALO_Y_PLUS_Z_MINUS][HALO_Y_AXIS]          = -1.0;
+       parms->pbcFactor[HALO_Y_PLUS_Z_PLUS][HALO_Y_AXIS]           = -1.0;
+       parms->pbcFactor[HALO_X_MINUS_Y_PLUS_Z_MINUS][HALO_Y_AXIS]  = -1.0;
+       parms->pbcFactor[HALO_X_PLUS_Y_PLUS_Z_MINUS][HALO_Y_AXIS]   = -1.0;
+       parms->pbcFactor[HALO_X_MINUS_Y_PLUS_Z_PLUS][HALO_Y_AXIS]   = -1.0;
+       parms->pbcFactor[HALO_X_PLUS_Y_PLUS_Z_PLUS][HALO_Y_AXIS]    = -1.0;
    }
    if (procCoord[HALO_Z_AXIS] == 0)                       
    {
        parms->pbcFactor[HALO_Z_MINUS][HALO_Z_AXIS]                 = +1.0;
-       parms->pbcFactor[HALO_X_MINUS_Z_MINUS][HALO_X_AXIS]         = +1.0;
-       parms->pbcFactor[HALO_X_PLUS_Z_MINUS][HALO_X_AXIS]          = +1.0;
-       parms->pbcFactor[HALO_Y_MINUS_Z_MINUS][HALO_X_AXIS]         = +1.0;
-       parms->pbcFactor[HALO_Y_PLUS_Z_MINUS][HALO_X_AXIS]          = +1.0;
-       parms->pbcFactor[HALO_X_MINUS_Y_MINUS_Z_MINUS][HALO_X_AXIS] = +1.0;
-       parms->pbcFactor[HALO_X_PLUS_Y_MINUS_Z_MINUS][HALO_X_AXIS]  = +1.0;
-       parms->pbcFactor[HALO_X_MINUS_Y_PLUS_Z_MINUS][HALO_X_AXIS]  = +1.0;
-       parms->pbcFactor[HALO_X_PLUS_Y_PLUS_Z_MINUS][HALO_X_AXIS]   = +1.0;
+       parms->pbcFactor[HALO_X_MINUS_Z_MINUS][HALO_Z_AXIS]         = +1.0;
+       parms->pbcFactor[HALO_X_PLUS_Z_MINUS][HALO_Z_AXIS]          = +1.0;
+       parms->pbcFactor[HALO_Y_MINUS_Z_MINUS][HALO_Z_AXIS]         = +1.0;
+       parms->pbcFactor[HALO_Y_PLUS_Z_MINUS][HALO_Z_AXIS]          = +1.0;
+       parms->pbcFactor[HALO_X_MINUS_Y_MINUS_Z_MINUS][HALO_Z_AXIS] = +1.0;
+       parms->pbcFactor[HALO_X_PLUS_Y_MINUS_Z_MINUS][HALO_Z_AXIS]  = +1.0;
+       parms->pbcFactor[HALO_X_MINUS_Y_PLUS_Z_MINUS][HALO_Z_AXIS]  = +1.0;
+       parms->pbcFactor[HALO_X_PLUS_Y_PLUS_Z_MINUS][HALO_Z_AXIS]   = +1.0;
    }
    if (procCoord[HALO_Z_AXIS] == procGrid[HALO_Z_AXIS]-1) 
    {
        parms->pbcFactor[HALO_Z_PLUS][HALO_Z_AXIS]                  = -1.0;
-       parms->pbcFactor[HALO_X_MINUS_Z_PLUS][HALO_X_AXIS]          = -1.0;
-       parms->pbcFactor[HALO_X_PLUS_Z_PLUS][HALO_X_AXIS]           = -1.0;
-       parms->pbcFactor[HALO_Y_MINUS_Z_PLUS][HALO_X_AXIS]          = -1.0;
-       parms->pbcFactor[HALO_Y_PLUS_Z_PLUS][HALO_X_AXIS]           = -1.0;
-       parms->pbcFactor[HALO_X_MINUS_Y_MINUS_Z_PLUS][HALO_X_AXIS]  = -1.0;
-       parms->pbcFactor[HALO_X_PLUS_Y_MINUS_Z_PLUS][HALO_X_AXIS]   = -1.0;
-       parms->pbcFactor[HALO_X_MINUS_Y_PLUS_Z_PLUS][HALO_X_AXIS]   = -1.0;
-       parms->pbcFactor[HALO_X_PLUS_Y_PLUS_Z_PLUS][HALO_X_AXIS]    = -1.0;
+       parms->pbcFactor[HALO_X_MINUS_Z_PLUS][HALO_Z_AXIS]          = -1.0;
+       parms->pbcFactor[HALO_X_PLUS_Z_PLUS][HALO_Z_AXIS]           = -1.0;
+       parms->pbcFactor[HALO_Y_MINUS_Z_PLUS][HALO_Z_AXIS]          = -1.0;
+       parms->pbcFactor[HALO_Y_PLUS_Z_PLUS][HALO_Z_AXIS]           = -1.0;
+       parms->pbcFactor[HALO_X_MINUS_Y_MINUS_Z_PLUS][HALO_Z_AXIS]  = -1.0;
+       parms->pbcFactor[HALO_X_PLUS_Y_MINUS_Z_PLUS][HALO_Z_AXIS]   = -1.0;
+       parms->pbcFactor[HALO_X_MINUS_Y_PLUS_Z_PLUS][HALO_Z_AXIS]   = -1.0;
+       parms->pbcFactor[HALO_X_PLUS_Y_PLUS_Z_PLUS][HALO_Z_AXIS]    = -1.0;
    }
    
+   //for (int i=0;i<26;i++)
+   //{
+   //    for(int j=0;j<3;j++)
+   //    {
+   //        printf("%.1lf\t",parms->pbcFactor[i][j]);
+   //    }
+   //    printf("\n");
+   //}
+   //printf("\n");
    hh->parms = parms;
    return hh;
 }
@@ -480,109 +489,109 @@ void exchangeData(HaloExchange* haloExchange, void* data, int neighbour)
 
    haloExchange->unloadBuffer(haloExchange->parms, data, target, nRecv, recvBuf);
 
-   int testrank;
-   if (MPI_Comm_rank(MPI_COMM_WORLD,&testrank)==target)
-   {
-       if(memcmp(buf,buf2,nRecv) != 0)
-        {
-            printf("not matching\n");
-            assert(nSend == nRecv);
-            
-            for (int ii=0; ii<nRecv/sizeof(AtomMsg); ++ii)
-            {
-                if(buf[ii].gid != buf2[ii].gid)
-                {
-                    printf("gid_sent = %i\tgid_recv = %i\n",buf[ii].gid,buf2[ii].gid);
-                }
-                if(buf[ii].type != buf2[ii].type)
-                {
-                    printf("type_sent = %i\ttype_recv = %i\n",buf[ii].type,buf2[ii].type);
-                }
-                if(buf[ii].rx != buf2[ii].rx)
-                {
-                    printf("rx_sent = %lf\trx_recv = %lf\n",buf[ii].rx,buf2[ii].rx);
-                }
-                if(buf[ii].ry != buf2[ii].ry)
-                {
-                    printf("ry_sent = %lf\try_recv = %lf\n",buf[ii].ry,buf2[ii].ry);
-                }
-                if(buf[ii].rz != buf2[ii].rz)
-                {
-                    printf("rz_sent = %lf\trz_recv = %lf\n",buf[ii].rz,buf2[ii].rz);
-                }
-                if(buf[ii].px != buf2[ii].px)
-                {
-                    printf("px_sent = %lf\tpx_recv = %lf\n",buf[ii].px,buf2[ii].px);
-                }
-                if(buf[ii].py != buf2[ii].py)
-                {
-                    printf("py_sent = %lf\tpy_recv = %lf\n",buf[ii].py,buf2[ii].py);
-                }
-                if(buf[ii].pz != buf2[ii].pz)
-                {
-                    printf("pz_sent = %lf\tpz_recv = %lf\n\n",buf[ii].pz,buf2[ii].pz);
-                }
-            }
-        }
-       else
-       {
-            printf("matching\n");
-       }
-   }   
+   //int testrank;
+   //if (MPI_Comm_rank(MPI_COMM_WORLD,&testrank)==target)
+   //{
+   //    if(memcmp(buf,buf2,nRecv) != 0)
+   //     {
+   //         printf("not matching\n");
+   //         assert(nSend == nRecv);
+   //         
+   //         for (int ii=0; ii<nRecv/sizeof(AtomMsg); ++ii)
+   //         {
+   //             if(buf[ii].gid != buf2[ii].gid)
+   //             {
+   //                 printf("gid_sent = %i\tgid_recv = %i\n",buf[ii].gid,buf2[ii].gid);
+   //             }
+   //             if(buf[ii].type != buf2[ii].type)
+   //             {
+   //                 printf("type_sent = %i\ttype_recv = %i\n",buf[ii].type,buf2[ii].type);
+   //             }
+   //             if(buf[ii].rx != buf2[ii].rx)
+   //             {
+   //                 printf("rx_sent = %lf\trx_recv = %lf\n",buf[ii].rx,buf2[ii].rx);
+   //             }
+   //             if(buf[ii].ry != buf2[ii].ry)
+   //             {
+   //                 printf("ry_sent = %lf\try_recv = %lf\n",buf[ii].ry,buf2[ii].ry);
+   //             }
+   //             if(buf[ii].rz != buf2[ii].rz)
+   //             {
+   //                 printf("rz_sent = %lf\trz_recv = %lf\n",buf[ii].rz,buf2[ii].rz);
+   //             }
+   //             if(buf[ii].px != buf2[ii].px)
+   //             {
+   //                 printf("px_sent = %lf\tpx_recv = %lf\n",buf[ii].px,buf2[ii].px);
+   //             }
+   //             if(buf[ii].py != buf2[ii].py)
+   //             {
+   //                 printf("py_sent = %lf\tpy_recv = %lf\n",buf[ii].py,buf2[ii].py);
+   //             }
+   //             if(buf[ii].pz != buf2[ii].pz)
+   //             {
+   //                 printf("pz_sent = %lf\tpz_recv = %lf\n\n",buf[ii].pz,buf2[ii].pz);
+   //             }
+   //         }
+   //     }
+   //    else
+   //    {
+   //         printf("matching\n");
+   //    }
+   //}   
 
-   else
-   {
-       char* recvBuf2 = comdMalloc(haloExchange->bufCapacity);
-       nRecv = sendReceiveParallel(recvBuf, nRecv, nbrRank, recvBuf2, haloExchange->bufCapacity, nbrRank);
-       AtomMsg* buf3 = (AtomMsg*) recvBuf2;
-       assert(nRecv % sizeof(AtomMsg) == 0);
+   //else
+   //{
+   //    char* recvBuf2 = comdMalloc(haloExchange->bufCapacity);
+   //    nRecv = sendReceiveParallel(recvBuf, nRecv, nbrRank, recvBuf2, haloExchange->bufCapacity, nbrRank);
+   //    AtomMsg* buf3 = (AtomMsg*) recvBuf2;
+   //    assert(nRecv % sizeof(AtomMsg) == 0);
 
-       if(memcmp(buf,buf3,nRecv) != 0)
-        {
-            printf("not matching\n");
-            assert(nSend == nRecv);
-            
-            for (int ii=0; ii<nRecv/sizeof(AtomMsg); ++ii)
-            {
-                if(buf[ii].gid != buf3[ii].gid)
-                {
-                    printf("gid_sent = %i\tgid_recv = %i\n",buf[ii].gid,buf3[ii].gid);
-                }
-                if(buf[ii].type != buf3[ii].type)
-                {
-                    printf("type_sent = %i\ttype_recv = %i\n",buf[ii].type,buf3[ii].type);
-                }
-                if(buf[ii].rx != buf3[ii].rx)
-                {
-                    printf("rx_sent = %lf\trx_recv = %lf\n",buf[ii].rx,buf3[ii].rx);
-                }
-                if(buf[ii].ry != buf3[ii].ry)
-                {
-                    printf("ry_sent = %lf\try_recv = %lf\n",buf[ii].ry,buf3[ii].ry);
-                }
-                if(buf[ii].rz != buf3[ii].rz)
-                {
-                    printf("rz_sent = %lf\trz_recv = %lf\n",buf[ii].rz,buf3[ii].rz);
-                }
-                if(buf[ii].px != buf3[ii].px)
-                {
-                    printf("px_sent = %lf\tpx_recv = %lf\n",buf[ii].px,buf3[ii].px);
-                }
-                if(buf[ii].py != buf3[ii].py)
-                {
-                    printf("py_sent = %lf\tpy_recv = %lf\n",buf[ii].py,buf3[ii].py);
-                }
-                if(buf[ii].pz != buf3[ii].pz)
-                {
-                    printf("pz_sent = %lf\tpz_recv = %lf\n\n",buf[ii].pz,buf3[ii].pz);
-                }
-            }
-        }
-       else
-       {
-            printf("matching\n");
-       }
-   }
+   //    if(memcmp(buf,buf3,nRecv) != 0)
+   //     {
+   //         printf("not matching\n");
+   //         assert(nSend == nRecv);
+   //         
+   //         for (int ii=0; ii<nRecv/sizeof(AtomMsg); ++ii)
+   //         {
+   //             if(buf[ii].gid != buf3[ii].gid)
+   //             {
+   //                 printf("gid_sent = %i\tgid_recv = %i\n",buf[ii].gid,buf3[ii].gid);
+   //             }
+   //             if(buf[ii].type != buf3[ii].type)
+   //             {
+   //                 printf("type_sent = %i\ttype_recv = %i\n",buf[ii].type,buf3[ii].type);
+   //             }
+   //             if(buf[ii].rx != buf3[ii].rx)
+   //             {
+   //                 printf("rx_sent = %lf\trx_recv = %lf\n",buf[ii].rx,buf3[ii].rx);
+   //             }
+   //             if(buf[ii].ry != buf3[ii].ry)
+   //             {
+   //                 printf("ry_sent = %lf\try_recv = %lf\n",buf[ii].ry,buf3[ii].ry);
+   //             }
+   //             if(buf[ii].rz != buf3[ii].rz)
+   //             {
+   //                 printf("rz_sent = %lf\trz_recv = %lf\n",buf[ii].rz,buf3[ii].rz);
+   //             }
+   //             if(buf[ii].px != buf3[ii].px)
+   //             {
+   //                 printf("px_sent = %lf\tpx_recv = %lf\n",buf[ii].px,buf3[ii].px);
+   //             }
+   //             if(buf[ii].py != buf3[ii].py)
+   //             {
+   //                 printf("py_sent = %lf\tpy_recv = %lf\n",buf[ii].py,buf3[ii].py);
+   //             }
+   //             if(buf[ii].pz != buf3[ii].pz)
+   //             {
+   //                 printf("pz_sent = %lf\tpz_recv = %lf\n\n",buf[ii].pz,buf3[ii].pz);
+   //             }
+   //         }
+   //     }
+   //    else
+   //    {
+   //         printf("matching\n");
+   //    }
+   //}
 
    comdFree(recvBuf);
    comdFree(sendBuf);
