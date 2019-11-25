@@ -173,21 +173,19 @@ void putAtomInBox(LinkCell* boxes, Atoms* atoms,
 {
    real_t xyz[3] = {x,y,z};
    
-   //  z = 0.903750
-   //  minz = 90.375000
-   //  invz = 0.165975
-   //  floorz = -90.000000
-   //  nonintz = -14.937759
-//   if((int)(floor((xyz[2] - boxes->localMin[2])*boxes->invBoxSize[2]))<-1)
+//   if((int)(floor((xyz[0] - boxes->localMin[0])*boxes->invBoxSize[0]))==-32)
 //   {
-//       printf("z = %lf\n",xyz[2]);
-//       printf("ID = %lf\n",gid);
-//       printf("minz = %lf\n",boxes->localMin[2]);
-//       printf("invz = %lf\n",boxes->invBoxSize[2]);
-//       printf("floorz = %lf\n",floor((xyz[2] - boxes->localMin[2])));
-//       printf("nonintz = %lf\n",floor((xyz[2] - boxes->localMin[2]))*boxes->invBoxSize[2]);
+//       printf("\n################\n");
+//       printf("x = %lf\n",xyz[0]);
+//       printf("ID = %i\n",gid);
+//       printf("minx = %lf\n",boxes->localMin[0]);
+//       printf("invx = %lf\n",boxes->invBoxSize[0]);
+//       printf("floorx = %lf\n",floor((xyz[0] - boxes->localMin[0])));
+//       printf("nonintx = %lf\n",floor((xyz[0] - boxes->localMin[0]))*boxes->invBoxSize[0]);
 //       printf("\n################\n\n");
+//       assert((int)(floor((xyz[0] - boxes->localMin[0])*boxes->invBoxSize[0]))!=-32);
 //   }
+
    // Find correct box.
    int iBox = getBoxFromCoord(boxes, xyz);
    int iOff = iBox*MAXATOMS;
@@ -257,6 +255,12 @@ int getBoxFromTuple(LinkCell* boxes, int ix, int iy, int iz)
    else
    {
       iBox = ix + gridSize[0]*iy + gridSize[0]*gridSize[1]*iz;
+   }
+
+
+   if (iBox<0)
+   {
+       printf("x = %i\ty = %i\tz = %i\n",ix,iy,iz);
    }
 
    assert(iBox >= 0);
@@ -369,21 +373,16 @@ int getBoxFromCoord(LinkCell* boxes, real_t rr[3])
    int iy = (int)(floor((rr[1] - localMin[1])*boxes->invBoxSize[1]));
    int iz = (int)(floor((rr[2] - localMin[2])*boxes->invBoxSize[2]));
 
-   // iz = -15
-   // z = 0.903750
-   // minz = 90.375000
-   // invz = 0.165975
-   // floorz = -90.000000
-   // nonintz = -14.937759
-//   if(iz<-1)
+//   if(ix==-32)
 //   {       
-//       printf("iz = %i\n",iz);
-//       printf("z = %lf\n",rr[2]);
-//       printf("minz = %lf\n",localMin[2]);
-//       printf("invz = %lf\n",boxes->invBoxSize[2]);
-//       printf("floorz = %lf\n",floor((rr[2] - localMin[2])));
-//       printf("nonintz = %lf\n",floor((rr[2] - localMin[2]))*boxes->invBoxSize[2]);
+//       printf("ix = %i\n",ix);
+//       printf("x = %lf\n",rr[0]);
+//       printf("minx = %lf\n",localMin[0]);
+//       printf("invx = %lf\n",boxes->invBoxSize[2]);
+//       printf("floorx = %lf\n",floor((rr[0] - localMin[0])));
+//       printf("nonintx = %lf\n",floor((rr[0] - localMin[0]))*boxes->invBoxSize[0]);
 //       fflush(stdout);
+//       assert(ix!=-32);
 //   }
 
    // For each axis, if we are inside the local domain, make sure we get

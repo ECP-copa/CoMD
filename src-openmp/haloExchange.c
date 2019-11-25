@@ -47,23 +47,32 @@
 #define MAX(A,B) ((A) > (B) ? (A) : (B))
 
 /// Don't change the order of the faces in this enum.
-enum HaloNeighbourOrder {HALO_X_MINUS, HALO_X_PLUS,
-                    HALO_Y_MINUS, HALO_Y_PLUS,
-                    HALO_Z_MINUS, HALO_Z_PLUS,
-                    HALO_X_MINUS_Y_MINUS, HALO_X_MINUS_Y_PLUS,
-                    HALO_X_PLUS_Y_MINUS, HALO_X_PLUS_Y_PLUS,
-                    HALO_X_MINUS_Z_MINUS, HALO_X_MINUS_Z_PLUS,
-                    HALO_X_PLUS_Z_MINUS, HALO_X_PLUS_Z_PLUS,
-                    HALO_Y_MINUS_Z_MINUS, HALO_Y_MINUS_Z_PLUS,
-                    HALO_Y_PLUS_Z_MINUS, HALO_Y_PLUS_Z_PLUS,
-                    HALO_X_MINUS_Y_MINUS_Z_MINUS,
-                    HALO_X_MINUS_Y_MINUS_Z_PLUS,
-                    HALO_X_MINUS_Y_PLUS_Z_MINUS,
-                    HALO_X_MINUS_Y_PLUS_Z_PLUS,
-                    HALO_X_PLUS_Y_MINUS_Z_MINUS,
-                    HALO_X_PLUS_Y_MINUS_Z_PLUS,
-                    HALO_X_PLUS_Y_PLUS_Z_MINUS,
-                    HALO_X_PLUS_Y_PLUS_Z_PLUS};
+enum HaloNeighbourOrder {HALO_X_MINUS,
+                         HALO_X_PLUS,
+                         HALO_Y_MINUS,
+                         HALO_Y_PLUS,
+                         HALO_Z_MINUS,
+                         HALO_Z_PLUS,
+                         HALO_X_MINUS_Y_MINUS,
+                         HALO_X_MINUS_Y_PLUS,
+                         HALO_X_PLUS_Y_MINUS,
+                         HALO_X_PLUS_Y_PLUS,
+                         HALO_X_MINUS_Z_MINUS,
+                         HALO_X_MINUS_Z_PLUS,
+                         HALO_X_PLUS_Z_MINUS,
+                         HALO_X_PLUS_Z_PLUS,
+                         HALO_Y_MINUS_Z_MINUS,
+                         HALO_Y_MINUS_Z_PLUS,
+                         HALO_Y_PLUS_Z_MINUS,
+                         HALO_Y_PLUS_Z_PLUS,
+                         HALO_X_MINUS_Y_MINUS_Z_MINUS,
+                         HALO_X_MINUS_Y_MINUS_Z_PLUS,
+                         HALO_X_MINUS_Y_PLUS_Z_MINUS,
+                         HALO_X_MINUS_Y_PLUS_Z_PLUS,
+                         HALO_X_PLUS_Y_MINUS_Z_MINUS,
+                         HALO_X_PLUS_Y_MINUS_Z_PLUS,
+                         HALO_X_PLUS_Y_PLUS_Z_MINUS,
+                         HALO_X_PLUS_Y_PLUS_Z_PLUS};
 
 /// Don't change the order of the axes in this enum.
 enum HaloAxisOrder {HALO_X_AXIS, HALO_Y_AXIS, HALO_Z_AXIS};
@@ -302,6 +311,7 @@ HaloExchange* initAtomHaloExchange(Domain* domain, LinkCell* boxes)
    //    printf("\n");
    //}
    //printf("\n");
+
    hh->parms = parms;
    return hh;
 }
@@ -449,9 +459,9 @@ void exchangeData(HaloExchange* haloExchange, void* data, int neighbour)
    int nSend = haloExchange->loadBuffer(haloExchange->parms, data, target, sendBuf);
 
    // Remove later
-   AtomMsg* buf = (AtomMsg*) sendBuf;
-   int nBuf = nSend / sizeof(AtomMsg);
-   assert(nSend % sizeof(AtomMsg) == 0);
+   //AtomMsg* buf = (AtomMsg*) sendBuf;
+   //int nBuf = nSend / sizeof(AtomMsg);
+   //assert(nSend % sizeof(AtomMsg) == 0);
    //for (int ii=0; ii<nBuf; ++ii)
    //{
    //   int gid1   = buf[ii].gid;
@@ -473,8 +483,8 @@ void exchangeData(HaloExchange* haloExchange, void* data, int neighbour)
    stopTimer(commHaloTimer);
    
    // Remove later
-   AtomMsg* buf2 = (AtomMsg*) recvBuf;
-   assert(nRecv % sizeof(AtomMsg) == 0);
+   //AtomMsg* buf2 = (AtomMsg*) recvBuf;
+   //assert(nRecv % sizeof(AtomMsg) == 0);
    //for (int ii=0; ii<nRecv/sizeof(AtomMsg); ++ii)
    //{
    //   int gid2   = buf2[ii].gid;
@@ -929,6 +939,46 @@ int loadAtomsBuffer(void* vparms, void* data, int face, char* charBuf)
          buf[nBuf].px = s->atoms->p[ii][0];
          buf[nBuf].py = s->atoms->p[ii][1];
          buf[nBuf].pz = s->atoms->p[ii][2];
+
+         if(buf[nBuf].gid==480006)// || buf[nBuf].gid==480106)
+         {
+             int testrank;
+             MPI_Comm_rank(MPI_COMM_WORLD,&testrank);
+             char facenames[26][50] = {"HALO_X_MINUS",
+                                       "HALO_X_PLUS",
+                                       "HALO_Y_MINUS",
+                                       "HALO_Y_PLUS",
+                                       "HALO_Z_MINUS",
+                                       "HALO_Z_PLUS",
+                                       "HALO_X_MINUS_Y_MINUS",
+                                       "HALO_X_MINUS_Y_PLUS",
+                                       "HALO_X_PLUS_Y_MINUS",
+                                       "HALO_X_PLUS_Y_PLUS",
+                                       "HALO_X_MINUS_Z_MINUS",
+                                       "HALO_X_MINUS_Z_PLUS",
+                                       "HALO_X_PLUS_Z_MINUS",
+                                       "HALO_X_PLUS_Z_PLUS",
+                                       "HALO_Y_MINUS_Z_MINUS",
+                                       "HALO_Y_MINUS_Z_PLUS",
+                                       "HALO_Y_PLUS_Z_MINUS",
+                                       "HALO_Y_PLUS_Z_PLUS",
+                                       "HALO_X_MINUS_Y_MINUS_Z_MINUS",
+                                       "HALO_X_MINUS_Y_MINUS_Z_PLUS",
+                                       "HALO_X_MINUS_Y_PLUS_Z_MINUS",
+                                       "HALO_X_MINUS_Y_PLUS_Z_PLUS",
+                                       "HALO_X_PLUS_Y_MINUS_Z_MINUS",
+                                       "HALO_X_PLUS_Y_MINUS_Z_PLUS",
+                                       "HALO_X_PLUS_Y_PLUS_Z_MINUS",
+                                       "HALO_X_PLUS_Y_PLUS_Z_PLUS"};
+             printf("old x =   %lf\told y =   %lf\told z =   %lf\n",s->atoms->r[ii][0],s->atoms->r[ii][1],s->atoms->r[ii][2]);
+             printf("x shift = %lf\ty shift = %lf\tz shift = %lf\n",shift[0],shift[1],shift[2]);
+             printf("new x =   %lf\tnew y =   %lf\tnew z =   %lf\n",buf[nBuf].rx,buf[nBuf].ry,buf[nBuf].rz);
+             printf("face = %s\n",facenames[face]);
+             printf("rank = %i\n",testrank);
+             printf("ID = %i\n\n",buf[nBuf].gid);
+             fflush(stdout);
+         }
+
          ++nBuf;
       }
    }
@@ -942,7 +992,7 @@ int loadAtomsBuffer(void* vparms, void* data, int face, char* charBuf)
 /// have moved from one spatial domain to another.  Atoms with
 /// coordinates in local link cells automatically become local
 /// particles.  Atoms that are owned by other ranks are automatically
-/// placed in halo kink cells.
+/// placed in halo link cells.
 /// \see HaloExchangeSt::unloadBuffer for an explanation of the
 /// unloadBuffer parameters.
 void unloadAtomsBuffer(void* vparms, void* data, int face, int bufSize, char* charBuf)
@@ -983,7 +1033,7 @@ void destroyAtomsExchange(void* vparms)
 {
    AtomExchangeParms* parms = (AtomExchangeParms*) vparms;
 
-   for (int ii=0; ii<6; ++ii)
+   for (int ii=0; ii<26; ++ii)
    {
       comdFree(parms->pbcFactor[ii]);
       comdFree(parms->cellList[ii]);
@@ -1339,4 +1389,3 @@ int sortAtomsById(const void* a, const void* b)
       return -1;
    return 1;
 }
-
