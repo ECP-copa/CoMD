@@ -16,18 +16,26 @@ struct AtomsSt;
 /// localMax coordinates that are also found in the DomainsSt.
 typedef struct LinkCellSt
 {
-   int gridSize[3];     //!< number of boxes in each dimension on processor
-   int nLocalBoxes;     //!< total number of local boxes on processor
-   int nHaloBoxes;      //!< total number of remote halo/ghost boxes on processor
-   int nTotalBoxes;     //!< total number of boxes on processor
-                        //!< nLocalBoxes + nHaloBoxes
-   real3 localMin;      //!< minimum local bounds on processor
-   real3 localMax;      //!< maximum local bounds on processor
-   real3 boxSize;       //!< size of box in each dimension
-   real3 invBoxSize;    //!< inverse size of box in each dimension
+   int gridSize[3];         //!< number of boxes in each dimension on processor
+   int nLocalBoxes;         //!< total number of local boxes on processor
+   int nHaloBoxes;          //!< total number of remote halo/ghost boxes on processor
+   int nTotalBoxes;         //!< total number of boxes on processor
+                            //!< nLocalBoxes + nHaloBoxes
+   real3 localMin;          //!< minimum local bounds on processor
+   real3 localMax;          //!< maximum local bounds on processor
+   real3 boxSize;           //!< size of box in each dimension
+   real3 invBoxSize;        //!< inverse size of box in each dimension
 
-   int* nAtoms;         //!< total number of atoms in each box
-   int** nbrBoxes;      //!< neighbor boxes for each box
+   int* nAtoms;             //!< total number of atoms in each box
+   int** nbrBoxes;          //!< neighbor boxes for each box
+
+   // New additions
+   int nCommBoxes;          //!< number of boxes involved in communication
+                            //!< nHaloBoxes + outer layer of local boxes
+   int* commBoxes;          //!< list of boxes involved in communication
+   int** commBoxNeighbours; //!< list of ranks of neighbours of each box
+   int face;                //!< index of the face the cell is located on
+
 } LinkCell;
 
 LinkCell* initLinkCells(const struct DomainSt* domain, real_t cutoff);
@@ -39,6 +47,7 @@ void putAtomInBox(LinkCell* boxes, struct AtomsSt* atoms,
                   const real_t x,  const real_t y,  const real_t z,
                   const real_t px, const real_t py, const real_t pz);
 int getBoxFromTuple(LinkCell* boxes, int x, int y, int z);
+int getFaceFromBox(int iBox);
 
 void moveAtom(LinkCell* boxes, struct AtomsSt* atoms, int iId, int iBox, int jBox);
 

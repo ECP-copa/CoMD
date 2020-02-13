@@ -121,6 +121,52 @@ int sendReceiveParallel(void* sendBuf, int sendLen, int dest,
 #endif
 }
 
+MPI_Request isendParallel(void* sendBuf, int sendLen, int dest)
+{
+#ifdef DO_MPI
+   MPI_Request request;
+   MPI_Isend(sendBuf, sendLen, MPI_BYTE, dest, 0, MPI_COMM_WORLD, &request);
+   return request;
+#else
+   assert(1 == 0)
+#endif
+}
+
+MPI_Request irecvParallel(void* recvBuf, int recvLen, int source)
+{
+#ifdef DO_MPI
+   MPI_Request request;
+   MPI_Isend(recvBuf, recvLen, MPI_BYTE, source, 0, MPI_COMM_WORLD, &request);
+   return request;
+#else
+   assert(1 == 0)
+#endif
+}
+
+void waitSendParallel(MPI_Request request)
+{
+#ifdef DO_MPI
+    MPI_Status status;
+    MPI_Wait(&request, &status);
+    return;
+#else
+   assert(1 == 0)
+#endif
+}
+
+int waitRecvParallel(MPI_Request request)
+{
+#ifdef DO_MPI
+    MPI_Status status;
+    int bytesReceived;
+    MPI_Wait(&request, &status);
+    MPI_Get_count(&status, MPI_BYTE, &bytesReceived);
+    return bytesReceived;
+#else
+   assert(1 == 0)
+#endif
+}
+
 void addIntParallel(int* sendBuf, int* recvBuf, int count)
 {
 #ifdef DO_MPI

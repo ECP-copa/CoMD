@@ -68,6 +68,10 @@ typedef struct HaloExchangeSt
    /// A pointer to a sub-class specific structure that contains
    /// additional data members needed by the sub-class.
    void* parms;
+
+   // New additions
+   int  (*loadBoxBuffer)(void* parms, void* data, int box, int face, char* buf);
+   void (*unloadBoxBuffer)(void* parms, void* data, int face, int bufSize, char* buf);
 } 
 HaloExchange;
 
