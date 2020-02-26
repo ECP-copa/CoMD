@@ -131,7 +131,7 @@ static void destroyAtomsExchange(void* vparms);
 static int* mkForceSendCellList(LinkCell* boxes, int face, int nCells);
 static int* mkForceRecvCellList(LinkCell* boxes, int face, int nCells);
 static int loadForceBuffer(void* vparms, void* data, int face, char* charBuf);
-static int loadForceBoxBuffer(void* vparms, void* data, int face, char* charBuf);
+static int loadForceBoxBuffer(void* vparms, void* data, int box, int face, char* charBuf);
 static void unloadForceBuffer(void* vparms, void* data, int face, int bufSize, char* charBuf);
 static void unloadForceBoxBuffer(void* vparms, void* data, int face, int bufSize, char* charBuf);
 static void destroyForceExchange(void* vparms);
@@ -407,6 +407,7 @@ void destroyHaloExchange(HaloExchange** haloExchange)
 
 void haloExchange(HaloExchange* haloExchange, void* data)
 {
+    printf("Starting exchange\n");
    // Retrieve link cell information from data
    LinkCell* ll = ((SimFlat*) data)->boxes;
 
@@ -428,7 +429,7 @@ void haloExchange(HaloExchange* haloExchange, void* data)
    for (int iCommBox=0; iCommBox<ll->nCommBoxes; ++iCommBox)
    {
        // Number of neighbours of the current box
-       nNeighbours[iCommBox] = sizeof(ll->commBoxNeighbours[iCommBox])/sizeof(ll->commBoxNeighbours[iCommBox][0]);
+       nNeighbours[iCommBox] = ll->commBoxNumNeighbours[iCommBox];
        // Different request for each neighbour
        sendRequests[iCommBox] = comdMalloc(nNeighbours[iCommBox]*sizeof(MPI_Request));
        // Buffer capacity is preset
@@ -446,16 +447,18 @@ void haloExchange(HaloExchange* haloExchange, void* data)
        }
    }
 
+   printf("Loading\n");
    for (int iCommBox=0; iCommBox<ll->nCommBoxes; ++iCommBox)
    {
        // Load atoms from box into buffer and return the number of atoms
        nSends[iCommBox] = haloExchange->loadBoxBuffer(haloExchange->parms,
                                                       data,
                                                       ll->commBoxes[iCommBox],
-                                                      ll->face,
+                                                      ll->faces[iCommBox],
                                                       sendBufs[iCommBox]);
    }
 
+   printf("Sending\n");
    for (int iCommBox=0; iCommBox<ll->nCommBoxes; ++iCommBox)
    {
        // Issue non-blocking send to each neighbour and return the MPI_Request
@@ -467,9 +470,10 @@ void haloExchange(HaloExchange* haloExchange, void* data)
        }
    }
 
+   printf("Receiving\n");
    for (int iCommBox=0; iCommBox<ll->nCommBoxes; ++iCommBox)
    {
-       // Issue non-blocking receive to each neighbour and return th MPI_Request
+       // Issue non-blocking receive to each neighbour and return the MPI_Request
        for (int iBoxNeighbour=0; iBoxNeighbour<nNeighbours[iCommBox]; ++iBoxNeighbour)
        {
            recvRequests[iCommBox][iBoxNeighbour] = irecvParallel(recvBufs[iCommBox][iBoxNeighbour],
@@ -478,6 +482,7 @@ void haloExchange(HaloExchange* haloExchange, void* data)
        }
    }
 
+   printf("Waiting for receives and unloading\n");
    for (int iCommBox=0; iCommBox<ll->nCommBoxes; ++iCommBox)
    {
        // Wait for receives and unload buffers
@@ -486,12 +491,13 @@ void haloExchange(HaloExchange* haloExchange, void* data)
            nRecvs[iCommBox][iBoxNeighbour] = waitRecvParallel(recvRequests[iCommBox][iBoxNeighbour]);
            haloExchange->unloadBoxBuffer(haloExchange->parms,
                                          data,
-                                         iCommBox,
+                                         ll->commBoxes[iCommBox],
                                          nRecvs[iCommBox][iBoxNeighbour],
                                          recvBufs[iCommBox][iBoxNeighbour]);
        }
    }
 
+   printf("Waiting for sends\n");
    for (int iCommBox=0; iCommBox<ll->nCommBoxes; ++iCommBox)
    {
        for (int iBoxNeighbour=0; iBoxNeighbour<nNeighbours[iCommBox]; ++iBoxNeighbour)
@@ -500,6 +506,7 @@ void haloExchange(HaloExchange* haloExchange, void* data)
            waitSendParallel(sendRequests[iCommBox][iBoxNeighbour]);
        }
    }
+   printf("Finished communication\n");
 
    // Free everything
    for (int iCommBox=0; iCommBox<ll->nCommBoxes; ++iCommBox)
@@ -1046,6 +1053,13 @@ int loadAtomsBoxBuffer(void* vparms, void* data, int box, int face, char* charBu
       buf[nBuf].px = s->atoms->p[ii][0];
       buf[nBuf].py = s->atoms->p[ii][1];
       buf[nBuf].pz = s->atoms->p[ii][2];
+      //if (buf[nBuf].gid == 201 || buf[nBuf].gid == 200)
+      //{
+      //    printf("Send coords wrong:\t%i\t%i\t%lf\t%lf\t%lf\n\t%lf\t%lf\t%lf\t%lf\t%lf\t%lf\n",
+      //            buf[nBuf].gid,face,buf[nBuf].rx,buf[nBuf].ry,buf[nBuf].rz,
+      //            pbcFactor[0],pbcFactor[1],pbcFactor[2],
+      //            s->atoms->r[ii][0],s->atoms->r[ii][1],s->atoms->r[ii][2]);
+      //}
       ++nBuf;
    }
    return nBuf*sizeof(AtomMsg);
@@ -1071,6 +1085,10 @@ void unloadAtomsBoxBuffer(void* vparms, void* data, int box, int bufSize, char* 
       real_t px = buf[ii].px;
       real_t py = buf[ii].py;
       real_t pz = buf[ii].pz;
+      //if (1)
+      //{
+      //    printf("Receive coords wrong:\t%i\t%lf\t%lf\t%lf\n",gid,rx,ry,rz);
+      //}
       putAtomInBox(s->boxes, s->atoms, gid, type, rx, ry, rz, px, py, pz);
    }
 }
@@ -1439,7 +1457,7 @@ int* mkForceRecvCellList(LinkCell* boxes, int face, int nCells)
 }
 
 // Load forces from single box into a buffer
-int loadForceBoxBuffer(void* vparms, void* vdata, int box, char* charBuf)
+int loadForceBoxBuffer(void* vparms, void* vdata, int box, int face, char* charBuf)
 {
    ForceExchangeParms* parms = (ForceExchangeParms*) vparms;
    ForceExchangeData* data = (ForceExchangeData*) vdata;
@@ -1456,15 +1474,15 @@ int loadForceBoxBuffer(void* vparms, void* vdata, int box, char* charBuf)
 }
 
 // Unload forces from a buffer into a single box
-void unloadForceBoxBuffer(void* vparms, void* vdata, int face, int bufSize, char* charBuf)
+void unloadForceBoxBuffer(void* vparms, void* vdata, int box, int bufSize, char* charBuf)
 {
    ForceExchangeParms* parms = (ForceExchangeParms*) vparms;
    ForceExchangeData* data = (ForceExchangeData*) vdata;
    ForceMsg* buf = (ForceMsg*) charBuf;
    assert(bufSize % sizeof(ForceMsg) == 0);
    
-   int nCells = parms->nCells[face];
-   int* cellList = parms->recvCells[face];
+   int nCells = parms->nCells[box];
+   int* cellList = parms->recvCells[box];
    int iBuf = 0;
    for (int iCell=0; iCell<nCells; ++iCell)
    {
@@ -1598,6 +1616,10 @@ int sortAtomsById(const void* a, const void* b)
 {
    int aId = ((AtomMsg*) a)->gid;
    int bId = ((AtomMsg*) b)->gid;
+   if(aId == bId)
+   {
+       printf("%i\n",aId);
+   }
    assert(aId != bId);
 
    if (aId < bId)

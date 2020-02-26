@@ -154,25 +154,26 @@ LinkCell* initLinkCells(const Domain* domain, real_t cutoff)
                                          (ll->gridSize[1] - 2) * (ll->gridSize[2] - 2));
    ll->commBoxes = comdMalloc(ll->nCommBoxes*sizeof(int));
    ll->commBoxNeighbours = comdMalloc(ll->nCommBoxes*sizeof(int*));
+   ll->commBoxNumNeighbours = comdMalloc(ll->nCommBoxes*sizeof(int*));
+   ll->faces = comdMalloc(ll->nCommBoxes*sizeof(int));
 
-   ll->face = NONE;
    int iCommBox = 0;
-   for (int x = 0; x < ll->gridSize[0] + 2; ++x)
+   for (int x = -1; x < ll->gridSize[0] + 1; ++x)
    {
-       for (int y = 0; y < ll->gridSize[1] + 2; ++y)
+       for (int y = -1; y < ll->gridSize[1] + 1; ++y)
        {
-           for (int z = 0; z < ll->gridSize[2] + 2; ++z)
+           for (int z = -1; z < ll->gridSize[2] + 1; ++z)
            {
                int nNeighbours = 0;
-               if (x < 2 || x > ll->gridSize[0] - 1)
+               if (x < 1 || x > ll->gridSize[0] - 2)
                {
                    nNeighbours = nNeighbours*2 + 1;
                }
-               if (y < 2 || y > ll->gridSize[1] - 1)
+               if (y < 1 || y > ll->gridSize[1] - 2)
                {
                    nNeighbours = nNeighbours*2 + 1;
                }
-               if (z < 2 || z > ll->gridSize[2] - 1)
+               if (z < 1 || z > ll->gridSize[2] - 2)
                {
                    nNeighbours = nNeighbours*2 + 1;
                }
@@ -180,22 +181,23 @@ LinkCell* initLinkCells(const Domain* domain, real_t cutoff)
                {
                    ll->commBoxes[iCommBox] = getBoxFromTuple(ll,x,y,z);
                    ll->commBoxNeighbours[iCommBox] = comdMalloc(nNeighbours*sizeof(int));
+                   ll->commBoxNumNeighbours[iCommBox] = nNeighbours;
                    int iNeighbour = 0;
-                   if (x < 2)
+                   if (x < 1)
                    {
-                       ll->face = HALO_X_MINUS;
+                       ll->faces[iCommBox] = HALO_X_MINUS;
                        ll->commBoxNeighbours[iCommBox][iNeighbour] = processorNum((Domain*) domain, -1,  0,  0);
                        iNeighbour++;
-                       if (y < 2)
+                       if (y < 1)
                        {
-                           ll->face = HALO_X_MINUS_Y_MINUS;
+                           ll->faces[iCommBox] = HALO_X_MINUS_Y_MINUS;
                            ll->commBoxNeighbours[iCommBox][iNeighbour] = processorNum((Domain*) domain,  0, -1,  0);
                            iNeighbour++;
                            ll->commBoxNeighbours[iCommBox][iNeighbour] = processorNum((Domain*) domain, -1, -1,  0);
                            iNeighbour++;
-                           if (z < 2)
+                           if (z < 1)
                            {
-                               ll->face = HALO_X_MINUS_Y_MINUS_Z_MINUS;
+                               ll->faces[iCommBox] = HALO_X_MINUS_Y_MINUS_Z_MINUS;
                                ll->commBoxNeighbours[iCommBox][iNeighbour] = processorNum((Domain*) domain,  0,  0, -1);
                                iNeighbour++;
                                ll->commBoxNeighbours[iCommBox][iNeighbour] = processorNum((Domain*) domain, -1,  0, -1);
@@ -205,9 +207,9 @@ LinkCell* initLinkCells(const Domain* domain, real_t cutoff)
                                ll->commBoxNeighbours[iCommBox][iNeighbour] = processorNum((Domain*) domain, -1, -1, -1);
                                iNeighbour++;
                            }
-                           else if (z > ll->gridSize[2] - 1)
+                           else if (z > ll->gridSize[2] - 2)
                            {
-                               ll->face = HALO_X_MINUS_Y_MINUS_Z_PLUS;
+                               ll->faces[iCommBox] = HALO_X_MINUS_Y_MINUS_Z_PLUS;
                                ll->commBoxNeighbours[iCommBox][iNeighbour] = processorNum((Domain*) domain,  0,  0, +1);
                                iNeighbour++;
                                ll->commBoxNeighbours[iCommBox][iNeighbour] = processorNum((Domain*) domain, -1,  0, +1);
@@ -218,16 +220,16 @@ LinkCell* initLinkCells(const Domain* domain, real_t cutoff)
                                iNeighbour++;
                            }
                        }
-                       else if (y > ll->gridSize[1] - 1)
+                       else if (y > ll->gridSize[1] - 2)
                        {
-                           ll->face = HALO_X_MINUS_Y_PLUS;
+                           ll->faces[iCommBox] = HALO_X_MINUS_Y_PLUS;
                            ll->commBoxNeighbours[iCommBox][iNeighbour] = processorNum((Domain*) domain,  0, +1,  0);
                            iNeighbour++;
                            ll->commBoxNeighbours[iCommBox][iNeighbour] = processorNum((Domain*) domain, -1, +1,  0);
                            iNeighbour++;
-                           if (z < 2)
+                           if (z < 1)
                            {
-                               ll->face = HALO_X_MINUS_Y_MINUS_Z_MINUS;
+                               ll->faces[iCommBox] = HALO_X_MINUS_Y_PLUS_Z_MINUS;
                                ll->commBoxNeighbours[iCommBox][iNeighbour] = processorNum((Domain*) domain,  0,  0, -1);
                                iNeighbour++;
                                ll->commBoxNeighbours[iCommBox][iNeighbour] = processorNum((Domain*) domain, -1,  0, -1);
@@ -237,9 +239,9 @@ LinkCell* initLinkCells(const Domain* domain, real_t cutoff)
                                ll->commBoxNeighbours[iCommBox][iNeighbour] = processorNum((Domain*) domain, -1, +1, -1);
                                iNeighbour++;
                            }
-                           else if (z > ll->gridSize[2] - 1)
+                           else if (z > ll->gridSize[2] - 2)
                            {
-                               ll->face = HALO_X_MINUS_Y_PLUS_Z_PLUS;
+                               ll->faces[iCommBox] = HALO_X_MINUS_Y_PLUS_Z_PLUS;
                                ll->commBoxNeighbours[iCommBox][iNeighbour] = processorNum((Domain*) domain,  0,  0, +1);
                                iNeighbour++;
                                ll->commBoxNeighbours[iCommBox][iNeighbour] = processorNum((Domain*) domain, -1,  0, +1);
@@ -250,38 +252,38 @@ LinkCell* initLinkCells(const Domain* domain, real_t cutoff)
                                iNeighbour++;
                            }
                        }
-                       else if (z < 2)
+                       else if (z < 1)
                        {
-                           ll->face = HALO_X_MINUS_Z_MINUS;
+                           ll->faces[iCommBox] = HALO_X_MINUS_Z_MINUS;
                            ll->commBoxNeighbours[iCommBox][iNeighbour] = processorNum((Domain*) domain,  0,  0, -1);
                            iNeighbour++;
                            ll->commBoxNeighbours[iCommBox][iNeighbour] = processorNum((Domain*) domain, -1,  0, -1);
                            iNeighbour++;
                        }
-                       else if (z > ll->gridSize[2] - 1)
+                       else if (z > ll->gridSize[2] - 2)
                        {
-                           ll->face = HALO_X_MINUS_Z_PLUS;
+                           ll->faces[iCommBox] = HALO_X_MINUS_Z_PLUS;
                            ll->commBoxNeighbours[iCommBox][iNeighbour] = processorNum((Domain*) domain,  0,  0, +1);
                            iNeighbour++;
                            ll->commBoxNeighbours[iCommBox][iNeighbour] = processorNum((Domain*) domain, -1,  0, +1);
                            iNeighbour++;
                        }
                    }
-                   else if (x > ll->gridSize[0] - 1)
+                   else if (x > ll->gridSize[0] - 2)
                    {
-                       ll->face = HALO_X_PLUS;
+                       ll->faces[iCommBox] = HALO_X_PLUS;
                        ll->commBoxNeighbours[iCommBox][iNeighbour] = processorNum((Domain*) domain, +1,  0,  0);
                        iNeighbour++;
-                       if (y < 2)
+                       if (y < 1)
                        {
-                           ll->face = HALO_X_PLUS_Y_MINUS;
+                           ll->faces[iCommBox] = HALO_X_PLUS_Y_MINUS;
                            ll->commBoxNeighbours[iCommBox][iNeighbour] = processorNum((Domain*) domain,  0, -1,  0);
                            iNeighbour++;
                            ll->commBoxNeighbours[iCommBox][iNeighbour] = processorNum((Domain*) domain, +1, -1,  0);
                            iNeighbour++;
-                           if (z < 2)
+                           if (z < 1)
                            {
-                               ll->face = HALO_X_PLUS_Y_MINUS_Z_MINUS;
+                               ll->faces[iCommBox] = HALO_X_PLUS_Y_MINUS_Z_MINUS;
                                ll->commBoxNeighbours[iCommBox][iNeighbour] = processorNum((Domain*) domain,  0,  0, -1);
                                iNeighbour++;
                                ll->commBoxNeighbours[iCommBox][iNeighbour] = processorNum((Domain*) domain, +1,  0, -1);
@@ -291,9 +293,9 @@ LinkCell* initLinkCells(const Domain* domain, real_t cutoff)
                                ll->commBoxNeighbours[iCommBox][iNeighbour] = processorNum((Domain*) domain, +1, -1, -1);
                                iNeighbour++;
                            }
-                           else if (z > ll->gridSize[2] - 1)
+                           else if (z > ll->gridSize[2] - 2)
                            {
-                               ll->face = HALO_X_PLUS_Y_MINUS_Z_PLUS;
+                               ll->faces[iCommBox] = HALO_X_PLUS_Y_MINUS_Z_PLUS;
                                ll->commBoxNeighbours[iCommBox][iNeighbour] = processorNum((Domain*) domain,  0,  0, +1);
                                iNeighbour++;
                                ll->commBoxNeighbours[iCommBox][iNeighbour] = processorNum((Domain*) domain, +1,  0, +1);
@@ -304,16 +306,16 @@ LinkCell* initLinkCells(const Domain* domain, real_t cutoff)
                                iNeighbour++;
                            }
                        }
-                       else if (y > ll->gridSize[1] - 1)
+                       else if (y > ll->gridSize[1] - 2)
                        {
-                           ll->face = HALO_X_PLUS_Y_PLUS;
+                           ll->faces[iCommBox] = HALO_X_PLUS_Y_PLUS;
                            ll->commBoxNeighbours[iCommBox][iNeighbour] = processorNum((Domain*) domain,  0, +1,  0);
                            iNeighbour++;
                            ll->commBoxNeighbours[iCommBox][iNeighbour] = processorNum((Domain*) domain, +1, +1,  0);
                            iNeighbour++;
-                           if (z < 2)
+                           if (z < 1)
                            {
-                               ll->face = HALO_X_PLUS_Y_PLUS_Z_MINUS;
+                               ll->faces[iCommBox] = HALO_X_PLUS_Y_PLUS_Z_MINUS;
                                ll->commBoxNeighbours[iCommBox][iNeighbour] = processorNum((Domain*) domain,  0,  0, -1);
                                iNeighbour++;
                                ll->commBoxNeighbours[iCommBox][iNeighbour] = processorNum((Domain*) domain, +1,  0, -1);
@@ -323,9 +325,9 @@ LinkCell* initLinkCells(const Domain* domain, real_t cutoff)
                                ll->commBoxNeighbours[iCommBox][iNeighbour] = processorNum((Domain*) domain, +1, +1, -1);
                                iNeighbour++;
                            }
-                           else if (z > ll->gridSize[2] - 1)
+                           else if (z > ll->gridSize[2] - 2)
                            {
-                               ll->face = HALO_X_PLUS_Y_PLUS_Z_PLUS;
+                               ll->faces[iCommBox] = HALO_X_PLUS_Y_PLUS_Z_PLUS;
                                ll->commBoxNeighbours[iCommBox][iNeighbour] = processorNum((Domain*) domain,  0,  0, +1);
                                iNeighbour++;
                                ll->commBoxNeighbours[iCommBox][iNeighbour] = processorNum((Domain*) domain, +1,  0, +1);
@@ -336,76 +338,76 @@ LinkCell* initLinkCells(const Domain* domain, real_t cutoff)
                                iNeighbour++;
                            }
                        }
-                       else if (z < 2)
+                       else if (z < 1)
                        {
-                           ll->face = HALO_X_PLUS_Z_MINUS;
+                           ll->faces[iCommBox] = HALO_X_PLUS_Z_MINUS;
                            ll->commBoxNeighbours[iCommBox][iNeighbour] = processorNum((Domain*) domain,  0,  0, -1);
                            iNeighbour++;
                            ll->commBoxNeighbours[iCommBox][iNeighbour] = processorNum((Domain*) domain, +1,  0, -1);
                            iNeighbour++;
                        }
-                       else if (z > ll->gridSize[2] - 1)
+                       else if (z > ll->gridSize[2] - 2)
                        {
-                           ll->face = HALO_X_PLUS_Z_PLUS;
+                           ll->faces[iCommBox] = HALO_X_PLUS_Z_PLUS;
                            ll->commBoxNeighbours[iCommBox][iNeighbour] = processorNum((Domain*) domain,  0,  0, +1);
                            iNeighbour++;
                            ll->commBoxNeighbours[iCommBox][iNeighbour] = processorNum((Domain*) domain, +1,  0, +1);
                            iNeighbour++;
                        }
                    }
-                   else if (y < 2)
+                   else if (y < 1)
                    {
-                       ll->face = HALO_Y_MINUS;
+                       ll->faces[iCommBox] = HALO_Y_MINUS;
                        ll->commBoxNeighbours[iCommBox][iNeighbour] = processorNum((Domain*) domain,  0, -1,  0);
                        iNeighbour++;
-                       if (z < 2)
+                       if (z < 1)
                        {
-                           ll->face = HALO_Y_MINUS_Z_MINUS;
+                           ll->faces[iCommBox] = HALO_Y_MINUS_Z_MINUS;
                            ll->commBoxNeighbours[iCommBox][iNeighbour] = processorNum((Domain*) domain,  0,  0, -1);
                            iNeighbour++;
                            ll->commBoxNeighbours[iCommBox][iNeighbour] = processorNum((Domain*) domain,  0, -1, -1);
                            iNeighbour++;
                        }
-                       else if (z > ll->gridSize[2] - 1)
+                       else if (z > ll->gridSize[2] - 2)
                        {
-                           ll->face = HALO_Y_MINUS_Z_PLUS;
+                           ll->faces[iCommBox] = HALO_Y_MINUS_Z_PLUS;
                            ll->commBoxNeighbours[iCommBox][iNeighbour] = processorNum((Domain*) domain,  0,  0, +1);
                            iNeighbour++;
                            ll->commBoxNeighbours[iCommBox][iNeighbour] = processorNum((Domain*) domain,  0, -1, +1);
                            iNeighbour++;
                        }
                    }
-                   else if (y > ll->gridSize[1] - 1)
+                   else if (y > ll->gridSize[1] - 2)
                    {
-                       ll->face = HALO_Y_PLUS;
+                       ll->faces[iCommBox] = HALO_Y_PLUS;
                        ll->commBoxNeighbours[iCommBox][iNeighbour] = processorNum((Domain*) domain,  0, +1,  0);
                        iNeighbour++;
-                       if (z < 2)
+                       if (z < 1)
                        {
-                           ll->face = HALO_Y_PLUS_Z_MINUS;
+                           ll->faces[iCommBox] = HALO_Y_PLUS_Z_MINUS;
                            ll->commBoxNeighbours[iCommBox][iNeighbour] = processorNum((Domain*) domain,  0,  0, -1);
                            iNeighbour++;
                            ll->commBoxNeighbours[iCommBox][iNeighbour] = processorNum((Domain*) domain,  0, +1, -1);
                            iNeighbour++;
                        }
-                       else if (z > ll->gridSize[2] - 1)
+                       else if (z > ll->gridSize[2] - 2)
                        {
-                           ll->face = HALO_Y_PLUS_Z_PLUS;
+                           ll->faces[iCommBox] = HALO_Y_PLUS_Z_PLUS;
                            ll->commBoxNeighbours[iCommBox][iNeighbour] = processorNum((Domain*) domain,  0,  0, +1);
                            iNeighbour++;
                            ll->commBoxNeighbours[iCommBox][iNeighbour] = processorNum((Domain*) domain,  0, +1, +1);
                            iNeighbour++;
                        }
                    }
-                   else if (z < 2)
+                   else if (z < 1)
                    {
-                       ll->face = HALO_Z_MINUS;
+                       ll->faces[iCommBox] = HALO_Z_MINUS;
                        ll->commBoxNeighbours[iCommBox][iNeighbour] = processorNum((Domain*) domain,  0,  0, -1);
                        iNeighbour++;
                    }
-                   else if (z > ll->gridSize[2] - 1)
+                   else if (z > ll->gridSize[2] - 2)
                    {
-                       ll->face = HALO_Z_PLUS;
+                       ll->faces[iCommBox] = HALO_Z_PLUS;
                        ll->commBoxNeighbours[iCommBox][iNeighbour] = processorNum((Domain*) domain,  0,  0, +1);
                        iNeighbour++;
                    }
@@ -547,17 +549,17 @@ int getBoxFromTuple(LinkCell* boxes, int ix, int iy, int iz)
    {
       iBox = boxes->nLocalBoxes + iz*gridSize[1] + iy;
    }
-   // local link celll.
+   // local link cell.
    else
    {
       iBox = ix + gridSize[0]*iy + gridSize[0]*gridSize[1]*iz;
    }
 
 
-   //if (iBox<0)
-   //{
-   //    printf("x = %i\ty = %i\tz = %i\n",ix,iy,iz);
-   //}
+   if (iBox < 0)
+   {
+       printf("x = %i\ty = %i\tz = %i\n",ix,iy,iz);
+   }
 
    assert(iBox >= 0);
    assert(iBox < boxes->nTotalBoxes);
