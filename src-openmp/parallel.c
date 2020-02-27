@@ -136,7 +136,7 @@ MPI_Request irecvParallel(void* recvBuf, int recvLen, int source)
 {
 #ifdef DO_MPI
    MPI_Request request;
-   MPI_Isend(recvBuf, recvLen, MPI_BYTE, source, 0, MPI_COMM_WORLD, &request);
+   MPI_Irecv(recvBuf, recvLen, MPI_BYTE, source, 0, MPI_COMM_WORLD, &request);
    return request;
 #else
    assert(1 == 0)

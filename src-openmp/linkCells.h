@@ -57,5 +57,8 @@ void updateLinkCells(LinkCell* boxes, struct AtomsSt* atoms);
 
 int maxOccupancy(LinkCell* boxes);
 
+// New addition
+void addNeighbour(int* neighbourList, int *nNeighbours, int newNeighbour);
+
 
 #endif

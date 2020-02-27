@@ -407,7 +407,7 @@ void destroyHaloExchange(HaloExchange** haloExchange)
 
 void haloExchange(HaloExchange* haloExchange, void* data)
 {
-    printf("Starting exchange\n");
+    //printf("Starting exchange\n");
    // Retrieve link cell information from data
    LinkCell* ll = ((SimFlat*) data)->boxes;
 
@@ -447,7 +447,7 @@ void haloExchange(HaloExchange* haloExchange, void* data)
        }
    }
 
-   printf("Loading\n");
+   //printf("Loading\n");
    for (int iCommBox=0; iCommBox<ll->nCommBoxes; ++iCommBox)
    {
        // Load atoms from box into buffer and return the number of atoms
@@ -458,7 +458,7 @@ void haloExchange(HaloExchange* haloExchange, void* data)
                                                       sendBufs[iCommBox]);
    }
 
-   printf("Sending\n");
+   //printf("Sending\n");
    for (int iCommBox=0; iCommBox<ll->nCommBoxes; ++iCommBox)
    {
        // Issue non-blocking send to each neighbour and return the MPI_Request
@@ -470,7 +470,7 @@ void haloExchange(HaloExchange* haloExchange, void* data)
        }
    }
 
-   printf("Receiving\n");
+   //printf("Receiving\n");
    for (int iCommBox=0; iCommBox<ll->nCommBoxes; ++iCommBox)
    {
        // Issue non-blocking receive to each neighbour and return the MPI_Request
@@ -482,7 +482,7 @@ void haloExchange(HaloExchange* haloExchange, void* data)
        }
    }
 
-   printf("Waiting for receives and unloading\n");
+   //printf("Waiting for receives and unloading\n");
    for (int iCommBox=0; iCommBox<ll->nCommBoxes; ++iCommBox)
    {
        // Wait for receives and unload buffers
@@ -497,7 +497,7 @@ void haloExchange(HaloExchange* haloExchange, void* data)
        }
    }
 
-   printf("Waiting for sends\n");
+   //printf("Waiting for sends\n");
    for (int iCommBox=0; iCommBox<ll->nCommBoxes; ++iCommBox)
    {
        for (int iBoxNeighbour=0; iBoxNeighbour<nNeighbours[iCommBox]; ++iBoxNeighbour)
@@ -506,7 +506,7 @@ void haloExchange(HaloExchange* haloExchange, void* data)
            waitSendParallel(sendRequests[iCommBox][iBoxNeighbour]);
        }
    }
-   printf("Finished communication\n");
+   //printf("Finished communication\n");
 
    // Free everything
    for (int iCommBox=0; iCommBox<ll->nCommBoxes; ++iCommBox)
@@ -1041,6 +1041,7 @@ int loadAtomsBoxBuffer(void* vparms, void* data, int box, int face, char* charBu
    shift[1] = pbcFactor[1] * s->domain->globalExtent[1];
    shift[2] = pbcFactor[2] * s->domain->globalExtent[2];
 
+   int weirdIDs[17] = {120,165,20,2902,3293,3393,489611,490307,5502,5893,5993,65,693,8100,8593,9613,9665};
    int nBuf = 0;
    int iOff = box*MAXATOMS;
    for (int ii=iOff; ii<iOff+s->boxes->nAtoms[box]; ++ii)
@@ -1053,12 +1054,16 @@ int loadAtomsBoxBuffer(void* vparms, void* data, int box, int face, char* charBu
       buf[nBuf].px = s->atoms->p[ii][0];
       buf[nBuf].py = s->atoms->p[ii][1];
       buf[nBuf].pz = s->atoms->p[ii][2];
-      //if (buf[nBuf].gid == 201 || buf[nBuf].gid == 200)
+      //for(int jj=0;jj<17;jj++)
       //{
-      //    printf("Send coords wrong:\t%i\t%i\t%lf\t%lf\t%lf\n\t%lf\t%lf\t%lf\t%lf\t%lf\t%lf\n",
-      //            buf[nBuf].gid,face,buf[nBuf].rx,buf[nBuf].ry,buf[nBuf].rz,
-      //            pbcFactor[0],pbcFactor[1],pbcFactor[2],
-      //            s->atoms->r[ii][0],s->atoms->r[ii][1],s->atoms->r[ii][2]);
+      //    if (buf[nBuf].gid == weirdIDs[jj])
+      //    {
+      //        printf("Send coords wrong:\t%i\t%i\n\t\t\t%lf\t%lf\t%lf\n\t\t\t%lf\t%lf\t%lf\n\t\t\t%lf\t%lf\t%lf\n\n",
+      //                buf[nBuf].gid,face,
+      //                buf[nBuf].rx,buf[nBuf].ry,buf[nBuf].rz,
+      //                pbcFactor[0],pbcFactor[1],pbcFactor[2],
+      //                s->atoms->r[ii][0],s->atoms->r[ii][1],s->atoms->r[ii][2]);
+      //    }
       //}
       ++nBuf;
    }
@@ -1592,6 +1597,28 @@ void sortAtomsInCell(Atoms* atoms, LinkCell* boxes, int iBox)
       tmp[iTmp].py =   atoms->p[ii][1];
       tmp[iTmp].pz =   atoms->p[ii][2];
    }
+
+   //int face = 0;
+   //for(int ii=begin; ii<end-1; ++ii)
+   //{
+   //    for(int jj=ii+1; jj<end; ++jj)
+   //    {
+   //        if(atoms->gid[ii] == atoms->gid[jj])
+   //        {
+   //            for(int kk=0; kk<boxes->nCommBoxes;++kk)
+   //            {
+   //                if(boxes->commBoxes[kk] == iBox)
+   //                {
+   //                    face = boxes->faces[kk];
+   //                    break;
+   //                }
+   //            }
+   //            printf("%i\t%i\t%i\n",atoms->gid[ii],iBox,face);
+   //        }
+   //    }
+
+   //}
+
    qsort(&tmp, nAtoms, sizeof(AtomMsg), sortAtomsById);
    for (int ii=begin, iTmp=0; ii<end; ++ii, ++iTmp)
    {
@@ -1616,10 +1643,6 @@ int sortAtomsById(const void* a, const void* b)
 {
    int aId = ((AtomMsg*) a)->gid;
    int bId = ((AtomMsg*) b)->gid;
-   if(aId == bId)
-   {
-       printf("%i\n",aId);
-   }
    assert(aId != bId);
 
    if (aId < bId)
