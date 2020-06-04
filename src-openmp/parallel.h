@@ -40,10 +40,10 @@ int sendReceiveParallel(void* sendBuf, int sendLen, int dest,
                         void* recvBuf, int recvLen, int source);
 
 /// Wrapper for MPI_Isend.
-MPI_Request isendParallel(void* sendBuf, int sendLen, int dest);
+MPI_Request isendParallel(void* sendBuf, int sendLen, int dest, int tag);
 
 /// Wrapper for MPI_Irecv.
-MPI_Request irecvParallel(void* recvBuf, int recvLen, int source);
+MPI_Request irecvParallel(void* recvBuf, int recvLen, int source, int tag);
 
 /// Wrapper for MPI_Wait for sends.
 void waitSendParallel(MPI_Request request);

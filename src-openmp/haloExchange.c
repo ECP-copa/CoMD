@@ -1643,6 +1643,10 @@ int sortAtomsById(const void* a, const void* b)
 {
    int aId = ((AtomMsg*) a)->gid;
    int bId = ((AtomMsg*) b)->gid;
+   if(aId==bId)
+   {
+       printf("%i\n",aId);
+   }
    assert(aId != bId);
 
    if (aId < bId)

@@ -154,6 +154,7 @@ LinkCell* initLinkCells(const Domain* domain, real_t cutoff)
                                          (ll->gridSize[1] - 2) * (ll->gridSize[2] - 2));
    ll->commBoxes = comdMalloc(ll->nCommBoxes*sizeof(int));
    ll->commBoxNeighbours = comdMalloc(ll->nCommBoxes*sizeof(int*));
+   ll->neighbourTags = comdMalloc(ll->nCommBoxes*sizeof(int*));
    ll->commBoxNumNeighbours = comdMalloc(ll->nCommBoxes*sizeof(int*));
    ll->faces = comdMalloc(ll->nCommBoxes*sizeof(int));
 
@@ -348,8 +349,8 @@ LinkCell* initLinkCells(const Domain* domain, real_t cutoff)
                        ll->faces[iCommBox] = HALO_Z_PLUS;
                        addNeighbour(ll->commBoxNeighbours[iCommBox], &iNeighbour, processorNum((Domain*) domain,  0,  0, +1));
                    }
-                   iCommBox++;
                    ll->commBoxNumNeighbours[iCommBox] = iNeighbour;
+                   iCommBox++;
                }
            }
        }
@@ -743,6 +744,6 @@ void addNeighbour(int* neighbourList, int *nNeighbours, int newNeighbour)
         }
     }
     neighbourList[*nNeighbours] = newNeighbour;
-    *nNeighbours++;
+    (*nNeighbours)++;
     return;
 }
