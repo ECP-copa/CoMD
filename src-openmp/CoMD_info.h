@@ -2,7 +2,7 @@
 #define CoMD_info_hpp
 
 #define CoMD_VARIANT "CoMD-openmp-mpi"
-#define CoMD_HOSTNAME "eslogin005"
+#define CoMD_HOSTNAME "eslogin003"
 #define CoMD_KERNEL_NAME "'Linux'"
 #define CoMD_KERNEL_RELEASE "'3.0.101-0.47.106.59-default'"
 #define CoMD_PROCESSOR "'x86_64'"

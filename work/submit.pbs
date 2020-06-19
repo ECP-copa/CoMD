@@ -1,14 +1,11 @@
 #!/bin/bash --login
 
 #PBS -N CoMD
-#PBS -l select=1:ncpus=36
-#PBS -l place=scatter:excl
-#PBS -A dc025
+#PBS -l select=1
+#PBS -A z19-cse
 #PBS -j oe
 
 cd $PBS_O_WORKDIR
-
-module load mpt
 
 source parameters.config
 
@@ -37,5 +34,5 @@ do
             ;;
     esac
 
-    mpirun -np $t ../bin/CoMD-openmp-mpi -i$xproc -j$yproc -k$zproc -x $x -y $y -z $z
+    aprun -n $t ../bin/CoMD-openmp-mpi -i$xproc -j$yproc -k$zproc -x $x -y $y -z $z
 done

@@ -120,22 +120,22 @@ int sendReceiveParallel(void* sendBuf, int sendLen, int dest,
 #endif
 }
 
-MPI_Request isendParallel(void* sendBuf, int sendLen, int dest, int tag)
+MPI_Request isendParallel(void* sendBuf, int sendLen, int dest)
 {
 #ifdef DO_MPI
    MPI_Request request;
-   MPI_Isend(sendBuf, sendLen, MPI_BYTE, dest, tag, MPI_COMM_WORLD, &request);
+   MPI_Isend(sendBuf, sendLen, MPI_BYTE, dest, 0, MPI_COMM_WORLD, &request);
    return request;
 #else
    assert(1 == 0)
 #endif
 }
 
-MPI_Request irecvParallel(void* recvBuf, int recvLen, int source, int tag)
+MPI_Request irecvParallel(void* recvBuf, int recvLen, int source)
 {
 #ifdef DO_MPI
    MPI_Request request;
-   MPI_Irecv(recvBuf, recvLen, MPI_BYTE, source, tag, MPI_COMM_WORLD, &request);
+   MPI_Irecv(recvBuf, recvLen, MPI_BYTE, source, 0, MPI_COMM_WORLD, &request);
    return request;
 #else
    assert(1 == 0)

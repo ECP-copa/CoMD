@@ -106,7 +106,7 @@ enum HaloNeighbourOrder {HALO_X_MINUS,
 static void copyAtom(LinkCell* boxes, Atoms* atoms, int iAtom, int iBox, int jAtom, int jBox);
 static int getBoxFromCoord(LinkCell* boxes, real_t rr[3]);
 static void emptyHaloCells(LinkCell* boxes);
-static void getTuple(LinkCell* boxes, int iBox, int* ixp, int* iyp, int* izp);
+//static void getTuple(LinkCell* boxes, int iBox, int* ixp, int* iyp, int* izp);
 
 LinkCell* initLinkCells(const Domain* domain, real_t cutoff)
 {
@@ -153,8 +153,7 @@ LinkCell* initLinkCells(const Domain* domain, real_t cutoff)
                                           ll->gridSize[0] * (ll->gridSize[2] - 2) +
                                          (ll->gridSize[1] - 2) * (ll->gridSize[2] - 2));
    ll->commBoxes = comdMalloc(ll->nCommBoxes*sizeof(int));
-   ll->commBoxNeighbours = comdMalloc(ll->nCommBoxes*sizeof(int*));
-   ll->neighbourTags = comdMalloc(ll->nCommBoxes*sizeof(int*));
+   ll->commBoxNeighbours = comdMalloc(ll->nCommBoxes*sizeof(int**));
    ll->commBoxNumNeighbours = comdMalloc(ll->nCommBoxes*sizeof(int*));
    ll->faces = comdMalloc(ll->nCommBoxes*sizeof(int));
 
@@ -181,175 +180,363 @@ LinkCell* initLinkCells(const Domain* domain, real_t cutoff)
                if (nNeighbours > 0)
                {
                    ll->commBoxes[iCommBox] = getBoxFromTuple(ll,x,y,z);
-                   ll->commBoxNeighbours[iCommBox] = comdMalloc(7*sizeof(int));
+                   ll->commBoxNeighbours[iCommBox] = comdMalloc(nNeighbours*sizeof(int*));
                    int iNeighbour = 0;
                    if (x < 1)
                    {
+                       ll->commBoxNeighbours[iCommBox][iNeighbour] = comdMalloc(2*sizeof(int));
+                       ll->commBoxNeighbours[iCommBox][iNeighbour][0] = processorNum((Domain*) domain, -1,  0,  0);
+                       ll->commBoxNeighbours[iCommBox][iNeighbour][1] = HALO_X_MINUS; 
                        ll->faces[iCommBox] = HALO_X_MINUS;
-                       addNeighbour(ll->commBoxNeighbours[iCommBox], &iNeighbour, processorNum((Domain*) domain, -1,  0,  0));
+                       ++iNeighbour;
                        if (y < 1)
                        {
+                           ll->commBoxNeighbours[iCommBox][iNeighbour] = comdMalloc(2*sizeof(int));
+                           ll->commBoxNeighbours[iCommBox][iNeighbour][0] = processorNum((Domain*) domain,  0, -1,  0);
+                           ll->commBoxNeighbours[iCommBox][iNeighbour][1] = HALO_Y_MINUS;
+                           ++iNeighbour;
+
+                           ll->commBoxNeighbours[iCommBox][iNeighbour] = comdMalloc(2*sizeof(int));
+                           ll->commBoxNeighbours[iCommBox][iNeighbour][0] = processorNum((Domain*) domain, -1, -1,  0);
+                           ll->commBoxNeighbours[iCommBox][iNeighbour][1] = HALO_X_MINUS_Y_MINUS;
+                           ++iNeighbour;
                            ll->faces[iCommBox] = HALO_X_MINUS_Y_MINUS;
-                           addNeighbour(ll->commBoxNeighbours[iCommBox], &iNeighbour, processorNum((Domain*) domain,  0, -1,  0));
-                           addNeighbour(ll->commBoxNeighbours[iCommBox], &iNeighbour, processorNum((Domain*) domain, -1, -1,  0));
                            if (z < 1)
                            {
+                               ll->commBoxNeighbours[iCommBox][iNeighbour] = comdMalloc(2*sizeof(int));
+                               ll->commBoxNeighbours[iCommBox][iNeighbour][0] = processorNum((Domain*) domain,  0,  0, -1);
+                               ll->commBoxNeighbours[iCommBox][iNeighbour][1] = HALO_Z_MINUS; 
+                               ++iNeighbour;
+                               ll->commBoxNeighbours[iCommBox][iNeighbour] = comdMalloc(2*sizeof(int));
+                               ll->commBoxNeighbours[iCommBox][iNeighbour][0] = processorNum((Domain*) domain, -1,  0, -1);
+                               ll->commBoxNeighbours[iCommBox][iNeighbour][1] = HALO_X_MINUS_Z_MINUS;
+                               ++iNeighbour;
+                               ll->commBoxNeighbours[iCommBox][iNeighbour] = comdMalloc(2*sizeof(int));
+                               ll->commBoxNeighbours[iCommBox][iNeighbour][0] = processorNum((Domain*) domain,  0, -1, -1);
+                               ll->commBoxNeighbours[iCommBox][iNeighbour][1] = HALO_Y_MINUS_Z_MINUS;
+                               ++iNeighbour;
+                               ll->commBoxNeighbours[iCommBox][iNeighbour] = comdMalloc(2*sizeof(int));
+                               ll->commBoxNeighbours[iCommBox][iNeighbour][0] = processorNum((Domain*) domain, -1, -1, -1);
+                               ll->commBoxNeighbours[iCommBox][iNeighbour][1] = HALO_X_MINUS_Y_MINUS_Z_MINUS;
+                               ++iNeighbour;
                                ll->faces[iCommBox] = HALO_X_MINUS_Y_MINUS_Z_MINUS;
-                               addNeighbour(ll->commBoxNeighbours[iCommBox], &iNeighbour, processorNum((Domain*) domain,  0,  0, -1));
-                               addNeighbour(ll->commBoxNeighbours[iCommBox], &iNeighbour, processorNum((Domain*) domain, -1,  0, -1));
-                               addNeighbour(ll->commBoxNeighbours[iCommBox], &iNeighbour, processorNum((Domain*) domain,  0, -1, -1));
-                               addNeighbour(ll->commBoxNeighbours[iCommBox], &iNeighbour, processorNum((Domain*) domain, -1, -1, -1));
                            }
                            else if (z > ll->gridSize[2] - 2)
                            {
+                               ll->commBoxNeighbours[iCommBox][iNeighbour] = comdMalloc(2*sizeof(int));
+                               ll->commBoxNeighbours[iCommBox][iNeighbour][0] = processorNum((Domain*) domain,  0,  0, +1);
+                               ll->commBoxNeighbours[iCommBox][iNeighbour][1] = HALO_Z_PLUS;
+                               ++iNeighbour;
+                               ll->commBoxNeighbours[iCommBox][iNeighbour] = comdMalloc(2*sizeof(int));
+                               ll->commBoxNeighbours[iCommBox][iNeighbour][0] = processorNum((Domain*) domain, -1,  0, +1);
+                               ll->commBoxNeighbours[iCommBox][iNeighbour][1] = HALO_X_MINUS_Z_PLUS;
+                               ++iNeighbour;
+                               ll->commBoxNeighbours[iCommBox][iNeighbour] = comdMalloc(2*sizeof(int));
+                               ll->commBoxNeighbours[iCommBox][iNeighbour][0] = processorNum((Domain*) domain,  0, -1, +1);
+                               ll->commBoxNeighbours[iCommBox][iNeighbour][1] = HALO_Y_MINUS_Z_PLUS;
+                               ++iNeighbour;
+                               ll->commBoxNeighbours[iCommBox][iNeighbour] = comdMalloc(2*sizeof(int));
+                               ll->commBoxNeighbours[iCommBox][iNeighbour][0] = processorNum((Domain*) domain, -1, -1, +1);
+                               ll->commBoxNeighbours[iCommBox][iNeighbour][1] = HALO_X_MINUS_Y_MINUS_Z_PLUS;
+                               ++iNeighbour;
                                ll->faces[iCommBox] = HALO_X_MINUS_Y_MINUS_Z_PLUS;
-                               addNeighbour(ll->commBoxNeighbours[iCommBox], &iNeighbour, processorNum((Domain*) domain,  0,  0, +1));
-                               addNeighbour(ll->commBoxNeighbours[iCommBox], &iNeighbour, processorNum((Domain*) domain, -1,  0, +1));
-                               addNeighbour(ll->commBoxNeighbours[iCommBox], &iNeighbour, processorNum((Domain*) domain,  0, -1, +1));
-                               addNeighbour(ll->commBoxNeighbours[iCommBox], &iNeighbour, processorNum((Domain*) domain, -1, -1, +1));
                            }
                        }
                        else if (y > ll->gridSize[1] - 2)
                        {
+                           ll->commBoxNeighbours[iCommBox][iNeighbour] = comdMalloc(2*sizeof(int));
+                           ll->commBoxNeighbours[iCommBox][iNeighbour][0] = processorNum((Domain*) domain,  0, +1,  0);
+                           ll->commBoxNeighbours[iCommBox][iNeighbour][1] = HALO_Y_PLUS;
+                           ++iNeighbour;
+                           ll->commBoxNeighbours[iCommBox][iNeighbour] = comdMalloc(2*sizeof(int));
+                           ll->commBoxNeighbours[iCommBox][iNeighbour][0] = processorNum((Domain*) domain, -1, +1,  0);
+                           ll->commBoxNeighbours[iCommBox][iNeighbour][1] = HALO_X_MINUS_Y_PLUS;
+                           ++iNeighbour;
                            ll->faces[iCommBox] = HALO_X_MINUS_Y_PLUS;
-                           addNeighbour(ll->commBoxNeighbours[iCommBox], &iNeighbour, processorNum((Domain*) domain,  0, +1,  0));
-                           addNeighbour(ll->commBoxNeighbours[iCommBox], &iNeighbour, processorNum((Domain*) domain, -1, +1,  0));
                            if (z < 1)
                            {
+                               ll->commBoxNeighbours[iCommBox][iNeighbour] = comdMalloc(2*sizeof(int));
+                               ll->commBoxNeighbours[iCommBox][iNeighbour][0] = processorNum((Domain*) domain,  0,  0, -1);
+                               ll->commBoxNeighbours[iCommBox][iNeighbour][1] = HALO_Z_MINUS;
+                               ++iNeighbour;
+                               ll->commBoxNeighbours[iCommBox][iNeighbour] = comdMalloc(2*sizeof(int));
+                               ll->commBoxNeighbours[iCommBox][iNeighbour][0] = processorNum((Domain*) domain, -1,  0, -1);
+                               ll->commBoxNeighbours[iCommBox][iNeighbour][1] = HALO_X_MINUS_Z_MINUS;
+                               ++iNeighbour;
+                               ll->commBoxNeighbours[iCommBox][iNeighbour] = comdMalloc(2*sizeof(int));
+                               ll->commBoxNeighbours[iCommBox][iNeighbour][0] = processorNum((Domain*) domain,  0, +1, -1);
+                               ll->commBoxNeighbours[iCommBox][iNeighbour][1] = HALO_Y_PLUS_Z_MINUS;
+                               ++iNeighbour;
+                               ll->commBoxNeighbours[iCommBox][iNeighbour] = comdMalloc(2*sizeof(int));
+                               ll->commBoxNeighbours[iCommBox][iNeighbour][0] = processorNum((Domain*) domain, -1, +1, -1);
+                               ll->commBoxNeighbours[iCommBox][iNeighbour][1] = HALO_X_MINUS_Y_PLUS_Z_MINUS;
+                               ++iNeighbour;
                                ll->faces[iCommBox] = HALO_X_MINUS_Y_PLUS_Z_MINUS;
-                               addNeighbour(ll->commBoxNeighbours[iCommBox], &iNeighbour, processorNum((Domain*) domain,  0,  0, -1));
-                               addNeighbour(ll->commBoxNeighbours[iCommBox], &iNeighbour, processorNum((Domain*) domain, -1,  0, -1));
-                               addNeighbour(ll->commBoxNeighbours[iCommBox], &iNeighbour, processorNum((Domain*) domain,  0, +1, -1));
-                               addNeighbour(ll->commBoxNeighbours[iCommBox], &iNeighbour, processorNum((Domain*) domain, -1, +1, -1));
                            }
                            else if (z > ll->gridSize[2] - 2)
                            {
+                               ll->commBoxNeighbours[iCommBox][iNeighbour] = comdMalloc(2*sizeof(int));
+                               ll->commBoxNeighbours[iCommBox][iNeighbour][0] = processorNum((Domain*) domain,  0,  0, +1);
+                               ll->commBoxNeighbours[iCommBox][iNeighbour][1] = HALO_Z_PLUS;
+                               ++iNeighbour;
+                               ll->commBoxNeighbours[iCommBox][iNeighbour] = comdMalloc(2*sizeof(int));
+                               ll->commBoxNeighbours[iCommBox][iNeighbour][0] = processorNum((Domain*) domain, -1,  0, +1);
+                               ll->commBoxNeighbours[iCommBox][iNeighbour][1] = HALO_X_MINUS_Z_PLUS;
+                               ++iNeighbour;
+                               ll->commBoxNeighbours[iCommBox][iNeighbour] = comdMalloc(2*sizeof(int));
+                               ll->commBoxNeighbours[iCommBox][iNeighbour][0] = processorNum((Domain*) domain,  0, +1, +1);
+                               ll->commBoxNeighbours[iCommBox][iNeighbour][1] = HALO_Y_PLUS_Z_PLUS;
+                               ++iNeighbour;
+                               ll->commBoxNeighbours[iCommBox][iNeighbour] = comdMalloc(2*sizeof(int));
+                               ll->commBoxNeighbours[iCommBox][iNeighbour][0] = processorNum((Domain*) domain, -1, +1, +1);
+                               ll->commBoxNeighbours[iCommBox][iNeighbour][1] = HALO_X_MINUS_Y_PLUS_Z_PLUS;
+                               ++iNeighbour;
                                ll->faces[iCommBox] = HALO_X_MINUS_Y_PLUS_Z_PLUS;
-                               addNeighbour(ll->commBoxNeighbours[iCommBox], &iNeighbour, processorNum((Domain*) domain,  0,  0, +1));
-                               addNeighbour(ll->commBoxNeighbours[iCommBox], &iNeighbour, processorNum((Domain*) domain, -1,  0, +1));
-                               addNeighbour(ll->commBoxNeighbours[iCommBox], &iNeighbour, processorNum((Domain*) domain,  0, +1, +1));
-                               addNeighbour(ll->commBoxNeighbours[iCommBox], &iNeighbour, processorNum((Domain*) domain, -1, +1, +1));
                            }
                        }
                        else if (z < 1)
                        {
+                           ll->commBoxNeighbours[iCommBox][iNeighbour] = comdMalloc(2*sizeof(int));
+                           ll->commBoxNeighbours[iCommBox][iNeighbour][0] = processorNum((Domain*) domain,  0,  0, -1);
+                           ll->commBoxNeighbours[iCommBox][iNeighbour][1] = HALO_Z_MINUS;
+                           ++iNeighbour;
+                           ll->commBoxNeighbours[iCommBox][iNeighbour] = comdMalloc(2*sizeof(int));
+                           ll->commBoxNeighbours[iCommBox][iNeighbour][0] = processorNum((Domain*) domain, -1,  0, -1);
+                           ll->commBoxNeighbours[iCommBox][iNeighbour][1] = HALO_X_MINUS_Z_MINUS;
+                           ++iNeighbour;
                            ll->faces[iCommBox] = HALO_X_MINUS_Z_MINUS;
-                           addNeighbour(ll->commBoxNeighbours[iCommBox], &iNeighbour, processorNum((Domain*) domain,  0,  0, -1));
-                           addNeighbour(ll->commBoxNeighbours[iCommBox], &iNeighbour, processorNum((Domain*) domain, -1,  0, -1));
                        }
                        else if (z > ll->gridSize[2] - 2)
                        {
+                           ll->commBoxNeighbours[iCommBox][iNeighbour] = comdMalloc(2*sizeof(int));
+                           ll->commBoxNeighbours[iCommBox][iNeighbour][0] = processorNum((Domain*) domain,  0,  0, +1);
+                           ll->commBoxNeighbours[iCommBox][iNeighbour][1] = HALO_Z_PLUS;
+                           ++iNeighbour;
+                           ll->commBoxNeighbours[iCommBox][iNeighbour] = comdMalloc(2*sizeof(int));
+                           ll->commBoxNeighbours[iCommBox][iNeighbour][0] = processorNum((Domain*) domain, -1,  0, +1);
+                           ll->commBoxNeighbours[iCommBox][iNeighbour][1] = HALO_X_MINUS_Z_PLUS;
+                           ++iNeighbour;
                            ll->faces[iCommBox] = HALO_X_MINUS_Z_PLUS;
-                           addNeighbour(ll->commBoxNeighbours[iCommBox], &iNeighbour, processorNum((Domain*) domain,  0,  0, +1));
-                           addNeighbour(ll->commBoxNeighbours[iCommBox], &iNeighbour, processorNum((Domain*) domain, -1,  0, +1));
                        }
                    }
                    else if (x > ll->gridSize[0] - 2)
                    {
+                       ll->commBoxNeighbours[iCommBox][iNeighbour] = comdMalloc(2*sizeof(int));
+                       ll->commBoxNeighbours[iCommBox][iNeighbour][0] = processorNum((Domain*) domain, +1,  0,  0);
+                       ll->commBoxNeighbours[iCommBox][iNeighbour][1] = HALO_X_PLUS;
+                       ++iNeighbour;
                        ll->faces[iCommBox] = HALO_X_PLUS;
-                       addNeighbour(ll->commBoxNeighbours[iCommBox], &iNeighbour, processorNum((Domain*) domain, +1,  0,  0));
                        if (y < 1)
                        {
+                           ll->commBoxNeighbours[iCommBox][iNeighbour] = comdMalloc(2*sizeof(int));
+                           ll->commBoxNeighbours[iCommBox][iNeighbour][0] = processorNum((Domain*) domain,  0, -1,  0);
+                           ll->commBoxNeighbours[iCommBox][iNeighbour][1] = HALO_Y_MINUS;
+                           ++iNeighbour;
+                           ll->commBoxNeighbours[iCommBox][iNeighbour] = comdMalloc(2*sizeof(int));
+                           ll->commBoxNeighbours[iCommBox][iNeighbour][0] = processorNum((Domain*) domain, +1, -1,  0);
+                           ll->commBoxNeighbours[iCommBox][iNeighbour][1] = HALO_X_PLUS_Y_MINUS;
+                           ++iNeighbour;
                            ll->faces[iCommBox] = HALO_X_PLUS_Y_MINUS;
-                           addNeighbour(ll->commBoxNeighbours[iCommBox], &iNeighbour, processorNum((Domain*) domain,  0, -1,  0));
-                           addNeighbour(ll->commBoxNeighbours[iCommBox], &iNeighbour, processorNum((Domain*) domain, +1, -1,  0));
                            if (z < 1)
                            {
+                               ll->commBoxNeighbours[iCommBox][iNeighbour] = comdMalloc(2*sizeof(int));
+                               ll->commBoxNeighbours[iCommBox][iNeighbour][0] = processorNum((Domain*) domain,  0,  0, -1);
+                               ll->commBoxNeighbours[iCommBox][iNeighbour][1] = HALO_Z_MINUS;
+                               ++iNeighbour;
+                               ll->commBoxNeighbours[iCommBox][iNeighbour] = comdMalloc(2*sizeof(int));
+                               ll->commBoxNeighbours[iCommBox][iNeighbour][0] = processorNum((Domain*) domain, +1,  0, -1);
+                               ll->commBoxNeighbours[iCommBox][iNeighbour][1] = HALO_X_PLUS_Z_MINUS;
+                               ++iNeighbour;
+                               ll->commBoxNeighbours[iCommBox][iNeighbour] = comdMalloc(2*sizeof(int));
+                               ll->commBoxNeighbours[iCommBox][iNeighbour][0] = processorNum((Domain*) domain,  0, -1, -1);
+                               ll->commBoxNeighbours[iCommBox][iNeighbour][1] = HALO_Y_MINUS_Z_MINUS;
+                               ++iNeighbour;
+                               ll->commBoxNeighbours[iCommBox][iNeighbour] = comdMalloc(2*sizeof(int));
+                               ll->commBoxNeighbours[iCommBox][iNeighbour][0] = processorNum((Domain*) domain, +1, -1, -1);
+                               ll->commBoxNeighbours[iCommBox][iNeighbour][1] = HALO_X_PLUS_Y_MINUS_Z_MINUS;
+                               ++iNeighbour;
                                ll->faces[iCommBox] = HALO_X_PLUS_Y_MINUS_Z_MINUS;
-                               addNeighbour(ll->commBoxNeighbours[iCommBox], &iNeighbour, processorNum((Domain*) domain,  0,  0, -1));
-                               addNeighbour(ll->commBoxNeighbours[iCommBox], &iNeighbour, processorNum((Domain*) domain, +1,  0, -1));
-                               addNeighbour(ll->commBoxNeighbours[iCommBox], &iNeighbour, processorNum((Domain*) domain,  0, -1, -1));
-                               addNeighbour(ll->commBoxNeighbours[iCommBox], &iNeighbour, processorNum((Domain*) domain, +1, -1, -1));
                            }
                            else if (z > ll->gridSize[2] - 2)
                            {
+                               ll->commBoxNeighbours[iCommBox][iNeighbour] = comdMalloc(2*sizeof(int));
+                               ll->commBoxNeighbours[iCommBox][iNeighbour][0] = processorNum((Domain*) domain,  0,  0, +1);
+                               ll->commBoxNeighbours[iCommBox][iNeighbour][1] = HALO_Z_PLUS;
+                               ++iNeighbour;
+                               ll->commBoxNeighbours[iCommBox][iNeighbour] = comdMalloc(2*sizeof(int));
+                               ll->commBoxNeighbours[iCommBox][iNeighbour][0] = processorNum((Domain*) domain, +1,  0, +1);
+                               ll->commBoxNeighbours[iCommBox][iNeighbour][1] = HALO_X_PLUS_Z_PLUS;
+                               ++iNeighbour;
+                               ll->commBoxNeighbours[iCommBox][iNeighbour] = comdMalloc(2*sizeof(int));
+                               ll->commBoxNeighbours[iCommBox][iNeighbour][0] = processorNum((Domain*) domain,  0, -1, +1);
+                               ll->commBoxNeighbours[iCommBox][iNeighbour][1] = HALO_Y_MINUS_Z_PLUS;
+                               ++iNeighbour;
+                               ll->commBoxNeighbours[iCommBox][iNeighbour] = comdMalloc(2*sizeof(int));
+                               ll->commBoxNeighbours[iCommBox][iNeighbour][0] = processorNum((Domain*) domain, +1, -1, +1);
+                               ll->commBoxNeighbours[iCommBox][iNeighbour][1] = HALO_X_PLUS_Y_MINUS_Z_PLUS;
+                               ++iNeighbour;
                                ll->faces[iCommBox] = HALO_X_PLUS_Y_MINUS_Z_PLUS;
-                               addNeighbour(ll->commBoxNeighbours[iCommBox], &iNeighbour, processorNum((Domain*) domain,  0,  0, +1));
-                               addNeighbour(ll->commBoxNeighbours[iCommBox], &iNeighbour, processorNum((Domain*) domain, +1,  0, +1));
-                               addNeighbour(ll->commBoxNeighbours[iCommBox], &iNeighbour, processorNum((Domain*) domain,  0, -1, +1));
-                               addNeighbour(ll->commBoxNeighbours[iCommBox], &iNeighbour, processorNum((Domain*) domain, +1, -1, +1));
                            }
                        }
                        else if (y > ll->gridSize[1] - 2)
                        {
+                           ll->commBoxNeighbours[iCommBox][iNeighbour] = comdMalloc(2*sizeof(int));
+                           ll->commBoxNeighbours[iCommBox][iNeighbour][0] = processorNum((Domain*) domain,  0, +1,  0);
+                           ll->commBoxNeighbours[iCommBox][iNeighbour][1] = HALO_Y_PLUS;
+                           ++iNeighbour;
+                           ll->commBoxNeighbours[iCommBox][iNeighbour] = comdMalloc(2*sizeof(int));
+                           ll->commBoxNeighbours[iCommBox][iNeighbour][0] = processorNum((Domain*) domain, +1, +1,  0);
+                           ll->commBoxNeighbours[iCommBox][iNeighbour][1] = HALO_X_PLUS_Y_PLUS;
+                           ++iNeighbour;
                            ll->faces[iCommBox] = HALO_X_PLUS_Y_PLUS;
-                           addNeighbour(ll->commBoxNeighbours[iCommBox], &iNeighbour, processorNum((Domain*) domain,  0, +1,  0));
-                           addNeighbour(ll->commBoxNeighbours[iCommBox], &iNeighbour, processorNum((Domain*) domain, +1, +1,  0));
                            if (z < 1)
                            {
+                               ll->commBoxNeighbours[iCommBox][iNeighbour] = comdMalloc(2*sizeof(int));
+                               ll->commBoxNeighbours[iCommBox][iNeighbour][0] = processorNum((Domain*) domain,  0,  0, -1);
+                               ll->commBoxNeighbours[iCommBox][iNeighbour][1] = HALO_Z_MINUS;
+                               ++iNeighbour;
+                               ll->commBoxNeighbours[iCommBox][iNeighbour] = comdMalloc(2*sizeof(int));
+                               ll->commBoxNeighbours[iCommBox][iNeighbour][0] = processorNum((Domain*) domain, +1,  0, -1);
+                               ll->commBoxNeighbours[iCommBox][iNeighbour][1] = HALO_X_PLUS_Z_MINUS;
+                               ++iNeighbour;
+                               ll->commBoxNeighbours[iCommBox][iNeighbour] = comdMalloc(2*sizeof(int));
+                               ll->commBoxNeighbours[iCommBox][iNeighbour][0] = processorNum((Domain*) domain,  0, +1, -1);
+                               ll->commBoxNeighbours[iCommBox][iNeighbour][1] = HALO_Y_PLUS_Z_MINUS;
+                               ++iNeighbour;
+                               ll->commBoxNeighbours[iCommBox][iNeighbour] = comdMalloc(2*sizeof(int));
+                               ll->commBoxNeighbours[iCommBox][iNeighbour][0] = processorNum((Domain*) domain, +1, +1, -1);
+                               ll->commBoxNeighbours[iCommBox][iNeighbour][1] = HALO_X_PLUS_Y_PLUS_Z_MINUS;
+                               ++iNeighbour;
                                ll->faces[iCommBox] = HALO_X_PLUS_Y_PLUS_Z_MINUS;
-                               addNeighbour(ll->commBoxNeighbours[iCommBox], &iNeighbour, processorNum((Domain*) domain,  0,  0, -1));
-                               addNeighbour(ll->commBoxNeighbours[iCommBox], &iNeighbour, processorNum((Domain*) domain, +1,  0, -1));
-                               addNeighbour(ll->commBoxNeighbours[iCommBox], &iNeighbour, processorNum((Domain*) domain,  0, +1, -1));
-                               addNeighbour(ll->commBoxNeighbours[iCommBox], &iNeighbour, processorNum((Domain*) domain, +1, +1, -1));
                            }
                            else if (z > ll->gridSize[2] - 2)
                            {
+                               ll->commBoxNeighbours[iCommBox][iNeighbour] = comdMalloc(2*sizeof(int));
+                               ll->commBoxNeighbours[iCommBox][iNeighbour][0] = processorNum((Domain*) domain,  0,  0, +1);
+                               ll->commBoxNeighbours[iCommBox][iNeighbour][1] = HALO_Z_PLUS;
+                               ++iNeighbour;
+                               ll->commBoxNeighbours[iCommBox][iNeighbour] = comdMalloc(2*sizeof(int));
+                               ll->commBoxNeighbours[iCommBox][iNeighbour][0] = processorNum((Domain*) domain, +1,  0, +1);
+                               ll->commBoxNeighbours[iCommBox][iNeighbour][1] = HALO_X_PLUS_Z_PLUS;
+                               ++iNeighbour;
+                               ll->commBoxNeighbours[iCommBox][iNeighbour] = comdMalloc(2*sizeof(int));
+                               ll->commBoxNeighbours[iCommBox][iNeighbour][0] = processorNum((Domain*) domain,  0, +1, +1);
+                               ll->commBoxNeighbours[iCommBox][iNeighbour][1] = HALO_Y_PLUS_Z_PLUS;
+                               ++iNeighbour;
+                               ll->commBoxNeighbours[iCommBox][iNeighbour] = comdMalloc(2*sizeof(int));
+                               ll->commBoxNeighbours[iCommBox][iNeighbour][0] = processorNum((Domain*) domain, +1, +1, +1);
+                               ll->commBoxNeighbours[iCommBox][iNeighbour][1] = HALO_X_PLUS_Y_PLUS_Z_PLUS;
+                               ++iNeighbour;
                                ll->faces[iCommBox] = HALO_X_PLUS_Y_PLUS_Z_PLUS;
-                               addNeighbour(ll->commBoxNeighbours[iCommBox], &iNeighbour, processorNum((Domain*) domain,  0,  0, +1));
-                               addNeighbour(ll->commBoxNeighbours[iCommBox], &iNeighbour, processorNum((Domain*) domain, +1,  0, +1));
-                               addNeighbour(ll->commBoxNeighbours[iCommBox], &iNeighbour, processorNum((Domain*) domain,  0, +1, +1));
-                               addNeighbour(ll->commBoxNeighbours[iCommBox], &iNeighbour, processorNum((Domain*) domain, +1, +1, +1));
                            }
                        }
                        else if (z < 1)
                        {
+                           ll->commBoxNeighbours[iCommBox][iNeighbour] = comdMalloc(2*sizeof(int));
+                           ll->commBoxNeighbours[iCommBox][iNeighbour][0] = processorNum((Domain*) domain,  0,  0, -1);
+                           ll->commBoxNeighbours[iCommBox][iNeighbour][1] = HALO_Z_MINUS;
+                           ++iNeighbour;
+                           ll->commBoxNeighbours[iCommBox][iNeighbour] = comdMalloc(2*sizeof(int));
+                           ll->commBoxNeighbours[iCommBox][iNeighbour][0] = processorNum((Domain*) domain, +1,  0, -1);
+                           ll->commBoxNeighbours[iCommBox][iNeighbour][1] = HALO_X_PLUS_Z_MINUS;
+                           ++iNeighbour;
                            ll->faces[iCommBox] = HALO_X_PLUS_Z_MINUS;
-                           addNeighbour(ll->commBoxNeighbours[iCommBox], &iNeighbour, processorNum((Domain*) domain,  0,  0, -1));
-                           addNeighbour(ll->commBoxNeighbours[iCommBox], &iNeighbour, processorNum((Domain*) domain, +1,  0, -1));
                        }
                        else if (z > ll->gridSize[2] - 2)
                        {
+                           ll->commBoxNeighbours[iCommBox][iNeighbour] = comdMalloc(2*sizeof(int));
+                           ll->commBoxNeighbours[iCommBox][iNeighbour][0] = processorNum((Domain*) domain,  0,  0, +1);
+                           ll->commBoxNeighbours[iCommBox][iNeighbour][1] = HALO_Z_PLUS;
+                           ++iNeighbour;
+                           ll->commBoxNeighbours[iCommBox][iNeighbour] = comdMalloc(2*sizeof(int));
+                           ll->commBoxNeighbours[iCommBox][iNeighbour][0] = processorNum((Domain*) domain, +1,  0, +1);
+                           ll->commBoxNeighbours[iCommBox][iNeighbour][1] = HALO_X_PLUS_Z_PLUS;
+                           ++iNeighbour;
                            ll->faces[iCommBox] = HALO_X_PLUS_Z_PLUS;
-                           addNeighbour(ll->commBoxNeighbours[iCommBox], &iNeighbour, processorNum((Domain*) domain,  0,  0, +1));
-                           addNeighbour(ll->commBoxNeighbours[iCommBox], &iNeighbour, processorNum((Domain*) domain, +1,  0, +1));
                        }
                    }
                    else if (y < 1)
                    {
+                       ll->commBoxNeighbours[iCommBox][iNeighbour] = comdMalloc(2*sizeof(int));
+                       ll->commBoxNeighbours[iCommBox][iNeighbour][0] = processorNum((Domain*) domain,  0, -1,  0);
+                       ll->commBoxNeighbours[iCommBox][iNeighbour][1] = HALO_Y_MINUS;
+                       ++iNeighbour;
                        ll->faces[iCommBox] = HALO_Y_MINUS;
-                       addNeighbour(ll->commBoxNeighbours[iCommBox], &iNeighbour, processorNum((Domain*) domain,  0, -1,  0));
                        if (z < 1)
                        {
+                           ll->commBoxNeighbours[iCommBox][iNeighbour] = comdMalloc(2*sizeof(int));
+                           ll->commBoxNeighbours[iCommBox][iNeighbour][0] = processorNum((Domain*) domain,  0,  0, -1);
+                           ll->commBoxNeighbours[iCommBox][iNeighbour][1] = HALO_Z_MINUS;
+                           ++iNeighbour;
+                           ll->commBoxNeighbours[iCommBox][iNeighbour] = comdMalloc(2*sizeof(int));
+                           ll->commBoxNeighbours[iCommBox][iNeighbour][0] = processorNum((Domain*) domain,  0, -1, -1);
+                           ll->commBoxNeighbours[iCommBox][iNeighbour][1] = HALO_Y_MINUS_Z_MINUS;
+                           ++iNeighbour;
                            ll->faces[iCommBox] = HALO_Y_MINUS_Z_MINUS;
-                           addNeighbour(ll->commBoxNeighbours[iCommBox], &iNeighbour, processorNum((Domain*) domain,  0,  0, -1));
-                           addNeighbour(ll->commBoxNeighbours[iCommBox], &iNeighbour, processorNum((Domain*) domain,  0, -1, -1));
                        }
                        else if (z > ll->gridSize[2] - 2)
                        {
+                           ll->commBoxNeighbours[iCommBox][iNeighbour] = comdMalloc(2*sizeof(int));
+                           ll->commBoxNeighbours[iCommBox][iNeighbour][0] = processorNum((Domain*) domain,  0,  0, +1);
+                           ll->commBoxNeighbours[iCommBox][iNeighbour][1] = HALO_Z_PLUS;
+                           ++iNeighbour;
+                           ll->commBoxNeighbours[iCommBox][iNeighbour] = comdMalloc(2*sizeof(int));
+                           ll->commBoxNeighbours[iCommBox][iNeighbour][0] = processorNum((Domain*) domain,  0, -1, +1);
+                           ll->commBoxNeighbours[iCommBox][iNeighbour][1] = HALO_Y_MINUS_Z_PLUS;
+                           ++iNeighbour;
                            ll->faces[iCommBox] = HALO_Y_MINUS_Z_PLUS;
-                           addNeighbour(ll->commBoxNeighbours[iCommBox], &iNeighbour, processorNum((Domain*) domain,  0,  0, +1));
-                           addNeighbour(ll->commBoxNeighbours[iCommBox], &iNeighbour, processorNum((Domain*) domain,  0, -1, +1));
                        }
                    }
                    else if (y > ll->gridSize[1] - 2)
                    {
+                       ll->commBoxNeighbours[iCommBox][iNeighbour] = comdMalloc(2*sizeof(int));
+                       ll->commBoxNeighbours[iCommBox][iNeighbour][0] = processorNum((Domain*) domain,  0, +1,  0);
+                       ll->commBoxNeighbours[iCommBox][iNeighbour][1] = HALO_Y_PLUS;
+                       ++iNeighbour;
                        ll->faces[iCommBox] = HALO_Y_PLUS;
-                       addNeighbour(ll->commBoxNeighbours[iCommBox], &iNeighbour, processorNum((Domain*) domain,  0, +1,  0));
                        if (z < 1)
                        {
+                           ll->commBoxNeighbours[iCommBox][iNeighbour] = comdMalloc(2*sizeof(int));
+                           ll->commBoxNeighbours[iCommBox][iNeighbour][0] = processorNum((Domain*) domain,  0,  0, -1);
+                           ll->commBoxNeighbours[iCommBox][iNeighbour][1] = HALO_Z_MINUS;
+                           ++iNeighbour;
+                           ll->commBoxNeighbours[iCommBox][iNeighbour] = comdMalloc(2*sizeof(int));
+                           ll->commBoxNeighbours[iCommBox][iNeighbour][0] = processorNum((Domain*) domain,  0, +1, -1);
+                           ll->commBoxNeighbours[iCommBox][iNeighbour][1] = HALO_Y_PLUS_Z_MINUS;
+                           ++iNeighbour;
                            ll->faces[iCommBox] = HALO_Y_PLUS_Z_MINUS;
-                           addNeighbour(ll->commBoxNeighbours[iCommBox], &iNeighbour, processorNum((Domain*) domain,  0,  0, -1));
-                           addNeighbour(ll->commBoxNeighbours[iCommBox], &iNeighbour, processorNum((Domain*) domain,  0, +1, -1));
                        }
                        else if (z > ll->gridSize[2] - 2)
                        {
+                           ll->commBoxNeighbours[iCommBox][iNeighbour] = comdMalloc(2*sizeof(int));
+                           ll->commBoxNeighbours[iCommBox][iNeighbour][0] = processorNum((Domain*) domain,  0,  0, +1);
+                           ll->commBoxNeighbours[iCommBox][iNeighbour][1] = HALO_Z_PLUS;
+                           ++iNeighbour;
+                           ll->commBoxNeighbours[iCommBox][iNeighbour] = comdMalloc(2*sizeof(int));
+                           ll->commBoxNeighbours[iCommBox][iNeighbour][0] = processorNum((Domain*) domain,  0, +1, +1);
+                           ll->commBoxNeighbours[iCommBox][iNeighbour][1] = HALO_Y_PLUS_Z_PLUS;
+                           ++iNeighbour;
                            ll->faces[iCommBox] = HALO_Y_PLUS_Z_PLUS;
-                           addNeighbour(ll->commBoxNeighbours[iCommBox], &iNeighbour, processorNum((Domain*) domain,  0,  0, +1));
-                           addNeighbour(ll->commBoxNeighbours[iCommBox], &iNeighbour, processorNum((Domain*) domain,  0, +1, +1));
                        }
                    }
                    else if (z < 1)
                    {
+                       ll->commBoxNeighbours[iCommBox][iNeighbour] = comdMalloc(2*sizeof(int));
+                       ll->commBoxNeighbours[iCommBox][iNeighbour][0] = processorNum((Domain*) domain,  0,  0, -1);
+                       ll->commBoxNeighbours[iCommBox][iNeighbour][1] = HALO_Z_MINUS;
+                       ++iNeighbour;
                        ll->faces[iCommBox] = HALO_Z_MINUS;
-                       addNeighbour(ll->commBoxNeighbours[iCommBox], &iNeighbour, processorNum((Domain*) domain,  0,  0, -1));
                    }
                    else if (z > ll->gridSize[2] - 2)
                    {
+                       ll->commBoxNeighbours[iCommBox][iNeighbour] = comdMalloc(2*sizeof(int));
+                       ll->commBoxNeighbours[iCommBox][iNeighbour][0] = processorNum((Domain*) domain,  0,  0, +1);
+                       ll->commBoxNeighbours[iCommBox][iNeighbour][1] = HALO_Z_PLUS;
+                       ++iNeighbour;
                        ll->faces[iCommBox] = HALO_Z_PLUS;
-                       addNeighbour(ll->commBoxNeighbours[iCommBox], &iNeighbour, processorNum((Domain*) domain,  0,  0, +1));
                    }
                    ll->commBoxNumNeighbours[iCommBox] = iNeighbour;
+                   assert(iNeighbour == nNeighbours);
                    iCommBox++;
                }
            }
@@ -609,18 +796,6 @@ int getBoxFromCoord(LinkCell* boxes, real_t rr[3])
    int iy = (int)(floor((rr[1] - localMin[1])*boxes->invBoxSize[1]));
    int iz = (int)(floor((rr[2] - localMin[2])*boxes->invBoxSize[2]));
 
-//   if(ix==-32)
-//   {       
-//       printf("ix = %i\n",ix);
-//       printf("x = %lf\n",rr[0]);
-//       printf("minx = %lf\n",localMin[0]);
-//       printf("invx = %lf\n",boxes->invBoxSize[2]);
-//       printf("floorx = %lf\n",floor((rr[0] - localMin[0])));
-//       printf("nonintx = %lf\n",floor((rr[0] - localMin[0]))*boxes->invBoxSize[0]);
-//       fflush(stdout);
-//       assert(ix!=-32);
-//   }
-
    // For each axis, if we are inside the local domain, make sure we get
    // a local link cell.  Otherwise, make sure we get a halo link cell.
    if (rr[0] < localMax[0]) 
@@ -642,6 +817,10 @@ int getBoxFromCoord(LinkCell* boxes, real_t rr[3])
    else
       iz = gridSize[2];
   
+   if(iz==-15)
+   {
+       printf("Here\n");
+   }
    return getBoxFromTuple(boxes, ix, iy, iz);
 }
 

@@ -136,6 +136,7 @@ static void unloadForceBuffer(void* vparms, void* data, int face, int bufSize, c
 static void unloadForceBoxBuffer(void* vparms, void* data, int face, int bufSize, char* charBuf);
 static void destroyForceExchange(void* vparms);
 static int sortAtomsById(const void* a, const void* b);
+static int tagConverter(LinkCell* boxes, int tag, int xdir, int ydir, int zdir);
 
 /// \details
 /// When called in proper sequence by redistributeAtoms, the atom halo
@@ -412,8 +413,8 @@ void haloExchange(HaloExchange* haloExchange, void* data)
    LinkCell* ll = ((SimFlat*) data)->boxes;
 
    // Allocate Memory
-   // Separate send buffer for each box
-   char** sendBufs = comdMalloc(ll->nCommBoxes*sizeof(char*));
+   // Separate set of send buffers for each box
+   char*** sendBufs = comdMalloc(ll->nCommBoxes*sizeof(char**));
    // Separate set of send buffers for each box
    char*** recvBufs = comdMalloc(ll->nCommBoxes*sizeof(char**));
    // Separate set of send requests for each box
@@ -421,7 +422,7 @@ void haloExchange(HaloExchange* haloExchange, void* data)
    // Separate set of receive requests for each box
    MPI_Request** recvRequests = comdMalloc(ll->nCommBoxes*sizeof(MPI_Request*));
    // Number of bytes to be sent for each box
-   int* nSends = comdMalloc(ll->nCommBoxes*sizeof(int));
+   int** nSends = comdMalloc(ll->nCommBoxes*sizeof(int*));
    // Number of bytes to be received from each neighbour
    int** nRecvs = comdMalloc(ll->nCommBoxes*sizeof(int*));
    // Number of neighbours each box has
@@ -432,17 +433,19 @@ void haloExchange(HaloExchange* haloExchange, void* data)
        nNeighbours[iCommBox] = ll->commBoxNumNeighbours[iCommBox];
        // Different request for each neighbour
        sendRequests[iCommBox] = comdMalloc(nNeighbours[iCommBox]*sizeof(MPI_Request));
-       // Buffer capacity is preset
-       sendBufs[iCommBox] = comdMalloc(haloExchange->bufCapacity);
        // Seperate number of bytes received from each neighbour
+       nSends[iCommBox] = comdMalloc(nNeighbours[iCommBox]*sizeof(int));
        nRecvs[iCommBox] = comdMalloc(nNeighbours[iCommBox]*sizeof(int));
        // Different request for each neighbour
        recvRequests[iCommBox] = comdMalloc(nNeighbours[iCommBox]*sizeof(MPI_Request));
-       // Different receive buffer for each neighbour
+
+       // Different send and receive buffer for each neighbour
+       sendBufs[iCommBox] = comdMalloc(nNeighbours[iCommBox]*sizeof(char*));
        recvBufs[iCommBox] = comdMalloc(nNeighbours[iCommBox]*sizeof(char*));
        for (int iBoxNeighbour=0; iBoxNeighbour<nNeighbours[iCommBox]; ++iBoxNeighbour)
        {
            // Buffer capacity is preset
+           sendBufs[iCommBox][iBoxNeighbour] = comdMalloc(haloExchange->bufCapacity);
            recvBufs[iCommBox][iBoxNeighbour] = comdMalloc(haloExchange->bufCapacity);
        }
    }
@@ -450,12 +453,15 @@ void haloExchange(HaloExchange* haloExchange, void* data)
    //printf("Loading\n");
    for (int iCommBox=0; iCommBox<ll->nCommBoxes; ++iCommBox)
    {
-       // Load atoms from box into buffer and return the number of atoms
-       nSends[iCommBox] = haloExchange->loadBoxBuffer(haloExchange->parms,
-                                                      data,
-                                                      ll->commBoxes[iCommBox],
-                                                      ll->faces[iCommBox],
-                                                      sendBufs[iCommBox]);
+       for (int iBoxNeighbour=0; iBoxNeighbour<nNeighbours[iCommBox]; ++iBoxNeighbour)
+       {
+          // Load atoms from box into buffer and return the number of atoms
+          nSends[iCommBox][iBoxNeighbour] = haloExchange->loadBoxBuffer(haloExchange->parms,
+                                                         data,
+                                                         ll->commBoxes[iCommBox],
+                                                         ll->commBoxNeighbours[iCommBox][iBoxNeighbour][1],
+                                                         sendBufs[iCommBox][iBoxNeighbour]);
+       }
    }
 
    //printf("Sending\n");
@@ -464,9 +470,9 @@ void haloExchange(HaloExchange* haloExchange, void* data)
        // Issue non-blocking send to each neighbour and return the MPI_Request
        for (int iBoxNeighbour=0;iBoxNeighbour<nNeighbours[iCommBox];++iBoxNeighbour)
        {
-           sendRequests[iCommBox][iBoxNeighbour] = isendParallel(sendBufs[iCommBox],
-                                                           nSends[iCommBox],
-                                                           ll->commBoxNeighbours[iCommBox][iBoxNeighbour]);
+           sendRequests[iCommBox][iBoxNeighbour] = isendParallel(sendBufs[iCommBox][iBoxNeighbour],
+                                                           nSends[iCommBox][iBoxNeighbour],
+                                                           ll->commBoxNeighbours[iCommBox][iBoxNeighbour][0]);
        }
    }
 
@@ -478,7 +484,7 @@ void haloExchange(HaloExchange* haloExchange, void* data)
        {
            recvRequests[iCommBox][iBoxNeighbour] = irecvParallel(recvBufs[iCommBox][iBoxNeighbour],
                                                            haloExchange->bufCapacity,
-                                                           ll->commBoxNeighbours[iCommBox][iBoxNeighbour]);
+                                                           ll->commBoxNeighbours[iCommBox][iBoxNeighbour][0]);
        }
    }
 
@@ -1041,7 +1047,6 @@ int loadAtomsBoxBuffer(void* vparms, void* data, int box, int face, char* charBu
    shift[1] = pbcFactor[1] * s->domain->globalExtent[1];
    shift[2] = pbcFactor[2] * s->domain->globalExtent[2];
 
-   int weirdIDs[17] = {120,165,20,2902,3293,3393,489611,490307,5502,5893,5993,65,693,8100,8593,9613,9665};
    int nBuf = 0;
    int iOff = box*MAXATOMS;
    for (int ii=iOff; ii<iOff+s->boxes->nAtoms[box]; ++ii)
@@ -1054,17 +1059,6 @@ int loadAtomsBoxBuffer(void* vparms, void* data, int box, int face, char* charBu
       buf[nBuf].px = s->atoms->p[ii][0];
       buf[nBuf].py = s->atoms->p[ii][1];
       buf[nBuf].pz = s->atoms->p[ii][2];
-      //for(int jj=0;jj<17;jj++)
-      //{
-      //    if (buf[nBuf].gid == weirdIDs[jj])
-      //    {
-      //        printf("Send coords wrong:\t%i\t%i\n\t\t\t%lf\t%lf\t%lf\n\t\t\t%lf\t%lf\t%lf\n\t\t\t%lf\t%lf\t%lf\n\n",
-      //                buf[nBuf].gid,face,
-      //                buf[nBuf].rx,buf[nBuf].ry,buf[nBuf].rz,
-      //                pbcFactor[0],pbcFactor[1],pbcFactor[2],
-      //                s->atoms->r[ii][0],s->atoms->r[ii][1],s->atoms->r[ii][2]);
-      //    }
-      //}
       ++nBuf;
    }
    return nBuf*sizeof(AtomMsg);
@@ -1090,10 +1084,6 @@ void unloadAtomsBoxBuffer(void* vparms, void* data, int box, int bufSize, char* 
       real_t px = buf[ii].px;
       real_t py = buf[ii].py;
       real_t pz = buf[ii].pz;
-      //if (1)
-      //{
-      //    printf("Receive coords wrong:\t%i\t%lf\t%lf\t%lf\n",gid,rx,ry,rz);
-      //}
       putAtomInBox(s->boxes, s->atoms, gid, type, rx, ry, rz, px, py, pz);
    }
 }
@@ -1652,4 +1642,18 @@ int sortAtomsById(const void* a, const void* b)
    if (aId < bId)
       return -1;
    return 1;
+}
+
+/// A function that takes a message tag, and the direction it came from, and
+/// outputs the box it should be loaded into
+int tagConverter(LinkCell* boxes, int tag, int xdir, int ydir, int zdir)
+{
+   int ix, iy, iz;
+   getTuple(boxes, tag, &ix, &iy, &iz);
+
+   ix = ix + xdir*boxes->gridSize[0];
+   iy = iy + ydir*boxes->gridSize[1];
+   iz = iz + zdir*boxes->gridSize[2];
+
+   return getBoxFromTuple(boxes, ix, iy, iz);
 }

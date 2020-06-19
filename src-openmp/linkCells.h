@@ -33,7 +33,8 @@ typedef struct LinkCellSt
    int nCommBoxes;            //!< number of boxes involved in communication
                               //!< nHaloBoxes + outer layer of local boxes
    int* commBoxes;            //!< list of boxes involved in communication
-   int** commBoxNeighbours;   //!< list of ranks of neighbours of each box
+   int*** commBoxNeighbours;   //!< list of ranks of neighbours of each box
+   int** neighbourTags;       //!< 
    int* commBoxNumNeighbours; //!< number of neighbours of each communication box
    int* faces;                //!< index of the face each box is located on
 
@@ -59,6 +60,7 @@ int maxOccupancy(LinkCell* boxes);
 
 // New addition
 void addNeighbour(int* neighbourList, int *nNeighbours, int newNeighbour);
+void getTuple(LinkCell* boxes, int iBox, int* ixp, int* iyp, int* izp);
 
 
 #endif
