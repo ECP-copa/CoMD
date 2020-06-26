@@ -25,9 +25,12 @@ struct DomainSt;
 /// \see redistributeAtoms
 typedef struct HaloExchangeSt
 {
-   /// The MPI ranks of the six face neighbors of the local domain.
+   /// The MPI ranks of the twenty-six face neighbors of the local domain.
+   /// Six face neighbours
+   /// Twelve edge neighbours
+   /// Eight corner neighbours
    /// Ranks are stored in the order specified in HaloFaceOrder.
-   int nbrRank[6];
+   int nbrRank[26];
    /// The maximum send/recv buffer size (in bytes) that will be needed
    /// for this halo exchange.
    int bufCapacity;
@@ -65,6 +68,10 @@ typedef struct HaloExchangeSt
    /// A pointer to a sub-class specific structure that contains
    /// additional data members needed by the sub-class.
    void* parms;
+
+   // New additions
+   int  (*loadBoxBuffer)(void* parms, void* data, int box, int face, char* buf);
+   void (*unloadBoxBuffer)(void* parms, void* data, int face, int bufSize, char* buf);
 } 
 HaloExchange;
 

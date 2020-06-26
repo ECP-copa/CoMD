@@ -29,8 +29,8 @@ MPI_INCLUDE =
 
 ### A place to specify any other include or library switches your
 ### platform requires.
-OTHER_LIB = 
-OTHER_INCLUDE = -I/home/shared/dc025/tampi-install/include
+OTHER_LIB =
+OTHER_INCLUDE =
 
 
 
@@ -87,9 +87,6 @@ CoMD_info.h: Makefile
 
 ${BIN_DIR}:
 	@if [ ! -d ${BIN_DIR} ]; then mkdir -p ${BIN_DIR} ; fi
-
-tampi: CFLAGS += -DDO_TAMPI
-tampi: ${CoMD_EXE}
 
 clean:
 	rm -f *.o CoMD_info.h .depend

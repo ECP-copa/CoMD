@@ -5,6 +5,7 @@
 #define _PARALLEL_H_
 
 #include "mytype.h"
+#include "mpi.h"
 
 /// Structure for use with MPI_MINLOC and MPI_MAXLOC operations.
 typedef struct RankReduceDataSt
@@ -37,6 +38,18 @@ void barrierParallel(void);
 /// Wrapper for MPI_Sendrecv.
 int sendReceiveParallel(void* sendBuf, int sendLen, int dest,
                         void* recvBuf, int recvLen, int source);
+
+/// Wrapper for MPI_Isend.
+MPI_Request isendParallel(void* sendBuf, int sendLen, int dest);
+
+/// Wrapper for MPI_Irecv.
+MPI_Request irecvParallel(void* recvBuf, int recvLen, int source);
+
+/// Wrapper for MPI_Wait for sends.
+void waitSendParallel(MPI_Request request);
+
+/// Wrapper for MPI_Wait for receives.
+int waitRecvParallel(MPI_Request request);
 
 /// Wrapper for MPI_Allreduce integer sum.
 void addIntParallel(int* sendBuf, int* recvBuf, int count);
