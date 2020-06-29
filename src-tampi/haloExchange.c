@@ -32,10 +32,6 @@
 
 #include <assert.h>
 
-// Remove this later
-#include <string.h>
-#include "mpi.h"
-
 #include "CoMDTypes.h"
 #include "decomposition.h"
 #include "parallel.h"
@@ -310,16 +306,6 @@ HaloExchange* initAtomHaloExchange(Domain* domain, LinkCell* boxes)
        parms->pbcFactor[HALO_X_PLUS_Y_PLUS_Z_PLUS][HALO_Z_AXIS]    = -1.0;
    }
    
-   //for (int i=0;i<26;i++)
-   //{
-   //    for(int j=0;j<3;j++)
-   //    {
-   //        printf("%.1lf\t",parms->pbcFactor[i][j]);
-   //    }
-   //    printf("\n");
-   //}
-   //printf("\n");
-
    hh->parms = parms;
    return hh;
 }
@@ -408,7 +394,6 @@ void destroyHaloExchange(HaloExchange** haloExchange)
 
 void haloExchange(HaloExchange* haloExchange, void* data)
 {
-    //printf("Starting exchange\n");
    // Retrieve link cell information from data
    LinkCell* ll = ((SimFlat*) data)->boxes;
 
@@ -450,7 +435,6 @@ void haloExchange(HaloExchange* haloExchange, void* data)
        }
    }
 
-   //printf("Loading\n");
    for (int iCommBox=0; iCommBox<ll->nCommBoxes; ++iCommBox)
    {
        for (int iBoxNeighbour=0; iBoxNeighbour<nNeighbours[iCommBox]; ++iBoxNeighbour)
@@ -464,7 +448,6 @@ void haloExchange(HaloExchange* haloExchange, void* data)
        }
    }
 
-   //printf("Sending\n");
    for (int iCommBox=0; iCommBox<ll->nCommBoxes; ++iCommBox)
    {
        // Issue non-blocking send to each neighbour and return the MPI_Request
@@ -476,7 +459,6 @@ void haloExchange(HaloExchange* haloExchange, void* data)
        }
    }
 
-   //printf("Receiving\n");
    for (int iCommBox=0; iCommBox<ll->nCommBoxes; ++iCommBox)
    {
        // Issue non-blocking receive to each neighbour and return the MPI_Request
@@ -488,7 +470,6 @@ void haloExchange(HaloExchange* haloExchange, void* data)
        }
    }
 
-   //printf("Waiting for receives and unloading\n");
    for (int iCommBox=0; iCommBox<ll->nCommBoxes; ++iCommBox)
    {
        // Wait for receives and unload buffers
@@ -503,7 +484,6 @@ void haloExchange(HaloExchange* haloExchange, void* data)
        }
    }
 
-   //printf("Waiting for sends\n");
    for (int iCommBox=0; iCommBox<ll->nCommBoxes; ++iCommBox)
    {
        for (int iBoxNeighbour=0; iBoxNeighbour<nNeighbours[iCommBox]; ++iBoxNeighbour)
@@ -512,7 +492,6 @@ void haloExchange(HaloExchange* haloExchange, void* data)
            waitSendParallel(sendRequests[iCommBox][iBoxNeighbour]);
        }
    }
-   //printf("Finished communication\n");
 
    // Free everything
    for (int iCommBox=0; iCommBox<ll->nCommBoxes; ++iCommBox)
@@ -520,6 +499,7 @@ void haloExchange(HaloExchange* haloExchange, void* data)
        for (int iBoxNeighbour=0; iBoxNeighbour<nNeighbours[iCommBox]; ++iBoxNeighbour)
        {
            comdFree(recvBufs[iCommBox][iBoxNeighbour]);
+           comdFree(sendBufs[iCommBox][iBoxNeighbour]);
        }
        comdFree(sendRequests[iCommBox]);
        comdFree(sendBufs[iCommBox]);
@@ -590,22 +570,6 @@ void exchangeData(HaloExchange* haloExchange, void* data, int neighbour)
 
    int nSend = haloExchange->loadBuffer(haloExchange->parms, data, target, sendBuf);
 
-   // Remove later
-   //AtomMsg* buf = (AtomMsg*) sendBuf;
-   //int nBuf = nSend / sizeof(AtomMsg);
-   //assert(nSend % sizeof(AtomMsg) == 0);
-   //for (int ii=0; ii<nBuf; ++ii)
-   //{
-   //   int gid1   = buf[ii].gid;
-   //   int type1  = buf[ii].type;
-   //   real_t rx1 = buf[ii].rx;
-   //   real_t ry1 = buf[ii].ry;
-   //   real_t rz1 = buf[ii].rz;
-   //   real_t px1 = buf[ii].px;
-   //   real_t py1 = buf[ii].py;
-   //   real_t pz1 = buf[ii].pz;
-   //}
-
    int nbrRank = haloExchange->nbrRank[target];
 
    int nRecv;
@@ -614,21 +578,6 @@ void exchangeData(HaloExchange* haloExchange, void* data, int neighbour)
    nRecv = sendReceiveParallel(sendBuf, nSend, nbrRank, recvBuf, haloExchange->bufCapacity, nbrRank);
    stopTimer(commHaloTimer);
    
-   // Remove later
-   //AtomMsg* buf2 = (AtomMsg*) recvBuf;
-   //assert(nRecv % sizeof(AtomMsg) == 0);
-   //for (int ii=0; ii<nRecv/sizeof(AtomMsg); ++ii)
-   //{
-   //   int gid2   = buf2[ii].gid;
-   //   int type2  = buf2[ii].type;
-   //   real_t rx2 = buf2[ii].rx;
-   //   real_t ry2 = buf2[ii].ry;
-   //   real_t rz2 = buf2[ii].rz;
-   //   real_t px2 = buf2[ii].px;
-   //   real_t py2 = buf2[ii].py;
-   //   real_t pz2 = buf2[ii].pz;
-   //}
-
    haloExchange->unloadBuffer(haloExchange->parms, data, target, nRecv, recvBuf);
 
    //int testrank;
@@ -1127,45 +1076,6 @@ int loadAtomsBuffer(void* vparms, void* data, int face, char* charBuf)
          buf[nBuf].py = s->atoms->p[ii][1];
          buf[nBuf].pz = s->atoms->p[ii][2];
 
-         //if(buf[nBuf].gid==480006)// || buf[nBuf].gid==480106)
-         //{
-         //    int testrank;
-         //    MPI_Comm_rank(MPI_COMM_WORLD,&testrank);
-         //    char facenames[26][50] = {"HALO_X_MINUS",
-         //                              "HALO_X_PLUS",
-         //                              "HALO_Y_MINUS",
-         //                              "HALO_Y_PLUS",
-         //                              "HALO_Z_MINUS",
-         //                              "HALO_Z_PLUS",
-         //                              "HALO_X_MINUS_Y_MINUS",
-         //                              "HALO_X_MINUS_Y_PLUS",
-         //                              "HALO_X_PLUS_Y_MINUS",
-         //                              "HALO_X_PLUS_Y_PLUS",
-         //                              "HALO_X_MINUS_Z_MINUS",
-         //                              "HALO_X_MINUS_Z_PLUS",
-         //                              "HALO_X_PLUS_Z_MINUS",
-         //                              "HALO_X_PLUS_Z_PLUS",
-         //                              "HALO_Y_MINUS_Z_MINUS",
-         //                              "HALO_Y_MINUS_Z_PLUS",
-         //                              "HALO_Y_PLUS_Z_MINUS",
-         //                              "HALO_Y_PLUS_Z_PLUS",
-         //                              "HALO_X_MINUS_Y_MINUS_Z_MINUS",
-         //                              "HALO_X_MINUS_Y_MINUS_Z_PLUS",
-         //                              "HALO_X_MINUS_Y_PLUS_Z_MINUS",
-         //                              "HALO_X_MINUS_Y_PLUS_Z_PLUS",
-         //                              "HALO_X_PLUS_Y_MINUS_Z_MINUS",
-         //                              "HALO_X_PLUS_Y_MINUS_Z_PLUS",
-         //                              "HALO_X_PLUS_Y_PLUS_Z_MINUS",
-         //                              "HALO_X_PLUS_Y_PLUS_Z_PLUS"};
-         //    printf("old x =   %lf\told y =   %lf\told z =   %lf\n",s->atoms->r[ii][0],s->atoms->r[ii][1],s->atoms->r[ii][2]);
-         //    printf("x shift = %lf\ty shift = %lf\tz shift = %lf\n",shift[0],shift[1],shift[2]);
-         //    printf("new x =   %lf\tnew y =   %lf\tnew z =   %lf\n",buf[nBuf].rx,buf[nBuf].ry,buf[nBuf].rz);
-         //    printf("face = %s\n",facenames[face]);
-         //    printf("rank = %i\n",testrank);
-         //    printf("ID = %i\n\n",buf[nBuf].gid);
-         //    fflush(stdout);
-         //}
-
          ++nBuf;
       }
    }
@@ -1200,17 +1110,6 @@ void unloadAtomsBuffer(void* vparms, void* data, int face, int bufSize, char* ch
       real_t px = buf[ii].px;
       real_t py = buf[ii].py;
       real_t pz = buf[ii].pz;
-
-//   if((int)(floor((rz - s->boxes->localMin[2])*s->boxes->invBoxSize[2]))<-1)
-//   {
-//       printf("z = %lf\n",rz);
-//       printf("minz = %lf\n",s->boxes->localMin[2]);
-//       printf("invz = %lf\n",s->boxes->invBoxSize[2]);
-//       printf("floorz = %lf\n",floor((rz - s->boxes->localMin[2])));
-//       printf("nonintz = %lf\n",floor((rz - s->boxes->localMin[2]))*s->boxes->invBoxSize[2]);
-//       printf("\n################\n\n");
-//       fflush(stdout);
-//   }
 
       putAtomInBox(s->boxes, s->atoms, gid, type, rx, ry, rz, px, py, pz);
    }
@@ -1588,27 +1487,6 @@ void sortAtomsInCell(Atoms* atoms, LinkCell* boxes, int iBox)
       tmp[iTmp].pz =   atoms->p[ii][2];
    }
 
-   //int face = 0;
-   //for(int ii=begin; ii<end-1; ++ii)
-   //{
-   //    for(int jj=ii+1; jj<end; ++jj)
-   //    {
-   //        if(atoms->gid[ii] == atoms->gid[jj])
-   //        {
-   //            for(int kk=0; kk<boxes->nCommBoxes;++kk)
-   //            {
-   //                if(boxes->commBoxes[kk] == iBox)
-   //                {
-   //                    face = boxes->faces[kk];
-   //                    break;
-   //                }
-   //            }
-   //            printf("%i\t%i\t%i\n",atoms->gid[ii],iBox,face);
-   //        }
-   //    }
-
-   //}
-
    qsort(&tmp, nAtoms, sizeof(AtomMsg), sortAtomsById);
    for (int ii=begin, iTmp=0; ii<end; ++ii, ++iTmp)
    {
@@ -1633,10 +1511,6 @@ int sortAtomsById(const void* a, const void* b)
 {
    int aId = ((AtomMsg*) a)->gid;
    int bId = ((AtomMsg*) b)->gid;
-   if(aId==bId)
-   {
-       printf("%i\n",aId);
-   }
    assert(aId != bId);
 
    if (aId < bId)

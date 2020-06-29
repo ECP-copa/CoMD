@@ -596,19 +596,6 @@ void putAtomInBox(LinkCell* boxes, Atoms* atoms,
 {
    real_t xyz[3] = {x,y,z};
    
-//   if((int)(floor((xyz[0] - boxes->localMin[0])*boxes->invBoxSize[0]))==-32)
-//   {
-//       printf("\n################\n");
-//       printf("x = %lf\n",xyz[0]);
-//       printf("ID = %i\n",gid);
-//       printf("minx = %lf\n",boxes->localMin[0]);
-//       printf("invx = %lf\n",boxes->invBoxSize[0]);
-//       printf("floorx = %lf\n",floor((xyz[0] - boxes->localMin[0])));
-//       printf("nonintx = %lf\n",floor((xyz[0] - boxes->localMin[0]))*boxes->invBoxSize[0]);
-//       printf("\n################\n\n");
-//       assert((int)(floor((xyz[0] - boxes->localMin[0])*boxes->invBoxSize[0]))!=-32);
-//   }
-
    // Find correct box.
    int iBox = getBoxFromCoord(boxes, xyz);
    int iOff = iBox*MAXATOMS;
@@ -678,12 +665,6 @@ int getBoxFromTuple(LinkCell* boxes, int ix, int iy, int iz)
    else
    {
       iBox = ix + gridSize[0]*iy + gridSize[0]*gridSize[1]*iz;
-   }
-
-
-   if (iBox < 0)
-   {
-       printf("x = %i\ty = %i\tz = %i\n",ix,iy,iz);
    }
 
    assert(iBox >= 0);
@@ -817,10 +798,6 @@ int getBoxFromCoord(LinkCell* boxes, real_t rr[3])
    else
       iz = gridSize[2];
   
-   if(iz==-15)
-   {
-       printf("Here\n");
-   }
    return getBoxFromTuple(boxes, ix, iy, iz);
 }
 
